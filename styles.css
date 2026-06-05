@@ -1,6 +1,10 @@
 :root {
   --bg: #f5f7f2;
   --bg-soft: #eef3ea;
+  --bg-deep: #e6eee1;
+  --bg-radial-a: rgba(45, 152, 184, 0.14);
+  --bg-radial-b: rgba(217, 139, 43, 0.14);
+  --grid: rgba(34, 50, 36, 0.03);
   --panel: rgba(255, 255, 255, 0.84);
   --panel-strong: rgba(251, 253, 248, 0.98);
   --border: rgba(56, 74, 53, 0.24);
@@ -18,6 +22,10 @@
 :root[data-theme="dark"] {
   --bg: #09111b;
   --bg-soft: #122131;
+  --bg-deep: #07101a;
+  --bg-radial-a: rgba(92, 198, 232, 0.18);
+  --bg-radial-b: rgba(255, 179, 71, 0.14);
+  --grid: rgba(127, 169, 214, 0.07);
   --panel: rgba(14, 24, 39, 0.88);
   --panel-strong: rgba(18, 31, 49, 0.98);
   --border: rgba(127, 169, 214, 0.24);
@@ -35,6 +43,10 @@
 :root[data-theme="sepia"] {
   --bg: #f6efe3;
   --bg-soft: #efe3d1;
+  --bg-deep: #e6d5ba;
+  --bg-radial-a: rgba(77, 136, 168, 0.16);
+  --bg-radial-b: rgba(201, 109, 40, 0.14);
+  --grid: rgba(112, 84, 52, 0.04);
   --panel: rgba(255, 250, 242, 0.9);
   --panel-strong: rgba(253, 247, 238, 0.98);
   --border: rgba(112, 84, 52, 0.24);
@@ -55,6 +67,7 @@
 
 html {
   scroll-behavior: smooth;
+  font-size: 18px;
 }
 
 body {
@@ -63,9 +76,9 @@ body {
   font-family: "Space Grotesk", sans-serif;
   color: var(--text);
   background:
-    radial-gradient(circle at top left, rgba(45, 152, 184, 0.14), transparent 28%),
-    radial-gradient(circle at 80% 10%, rgba(217, 139, 43, 0.14), transparent 24%),
-    linear-gradient(180deg, #fbfcf8 0%, #f2f5ef 52%, #eef2ea 100%);
+    radial-gradient(circle at top left, var(--bg-radial-a), transparent 28%),
+    radial-gradient(circle at 80% 10%, var(--bg-radial-b), transparent 24%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 52%, var(--bg-deep) 100%);
 }
 
 body::before {
@@ -74,21 +87,21 @@ body::before {
   inset: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(34, 50, 36, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(34, 50, 36, 0.03) 1px, transparent 1px);
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
   background-size: 28px 28px;
   mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.6), transparent 92%);
 }
 
 .page-shell {
-  width: min(1440px, calc(100% - 24px));
-  margin: 0 auto;
-  padding: 12px 0 32px;
+  width: 100%;
+  margin: 0;
+  padding: 4px 4px 18px;
 }
 
 main {
   display: grid;
-  gap: 16px;
+  gap: 8px;
 }
 
 .top-nav {
@@ -96,7 +109,7 @@ main {
   justify-content: space-between;
   align-items: center;
   gap: 18px;
-  padding: 16px 22px;
+  padding: 20px 28px;
 }
 
 .nav-brand,
@@ -121,7 +134,7 @@ main {
   gap: 6px;
   justify-items: start;
   color: var(--muted);
-  font-size: 0.82rem;
+  font-size: 0.95rem;
 }
 
 .theme-picker span {
@@ -130,16 +143,16 @@ main {
 }
 
 .theme-select {
-  min-width: 120px;
-  padding: 9px 12px;
+  min-width: 140px;
+  padding: 12px 14px;
   border-radius: 999px;
   border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.84);
+  background: var(--panel-strong);
   color: var(--text);
 }
 
 .nav-link {
-  padding: 10px 14px;
+  padding: 12px 16px;
   border-radius: 999px;
   border: 1px solid transparent;
   background: rgba(34, 50, 36, 0.04);
@@ -155,7 +168,7 @@ main {
   overflow: hidden;
   background: var(--panel);
   border: 1px solid var(--border);
-  border-radius: 28px;
+  border-radius: 22px;
   box-shadow: var(--shadow);
   backdrop-filter: blur(14px);
 }
@@ -182,16 +195,16 @@ main {
 .hero {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(420px, 0.95fr);
-  gap: 24px;
+  gap: 32px;
   align-items: center;
-  min-height: calc(100vh - 24px);
-  padding: 36px 42px;
+  min-height: calc(100vh - 12px);
+  padding: 44px 52px;
 }
 
 .eyebrow {
   margin: 0 0 12px;
   color: var(--accent);
-  font-size: 0.88rem;
+  font-size: 1rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
@@ -204,33 +217,34 @@ p {
 }
 
 h1 {
-  font-size: clamp(3rem, 6vw, 5.4rem);
+  font-size: clamp(3.8rem, 6.8vw, 6.4rem);
   line-height: 0.95;
   margin-bottom: 20px;
 }
 
 .page-title {
-  font-size: clamp(2.8rem, 5vw, 4.5rem);
+  font-size: clamp(3.1rem, 5.4vw, 5.2rem);
 }
 
 h2 {
-  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-size: clamp(2.6rem, 4.2vw, 4rem);
   margin-bottom: 14px;
 }
 
 h3 {
-  font-size: 1.15rem;
+  font-size: 1.45rem;
   margin-bottom: 10px;
 }
 
 p {
   color: var(--muted);
-  line-height: 1.65;
+  font-size: 1.12rem;
+  line-height: 1.72;
 }
 
 .hero-text {
   max-width: 62ch;
-  font-size: 1.08rem;
+  font-size: 1.28rem;
 }
 
 .hero-actions,
@@ -251,7 +265,7 @@ input {
 button {
   border: 0;
   border-radius: 999px;
-  padding: 12px 18px;
+  padding: 15px 22px;
   cursor: pointer;
   transition: transform 180ms ease, opacity 180ms ease, background 180ms ease;
   text-decoration: none;
@@ -286,7 +300,7 @@ button:hover {
 
 .hero-visual {
   position: relative;
-  min-height: 520px;
+  min-height: 620px;
   display: grid;
   place-items: center;
 }
@@ -325,9 +339,9 @@ button:hover {
   position: absolute;
   display: grid;
   place-items: center;
-  padding: 10px 14px;
+  padding: 14px 18px;
   border-radius: 999px;
-  font-size: 0.88rem;
+  font-size: 1rem;
   border: 1px solid rgba(34, 50, 36, 0.12);
   background: rgba(255, 255, 255, 0.95);
   box-shadow: 0 12px 34px rgba(72, 90, 65, 0.12);
@@ -415,13 +429,13 @@ button:hover {
   bottom: 18px;
   display: grid;
   grid-template-columns: repeat(2, minmax(120px, 1fr));
-  gap: 10px;
+  gap: 12px;
   width: min(320px, 62%);
   z-index: 3;
 }
 
 .status-mini {
-  padding: 12px 14px;
+  padding: 14px 16px;
   border-radius: 18px;
   border: 1px solid rgba(34, 50, 36, 0.1);
   background: rgba(255, 255, 255, 0.82);
@@ -431,7 +445,7 @@ button:hover {
 .status-label {
   display: block;
   color: var(--muted);
-  font-size: 0.78rem;
+  font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
@@ -439,19 +453,19 @@ button:hover {
 .status-mini strong {
   display: block;
   margin-top: 6px;
-  font-size: 1.4rem;
+  font-size: 1.7rem;
 }
 
 .section-block {
-  min-height: calc(100vh - 24px);
+  min-height: calc(100vh - 12px);
   margin-top: 0;
-  padding: 28px 32px 30px;
+  padding: 36px 44px 34px;
   display: grid;
   align-content: start;
 }
 
 .section-heading {
-  margin-bottom: 22px;
+  margin-bottom: 28px;
   max-width: 86ch;
 }
 
@@ -474,7 +488,7 @@ button:hover {
   background: var(--panel-strong);
   border: 1px solid var(--border);
   border-radius: 22px;
-  padding: 20px;
+  padding: 24px;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55);
 }
 
@@ -519,7 +533,7 @@ button:hover {
   background: var(--panel-strong);
   border: 1px solid var(--border);
   border-radius: 22px;
-  padding: 18px;
+  padding: 22px;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55);
 }
 
@@ -528,7 +542,7 @@ button:hover {
   background: var(--panel-strong);
   border: 1px solid var(--border);
   border-radius: 26px;
-  padding: 22px;
+  padding: 24px;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55);
 }
 
@@ -553,6 +567,7 @@ button:hover {
 small {
   display: block;
   color: var(--muted);
+  font-size: 1rem;
 }
 
 select,
@@ -562,10 +577,10 @@ input[type="range"] {
 }
 
 select {
-  padding: 12px 14px;
+  padding: 14px 16px;
   border-radius: 16px;
   color: var(--text);
-  background: rgba(255, 255, 255, 0.92);
+  background: var(--panel-strong);
   border: 1px solid var(--border);
 }
 
@@ -616,6 +631,7 @@ small {
   justify-content: space-between;
   margin-bottom: 14px;
   color: var(--muted);
+  font-size: 1rem;
 }
 
 .status-strip {
@@ -665,7 +681,7 @@ small {
 .arrival-item strong,
 .dispatch-item strong,
 .theory-card strong {
-  font-size: 0.95rem;
+  font-size: 1.08rem;
 }
 
 .queue-list {
@@ -689,7 +705,7 @@ small {
   padding: 14px;
   border-radius: 20px;
   border: 1px dashed rgba(34, 50, 36, 0.14);
-  background: rgba(246, 249, 244, 0.95);
+  background: var(--panel-strong);
   overflow-x: auto;
 }
 
@@ -698,7 +714,7 @@ small {
   padding: 10px 12px;
   color: #ffffff;
   font-weight: 700;
-  font-size: 0.88rem;
+  font-size: 0.98rem;
   text-align: center;
   transition: transform 220ms ease, opacity 220ms ease;
 }
@@ -732,6 +748,7 @@ small {
   border-radius: 20px;
   text-align: center;
   font-weight: 700;
+  font-size: 1.02rem;
   color: #ffffff;
   background: rgba(95, 115, 95, 0.3);
 }
@@ -766,7 +783,7 @@ small {
 .metric-card strong {
   display: block;
   margin-top: 6px;
-  font-size: 1.35rem;
+  font-size: 1.55rem;
 }
 
 .explanation-strip {
@@ -805,9 +822,10 @@ small {
 .math-block {
   padding: 12px 14px;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.84);
+  background: var(--panel-strong);
   color: var(--accent-2);
   line-height: 1.6;
+  font-size: 1.08rem;
   overflow-x: auto;
   border: 1px solid rgba(56, 74, 53, 0.12);
 }
@@ -843,7 +861,7 @@ small {
 
 .slide-references p {
   margin-bottom: 8px;
-  font-size: 0.93rem;
+  font-size: 1rem;
   line-height: 1.5;
 }
 
@@ -863,7 +881,7 @@ small {
 .slide-visual {
   position: relative;
   margin-top: 18px;
-  padding: 18px;
+  padding: 24px;
   border-radius: 22px;
   border: 1px solid var(--border);
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(237, 243, 235, 0.96));
@@ -1207,7 +1225,7 @@ small {
 }
 
 .lecture-meta {
-  font-size: 0.92rem;
+  font-size: 1rem;
   color: var(--muted);
 }
 
@@ -1230,12 +1248,12 @@ small {
 }
 
 .simulator-page .page-shell {
-  width: min(1780px, calc(100% - 8px));
-  padding-bottom: 8px;
+  width: 100%;
+  padding-bottom: 10px;
 }
 
 .simulator-page .section-block {
-  padding: 14px 14px 16px;
+  padding: 24px 26px 22px;
 }
 
 .simulator-page .section-heading {
@@ -1251,13 +1269,13 @@ small {
 }
 
 .guide-step {
-  padding: 12px 14px;
+  padding: 16px 18px;
   border-radius: 16px;
   border: 1px solid var(--border);
   background: rgba(255, 255, 255, 0.82);
   color: var(--muted);
-  font-size: 0.92rem;
-  line-height: 1.4;
+  font-size: 1.02rem;
+  line-height: 1.5;
 }
 
 .guide-step strong {
@@ -1266,7 +1284,7 @@ small {
 }
 
 .simulator-page .page-title {
-  font-size: clamp(1.8rem, 3vw, 2.7rem);
+  font-size: clamp(2.6rem, 4vw, 3.6rem);
   margin-bottom: 8px;
 }
 
@@ -1295,12 +1313,12 @@ small {
 .simulator-page .explanation-strip p,
 .simulator-page .dispatch-item,
 .simulator-page .arrival-item {
-  font-size: 0.92rem;
-  line-height: 1.45;
+  font-size: 1rem;
+  line-height: 1.55;
 }
 
 .simulator-page .simulator-layout {
-  grid-template-columns: 280px minmax(0, 1fr);
+  grid-template-columns: 320px minmax(0, 1fr);
   gap: 10px;
 }
 
@@ -1365,7 +1383,7 @@ small {
 
 .simulator-page .queue-header {
   margin-bottom: 8px;
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 .simulator-page .queue-row {
@@ -1381,9 +1399,9 @@ small {
 }
 
 .simulator-page .packet {
-  min-width: 64px;
-  padding: 8px 10px;
-  font-size: 0.8rem;
+  min-width: 72px;
+  padding: 9px 11px;
+  font-size: 0.9rem;
 }
 
 .simulator-page .channel {
@@ -1410,7 +1428,7 @@ small {
 }
 
 .simulator-page .metric-card strong {
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 .simulator-page .transmission-log,
@@ -1491,21 +1509,21 @@ small {
 }
 
 .formal-page .page-shell {
-  width: min(1680px, calc(100% - 16px));
+  width: 100%;
 }
 
 .formal-page .section-block {
-  min-height: calc(100vh - 24px);
-  padding: 24px 26px 22px;
+  min-height: calc(100vh - 12px);
+  padding: 34px 40px 28px;
 }
 
 .formal-hero {
-  min-height: calc(100vh - 24px);
+  min-height: calc(100vh - 12px);
   align-content: start;
 }
 
 .algorithm-section {
-  min-height: calc(100vh - 24px);
+  min-height: calc(100vh - 12px);
   align-content: start;
 }
 
@@ -1532,7 +1550,7 @@ small {
 }
 
 .formal-page .math-block {
-  font-size: 1.02rem;
+  font-size: 1.14rem;
 }
 
 .notation-help {
@@ -1607,9 +1625,10 @@ small {
 
 .schedule-table th,
 .schedule-table td {
-  padding: 12px 10px;
+  padding: 14px 12px;
   text-align: center;
   border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 1rem;
 }
 
 .schedule-table thead th {
@@ -1723,8 +1742,12 @@ small {
 
 @media (max-width: 640px) {
   .page-shell {
-    width: min(100% - 10px, 100%);
-    padding-top: 6px;
+    width: 100%;
+    padding: 2px 2px 10px;
+  }
+
+  html {
+    font-size: 16px;
   }
 
   .top-nav {
