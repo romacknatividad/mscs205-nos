@@ -1188,6 +1188,28 @@ small {
   max-width: none;
 }
 
+.simulator-guide {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.guide-step {
+  padding: 12px 14px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+
+.guide-step strong {
+  color: var(--text);
+  margin-right: 6px;
+}
+
 .simulator-page .page-title {
   font-size: clamp(1.8rem, 3vw, 2.7rem);
   margin-bottom: 8px;
@@ -1263,14 +1285,9 @@ small {
 }
 
 .simulator-page .status-strip {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 8px;
   margin-bottom: 8px;
-}
-
-.simulator-page .queue-columns {
-  grid-template-columns: 240px 1fr;
-  gap: 10px;
 }
 
 .simulator-page .arrival-board,
@@ -1278,6 +1295,10 @@ small {
 .simulator-page .transmission-log {
   padding: 12px;
   border-radius: 18px;
+}
+
+.simulator-page .core-board {
+  margin-top: 0;
 }
 
 .simulator-page .arrival-timeline,
@@ -1365,13 +1386,53 @@ small {
 }
 
 .simulator-page .queue-list {
-  max-height: 212px;
+  max-height: 260px;
   overflow: auto;
   padding-right: 2px;
 }
 
 .simulator-page .explanation-strip {
   padding: 14px;
+}
+
+.simulator-page .simplified-channel {
+  grid-template-columns: 1fr 190px;
+}
+
+.simulator-page .simplified-metrics {
+  grid-template-columns: 1fr;
+}
+
+.simulation-details {
+  margin-top: 10px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.74);
+}
+
+.simulation-details summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 12px 14px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.simulation-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 220px;
+  gap: 10px;
+  padding: 0 12px 12px;
+}
+
+.details-metrics {
+  display: grid;
+  gap: 8px;
+  align-content: start;
 }
 
 .formal-hero {
@@ -1472,9 +1533,11 @@ small {
   .insight-layout,
   .triple-grid,
   .lab-overview,
+  .simulator-guide,
   .featured-lecture,
   .lecture-grid,
   .theory-grid,
+  .details-grid,
   .queue-columns,
   .algorithm-layout {
     grid-template-columns: 1fr;
@@ -1537,9 +1600,11 @@ small {
   }
 
   .simulator-page .simulator-layout,
-  .simulator-page .queue-columns,
   .simulator-page .channel,
-  .simulator-page .simulator-overview {
+  .simulator-page .simulator-overview,
+  .simulator-page .simulator-guide,
+  .simulator-page .simplified-channel,
+  .simulator-page .details-grid {
     grid-template-columns: 1fr;
   }
 

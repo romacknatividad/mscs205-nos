@@ -44,19 +44,10 @@
           </p>
         </div>
 
-        <div class="lab-overview simulator-overview">
-          <article class="overview-card reveal">
-            <h3>Staged Arrivals</h3>
-            <p>Traffic enters over time, which makes queue growth depend on both workload and scheduling behavior.</p>
-          </article>
-          <article class="overview-card reveal">
-            <h3>Service Quanta</h3>
-            <p>Packets have variable sizes, so the link stays occupied for different lengths of time per transmission.</p>
-          </article>
-          <article class="overview-card reveal">
-            <h3>Policy Comparison</h3>
-            <p>Compare FIFO, Priority, RR, WFQ, DRR, and EDF under the same scenarios and metrics.</p>
-          </article>
+        <div class="simulator-guide reveal">
+          <div class="guide-step"><strong>1.</strong> Pick an algorithm and a scenario.</div>
+          <div class="guide-step"><strong>2.</strong> Generate traffic and watch which queue is chosen next.</div>
+          <div class="guide-step"><strong>3.</strong> Read the explanation box after each step to understand the decision.</div>
         </div>
 
         <div class="simulator-layout">
@@ -99,86 +90,87 @@
           </aside>
 
           <div class="simulation-stage">
-            <div class="status-strip">
+            <div class="status-strip simplified-status">
               <div class="status-card">
                 <span class="metric-label">Current Tick</span>
                 <strong id="tickCount">0</strong>
-              </div>
-              <div class="status-card">
-                <span class="metric-label">Packets Arrived</span>
-                <strong id="arrivedCount">0</strong>
               </div>
               <div class="status-card">
                 <span class="metric-label">Packets Waiting</span>
                 <strong id="queuedCount">0</strong>
               </div>
               <div class="status-card">
-                <span class="metric-label">Link Utilization</span>
-                <strong id="utilizationLabel">0%</strong>
+                <span class="metric-label">Packets Sent</span>
+                <strong id="sentCount">0</strong>
               </div>
             </div>
 
-            <div class="queue-columns">
-              <section class="arrival-board">
-                <div class="queue-header">
-                  <div>Future Arrivals</div>
-                  <div id="futureCount">0 pending</div>
-                </div>
-                <div class="arrival-timeline" id="arrivalTimeline"></div>
-              </section>
-
-              <section class="active-board">
-                <div class="queue-header">
-                  <div>Active Queues</div>
-                  <div>Transmission Channel</div>
-                </div>
-
-                <div class="queue-list" id="queueList"></div>
-
-                <div class="channel">
-                  <div class="channel-lane">
-                    <div class="channel-packet idle" id="activePacket">Idle</div>
-                    <div class="service-progress">
-                      <div id="serviceProgressBar" class="service-progress-bar"></div>
-                    </div>
-                    <small id="serviceLabel">No packet in service</small>
-                  </div>
-                  <div class="channel-metrics">
-                    <div class="metric-card">
-                      <span class="metric-label">Packets Sent</span>
-                      <strong id="sentCount">0</strong>
-                    </div>
-                    <div class="metric-card">
-                      <span class="metric-label">Average Wait</span>
-                      <strong id="avgWait">0.0 ticks</strong>
-                    </div>
-                    <div class="metric-card">
-                      <span class="metric-label">Fairness Signal</span>
-                      <strong id="fairnessLabel">Balanced</strong>
-                    </div>
-                    <div class="metric-card">
-                      <span class="metric-label">Head-of-Line Delay</span>
-                      <strong id="holDelay">0 ticks</strong>
-                    </div>
-                  </div>
-                </div>
-              </section>
-            </div>
-
-            <div class="transmission-log">
+            <section class="active-board core-board">
               <div class="queue-header">
-                <div>Recent Dispatch Log</div>
-                <div id="dispatchCount">0 events</div>
+                <div>Queues Waiting for Service</div>
+                <div id="futureCount">0 future arrivals</div>
               </div>
-              <div id="dispatchLog" class="dispatch-log"></div>
-            </div>
+              <div class="queue-list" id="queueList"></div>
+
+              <div class="channel simplified-channel">
+                <div class="channel-lane">
+                  <div class="channel-packet idle" id="activePacket">Idle</div>
+                  <div class="service-progress">
+                    <div id="serviceProgressBar" class="service-progress-bar"></div>
+                  </div>
+                  <small id="serviceLabel">No packet in service</small>
+                </div>
+                <div class="channel-metrics simplified-metrics">
+                  <div class="metric-card">
+                    <span class="metric-label">Average Wait</span>
+                    <strong id="avgWait">0.0 ticks</strong>
+                  </div>
+                  <div class="metric-card">
+                    <span class="metric-label">Fairness</span>
+                    <strong id="fairnessLabel">Balanced</strong>
+                  </div>
+                </div>
+              </div>
+            </section>
 
             <div class="explanation-strip">
-              <h3>Current Simulation Insight</h3>
+              <h3>Why This Decision Happened</h3>
               <p id="simulationInsight">
                 Generate traffic to compare how different algorithms treat staged arrivals and variable packet sizes.
               </p>
             </div>
+
+            <details class="simulation-details">
+              <summary>Show advanced details</summary>
+              <div class="details-grid">
+                <section class="arrival-board">
+                  <div class="queue-header">
+                    <div>Future Arrivals</div>
+                    <div id="arrivedCount">0 arrived</div>
+                  </div>
+                  <div class="arrival-timeline" id="arrivalTimeline"></div>
+                </section>
+
+                <section class="transmission-log">
+                  <div class="queue-header">
+                    <div>Recent Event Log</div>
+                    <div id="dispatchCount">0 events</div>
+                  </div>
+                  <div id="dispatchLog" class="dispatch-log"></div>
+                </section>
+
+                <section class="details-metrics">
+                  <div class="metric-card">
+                    <span class="metric-label">Link Utilization</span>
+                    <strong id="utilizationLabel">0%</strong>
+                  </div>
+                  <div class="metric-card">
+                    <span class="metric-label">Head-of-Line Delay</span>
+                    <strong id="holDelay">0 ticks</strong>
+                  </div>
+                </section>
+              </div>
+            </details>
           </div>
         </div>
       </section>
