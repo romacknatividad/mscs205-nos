@@ -3,25 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Network Operating Systems Learning Studio</title>
+  <title>NOS Slides</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="slides-page">
   <div class="page-shell">
+    <nav class="top-nav slide-card">
+      <a class="nav-brand" href="index.html">NOS Studio</a>
+      <div class="nav-links">
+        <a class="nav-link active" href="index.html">Slides</a>
+        <a class="nav-link" href="simulator.html">Simulation</a>
+        <a class="nav-link" href="formal.html">Formal Theory</a>
+      </div>
+    </nav>
+
     <header class="hero slide-card">
       <div class="hero-copy">
-        <p class="eyebrow">Interactive Learning Material</p>
+        <p class="eyebrow">Slides</p>
         <h1>Network Operating Systems</h1>
         <p class="hero-text">
-          Learn what a Network Operating System does, why it matters, and how queueing and scheduling
-          algorithms shape traffic flow across shared resources.
+          A focused slide deck on the role of a Network Operating System, its core services,
+          and why queueing and scheduling policies shape network performance.
         </p>
         <div class="hero-actions">
-          <a href="#fundamentals" class="button primary">Start Lesson</a>
-          <a href="#simulator" class="button secondary">Open Simulator</a>
+          <a href="#fundamentals" class="button primary">Start Slides</a>
+          <a href="simulator.html" class="button secondary">Go to Simulation</a>
         </div>
       </div>
       <div class="hero-visual" aria-hidden="true">
@@ -29,9 +38,9 @@
         <div class="network-orbit orbit-b"></div>
         <div class="network-core">
           <span class="node server">NOS</span>
-          <span class="node client one">Client</span>
-          <span class="node client two">User</span>
-          <span class="node client three">Printer</span>
+          <span class="node client one">Clients</span>
+          <span class="node client two">Users</span>
+          <span class="node client three">Devices</span>
           <span class="node client four">Storage</span>
         </div>
       </div>
@@ -41,29 +50,28 @@
       <section id="fundamentals" class="slide-card section-block">
         <div class="section-heading">
           <p class="eyebrow">Slide 1</p>
-          <h2>Fundamental Concepts</h2>
+          <h2>What a Network Operating System Does</h2>
           <p>
-            A Network Operating System coordinates users, devices, and services over a network.
-            It extends core operating system responsibilities beyond one machine.
+            A Network Operating System extends operating system control across interconnected machines,
+            enabling shared resources, coordinated security, and centralized service delivery.
           </p>
         </div>
-
         <div class="concept-grid">
           <article class="concept-panel reveal">
             <h3>Resource Sharing</h3>
-            <p>Provides controlled access to files, printers, storage, and applications across multiple computers.</p>
+            <p>Files, printers, storage arrays, and applications are exposed to many nodes through controlled access.</p>
           </article>
           <article class="concept-panel reveal">
-            <h3>User and Security Management</h3>
-            <p>Authenticates users, enforces permissions, and protects shared services from unauthorized access.</p>
+            <h3>Identity and Policy</h3>
+            <p>Authentication and authorization determine who can use which resources and under what conditions.</p>
           </article>
           <article class="concept-panel reveal">
             <h3>Communication Services</h3>
-            <p>Supports protocols and service discovery so systems can exchange data reliably across the network.</p>
+            <p>The NOS provides the protocol and transport support needed for reliable distributed operation.</p>
           </article>
           <article class="concept-panel reveal">
-            <h3>Centralized Administration</h3>
-            <p>Helps administrators monitor nodes, configure policies, and maintain service availability from a common point.</p>
+            <h3>Central Administration</h3>
+            <p>Monitoring, configuration, and failure recovery are coordinated from an administrative control layer.</p>
           </article>
         </div>
       </section>
@@ -71,38 +79,37 @@
       <section class="slide-card section-block">
         <div class="section-heading">
           <p class="eyebrow">Slide 2</p>
-          <h2>How a NOS Operates</h2>
+          <h2>Core Operational Flow</h2>
           <p>
-            The system receives requests, checks identity and policy, selects a service path, and delivers
-            shared resources while balancing fairness and efficiency.
+            A typical NOS pipeline begins with service discovery and identity validation, then continues
+            through authorization, scheduling, and resource delivery.
           </p>
         </div>
-
         <div class="pipeline">
           <div class="pipeline-step reveal">
             <span class="step-number">01</span>
-            <h3>Connect</h3>
-            <p>A device joins the network and discovers available services.</p>
+            <h3>Discover</h3>
+            <p>Devices identify available servers, directories, and shared services.</p>
           </div>
           <div class="pipeline-step reveal">
             <span class="step-number">02</span>
             <h3>Authenticate</h3>
-            <p>The NOS validates identity through credentials or directory services.</p>
+            <p>Credentials are validated before the system allows meaningful access.</p>
           </div>
           <div class="pipeline-step reveal">
             <span class="step-number">03</span>
             <h3>Authorize</h3>
-            <p>Policies determine which files, devices, or applications the user can access.</p>
+            <p>Policies bind users and devices to permissions, quotas, and access boundaries.</p>
           </div>
           <div class="pipeline-step reveal">
             <span class="step-number">04</span>
             <h3>Schedule</h3>
-            <p>Requests are ordered so shared bandwidth and server time are used effectively.</p>
+            <p>Competing requests are ordered so shared channels and servers are not overwhelmed.</p>
           </div>
           <div class="pipeline-step reveal">
             <span class="step-number">05</span>
             <h3>Deliver</h3>
-            <p>Data moves through the network while the NOS tracks reliability and performance.</p>
+            <p>Resources are transferred while the NOS tracks state, performance, and reliability.</p>
           </div>
         </div>
       </section>
@@ -110,111 +117,87 @@
       <section class="slide-card section-block">
         <div class="section-heading">
           <p class="eyebrow">Slide 3</p>
-          <h2>Why Queueing and Scheduling Matter</h2>
+          <h2>Why Queueing Matters</h2>
           <p>
-            When many packets or requests arrive at once, a NOS must decide who waits, who goes first,
-            and how to avoid starvation or congestion.
+            Every network eventually encounters contention. When demand exceeds instantaneous service capacity,
+            packets must wait, and the queueing discipline starts affecting delay, throughput, and fairness.
           </p>
         </div>
-
-        <div class="insight-layout">
+        <div class="insight-layout triple-grid">
           <div class="insight-card reveal">
-            <h3>Queueing</h3>
-            <p>Queueing describes how incoming packets line up when demand exceeds immediate service capacity.</p>
+            <h3>Backlog Formation</h3>
+            <p>Packets accumulate when the arrival rate temporarily exceeds the service rate of a link or server.</p>
           </div>
           <div class="insight-card reveal">
-            <h3>Scheduling</h3>
-            <p>Scheduling chooses the next packet or flow to process based on a policy such as fairness, priority, or simplicity.</p>
+            <h3>Latency Impact</h3>
+            <p>Even a small number of large packets can increase waiting time for critical short packets behind them.</p>
           </div>
           <div class="insight-card reveal">
-            <h3>Real Tradeoffs</h3>
-            <p>Fast service for critical traffic can reduce delay, but it can also starve lower-priority traffic if the policy is poorly designed.</p>
+            <h3>Congestion Signals</h3>
+            <p>Queue length and head-of-line delay are early indicators that the network is approaching stress.</p>
           </div>
         </div>
       </section>
 
-      <section id="simulator" class="slide-card section-block simulator-block">
+      <section class="slide-card section-block">
         <div class="section-heading">
-          <p class="eyebrow">Interactive Lab</p>
-          <h2>Queueing and Scheduling Simulator</h2>
+          <p class="eyebrow">Slide 4</p>
+          <h2>Why Scheduling Matters</h2>
           <p>
-            Choose an algorithm, generate traffic, and run the simulation to see how packets move from waiting queues to the transmission channel.
+            Queueing says packets must wait. Scheduling decides which packet gets the next service opportunity,
+            and that policy directly controls fairness, starvation risk, and deadline behavior.
           </p>
         </div>
+        <div class="concept-grid">
+          <article class="concept-panel reveal">
+            <h3>Fairness</h3>
+            <p>Policies such as Round Robin or Weighted Fair Queueing prevent one class from dominating the link indefinitely.</p>
+          </article>
+          <article class="concept-panel reveal">
+            <h3>Urgency</h3>
+            <p>Strict Priority and Earliest Deadline First reduce delay for traffic that has strong timing requirements.</p>
+          </article>
+          <article class="concept-panel reveal">
+            <h3>Packet Size Effects</h3>
+            <p>Byte-aware policies such as WFQ and DRR account for packet length more carefully than plain queue rotation.</p>
+          </article>
+          <article class="concept-panel reveal">
+            <h3>Tradeoff Space</h3>
+            <p>No scheduler optimizes every metric at once. NOS design requires selecting the right compromise for the workload.</p>
+          </article>
+        </div>
+      </section>
 
-        <div class="simulator-layout">
-          <aside class="control-panel">
-            <label class="control-group">
-              <span>Algorithm</span>
-              <select id="algorithmSelect"></select>
-            </label>
-
-            <label class="control-group">
-              <span>Simulation Speed</span>
-              <input id="speedRange" type="range" min="300" max="1400" step="100" value="800">
-              <small id="speedLabel">800 ms / tick</small>
-            </label>
-
-            <div class="button-row">
-              <button id="generateBtn" class="button primary" type="button">Generate Traffic</button>
-              <button id="stepBtn" class="button secondary" type="button">Step</button>
-              <button id="runBtn" class="button accent" type="button">Run</button>
-              <button id="resetBtn" class="button ghost" type="button">Reset</button>
-            </div>
-
-            <div class="algorithm-copy">
-              <h3 id="algorithmTitle">Algorithm</h3>
-              <p id="algorithmDescription"></p>
-              <p id="algorithmStrength" class="algorithm-note"></p>
-            </div>
-
-            <div class="legend">
-              <div><span class="legend-chip voice"></span> Voice / Critical</div>
-              <div><span class="legend-chip video"></span> Video / Streaming</div>
-              <div><span class="legend-chip data"></span> Data / General</div>
-            </div>
-          </aside>
-
-          <div class="simulation-stage">
-            <div class="queue-header">
-              <div>Incoming Traffic</div>
-              <div>Transmission Channel</div>
-            </div>
-
-            <div class="queue-list" id="queueList"></div>
-
-            <div class="channel">
-              <div class="channel-lane">
-                <div class="channel-packet" id="activePacket">Idle</div>
-              </div>
-              <div class="channel-metrics">
-                <div class="metric-card">
-                  <span class="metric-label">Packets Sent</span>
-                  <strong id="sentCount">0</strong>
-                </div>
-                <div class="metric-card">
-                  <span class="metric-label">Average Wait</span>
-                  <strong id="avgWait">0.0 ticks</strong>
-                </div>
-                <div class="metric-card">
-                  <span class="metric-label">Fairness Signal</span>
-                  <strong id="fairnessLabel">Balanced</strong>
-                </div>
-              </div>
-            </div>
-
-            <div class="explanation-strip">
-              <h3>Current Simulation Insight</h3>
-              <p id="simulationInsight">
-                Generate traffic to compare how different algorithms treat the same set of packets.
-              </p>
-            </div>
-          </div>
+      <section class="slide-card section-block">
+        <div class="section-heading">
+          <p class="eyebrow">Slide 5</p>
+          <h2>Study Path</h2>
+          <p>
+            Use the three-page structure to move from intuition to experimentation to formal reasoning.
+          </p>
+        </div>
+        <div class="lab-overview">
+          <article class="overview-card reveal">
+            <h3>Slides</h3>
+            <p>Build intuition for the role of a NOS and the purpose of queueing and scheduling.</p>
+          </article>
+          <article class="overview-card reveal">
+            <h3>Simulation</h3>
+            <p>Run staged arrivals through realistic schedulers and observe delay, utilization, and fairness.</p>
+          </article>
+          <article class="overview-card reveal">
+            <h3>Formal Theory</h3>
+            <p>Connect the animations to mathematical definitions, notation, and example execution tables.</p>
+          </article>
+        </div>
+        <div class="hero-actions">
+          <a href="simulator.html" class="button primary">Open Simulation Page</a>
+          <a href="formal.html" class="button secondary">Open Formal Theory</a>
         </div>
       </section>
     </main>
   </div>
 
-  <script src="script.js"></script>
+  <script src="slides.js"></script>
 </body>
 </html>

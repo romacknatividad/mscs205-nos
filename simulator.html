@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NOS Simulation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="simulator-page">
+  <div class="page-shell">
+    <nav class="top-nav slide-card">
+      <a class="nav-brand" href="index.html">NOS Studio</a>
+      <div class="nav-links">
+        <a class="nav-link" href="index.html">Slides</a>
+        <a class="nav-link active" href="simulator.html">Simulation</a>
+        <a class="nav-link" href="formal.html">Formal Theory</a>
+      </div>
+    </nav>
+
+    <main>
+      <section class="slide-card section-block simulator-page-block">
+        <div class="section-heading">
+          <p class="eyebrow">Interactive Lab</p>
+          <h1 class="page-title">Queueing and Scheduling Simulation</h1>
+          <p>
+            Generate traffic scenarios, select a scheduler, and inspect how arrivals, service demand,
+            deadlines, and fairness interact inside a Network Operating System.
+          </p>
+        </div>
+
+        <div class="lab-overview">
+          <article class="overview-card reveal">
+            <h3>Staged Arrivals</h3>
+            <p>Traffic enters over time, which makes queue growth depend on both workload and scheduling behavior.</p>
+          </article>
+          <article class="overview-card reveal">
+            <h3>Service Quanta</h3>
+            <p>Packets have variable sizes, so the link stays occupied for different lengths of time per transmission.</p>
+          </article>
+          <article class="overview-card reveal">
+            <h3>Policy Comparison</h3>
+            <p>Compare FIFO, Priority, RR, WFQ, DRR, and EDF under the same scenarios and metrics.</p>
+          </article>
+        </div>
+
+        <div class="simulator-layout">
+          <aside class="control-panel">
+            <label class="control-group">
+              <span>Algorithm</span>
+              <select id="algorithmSelect"></select>
+            </label>
+
+            <label class="control-group">
+              <span>Traffic Scenario</span>
+              <select id="scenarioSelect"></select>
+            </label>
+
+            <label class="control-group">
+              <span>Simulation Speed</span>
+              <input id="speedRange" type="range" min="300" max="1400" step="100" value="800">
+              <small id="speedLabel">800 ms / tick</small>
+            </label>
+
+            <div class="button-row">
+              <button id="generateBtn" class="button primary" type="button">Generate Traffic</button>
+              <button id="stepBtn" class="button secondary" type="button">Step</button>
+              <button id="runBtn" class="button accent" type="button">Run</button>
+              <button id="resetBtn" class="button ghost" type="button">Reset</button>
+            </div>
+
+            <div class="algorithm-copy">
+              <h3 id="algorithmTitle">Algorithm</h3>
+              <p id="algorithmDescription"></p>
+              <p id="algorithmStrength" class="algorithm-note"></p>
+              <p id="algorithmFormula" class="algorithm-formula"></p>
+            </div>
+
+            <div class="legend">
+              <div><span class="legend-chip voice"></span> Voice / Critical</div>
+              <div><span class="legend-chip video"></span> Video / Streaming</div>
+              <div><span class="legend-chip data"></span> Data / General</div>
+            </div>
+          </aside>
+
+          <div class="simulation-stage">
+            <div class="status-strip">
+              <div class="status-card">
+                <span class="metric-label">Current Tick</span>
+                <strong id="tickCount">0</strong>
+              </div>
+              <div class="status-card">
+                <span class="metric-label">Packets Arrived</span>
+                <strong id="arrivedCount">0</strong>
+              </div>
+              <div class="status-card">
+                <span class="metric-label">Packets Waiting</span>
+                <strong id="queuedCount">0</strong>
+              </div>
+              <div class="status-card">
+                <span class="metric-label">Link Utilization</span>
+                <strong id="utilizationLabel">0%</strong>
+              </div>
+            </div>
+
+            <div class="queue-columns">
+              <section class="arrival-board">
+                <div class="queue-header">
+                  <div>Future Arrivals</div>
+                  <div id="futureCount">0 pending</div>
+                </div>
+                <div class="arrival-timeline" id="arrivalTimeline"></div>
+              </section>
+
+              <section class="active-board">
+                <div class="queue-header">
+                  <div>Active Queues</div>
+                  <div>Transmission Channel</div>
+                </div>
+
+                <div class="queue-list" id="queueList"></div>
+
+                <div class="channel">
+                  <div class="channel-lane">
+                    <div class="channel-packet idle" id="activePacket">Idle</div>
+                    <div class="service-progress">
+                      <div id="serviceProgressBar" class="service-progress-bar"></div>
+                    </div>
+                    <small id="serviceLabel">No packet in service</small>
+                  </div>
+                  <div class="channel-metrics">
+                    <div class="metric-card">
+                      <span class="metric-label">Packets Sent</span>
+                      <strong id="sentCount">0</strong>
+                    </div>
+                    <div class="metric-card">
+                      <span class="metric-label">Average Wait</span>
+                      <strong id="avgWait">0.0 ticks</strong>
+                    </div>
+                    <div class="metric-card">
+                      <span class="metric-label">Fairness Signal</span>
+                      <strong id="fairnessLabel">Balanced</strong>
+                    </div>
+                    <div class="metric-card">
+                      <span class="metric-label">Head-of-Line Delay</span>
+                      <strong id="holDelay">0 ticks</strong>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <div class="transmission-log">
+              <div class="queue-header">
+                <div>Recent Dispatch Log</div>
+                <div id="dispatchCount">0 events</div>
+              </div>
+              <div id="dispatchLog" class="dispatch-log"></div>
+            </div>
+
+            <div class="explanation-strip">
+              <h3>Current Simulation Insight</h3>
+              <p id="simulationInsight">
+                Generate traffic to compare how different algorithms treat staged arrivals and variable packet sizes.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -47,9 +47,51 @@ body::before {
 }
 
 .page-shell {
-  width: min(1200px, calc(100% - 32px));
+  width: min(1440px, calc(100% - 24px));
   margin: 0 auto;
-  padding: 32px 0 56px;
+  padding: 12px 0 32px;
+}
+
+main {
+  display: grid;
+  gap: 16px;
+}
+
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  padding: 16px 22px;
+}
+
+.nav-brand,
+.nav-link {
+  text-decoration: none;
+  color: var(--text);
+}
+
+.nav-brand {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.nav-link {
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.nav-link.active {
+  background: rgba(86, 212, 255, 0.14);
+  border-color: rgba(86, 212, 255, 0.28);
 }
 
 .slide-card {
@@ -62,13 +104,24 @@ body::before {
   backdrop-filter: blur(14px);
 }
 
+.slide-card::after {
+  content: "";
+  position: absolute;
+  inset: auto -8% -18% auto;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(86, 212, 255, 0.12), transparent 68%);
+  pointer-events: none;
+}
+
 .hero {
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 32px;
+  grid-template-columns: minmax(0, 1.05fr) minmax(420px, 0.95fr);
+  gap: 24px;
   align-items: center;
-  min-height: 86vh;
-  padding: 48px;
+  min-height: calc(100vh - 24px);
+  padding: 36px 42px;
 }
 
 .eyebrow {
@@ -92,6 +145,10 @@ h1 {
   margin-bottom: 20px;
 }
 
+.page-title {
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
+}
+
 h2 {
   font-size: clamp(2rem, 4vw, 3.2rem);
   margin-bottom: 14px;
@@ -108,8 +165,8 @@ p {
 }
 
 .hero-text {
-  max-width: 58ch;
-  font-size: 1.05rem;
+  max-width: 62ch;
+  font-size: 1.08rem;
 }
 
 .hero-actions,
@@ -165,14 +222,14 @@ button:hover {
 
 .hero-visual {
   position: relative;
-  min-height: 440px;
+  min-height: 520px;
   display: grid;
   place-items: center;
 }
 
 .network-core {
   position: relative;
-  width: min(420px, 90%);
+  width: min(520px, 96%);
   aspect-ratio: 1;
   border-radius: 50%;
   border: 1px dashed rgba(255, 255, 255, 0.22);
@@ -221,13 +278,16 @@ button:hover {
 .four { top: 48%; left: -8%; }
 
 .section-block {
-  margin-top: 28px;
-  padding: 34px;
+  min-height: calc(100vh - 24px);
+  margin-top: 0;
+  padding: 28px 32px 30px;
+  display: grid;
+  align-content: start;
 }
 
 .section-heading {
-  margin-bottom: 26px;
-  max-width: 72ch;
+  margin-bottom: 22px;
+  max-width: 86ch;
 }
 
 .concept-grid,
@@ -235,6 +295,11 @@ button:hover {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 18px;
+  align-items: stretch;
+}
+
+.triple-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .concept-panel,
@@ -251,6 +316,7 @@ button:hover {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 14px;
+  align-items: stretch;
 }
 
 .step-number {
@@ -268,7 +334,26 @@ button:hover {
   display: grid;
   grid-template-columns: 340px 1fr;
   gap: 24px;
-  align-items: start;
+  align-items: stretch;
+  flex: 1;
+}
+
+.lab-overview,
+.theory-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 18px;
+  align-items: stretch;
+}
+
+.overview-card,
+.theory-card,
+.status-card {
+  background: var(--panel-strong);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 18px;
 }
 
 .control-panel,
@@ -277,6 +362,16 @@ button:hover {
   border: 1px solid var(--border);
   border-radius: 26px;
   padding: 22px;
+}
+
+.control-panel {
+  display: grid;
+  align-content: start;
+}
+
+.simulation-stage {
+  display: grid;
+  align-content: start;
 }
 
 .control-group {
@@ -320,6 +415,11 @@ small {
   color: var(--accent-3);
 }
 
+.algorithm-formula,
+.math-block {
+  font-family: "IBM Plex Mono", monospace;
+}
+
 .legend {
   margin-top: 22px;
   display: grid;
@@ -350,9 +450,60 @@ small {
   color: var(--muted);
 }
 
+.status-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.queue-columns {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 18px;
+  align-items: stretch;
+}
+
+.arrival-board,
+.active-board,
+.transmission-log {
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.arrival-board,
+.active-board {
+  min-height: 100%;
+}
+
+.arrival-timeline,
+.dispatch-log {
+  display: grid;
+  gap: 10px;
+}
+
+.arrival-item,
+.dispatch-item {
+  display: grid;
+  gap: 6px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.arrival-item strong,
+.dispatch-item strong,
+.theory-card strong {
+  font-size: 0.95rem;
+}
+
 .queue-list {
   display: grid;
   gap: 14px;
+  align-content: start;
 }
 
 .queue-row {
@@ -393,16 +544,18 @@ small {
   grid-template-columns: 1fr 240px;
   gap: 16px;
   align-items: stretch;
-  margin-top: 18px;
+  margin-top: 14px;
 }
 
 .channel-lane {
   min-height: 140px;
   display: grid;
-  place-items: center;
+  align-content: center;
+  justify-items: center;
   border-radius: 22px;
   border: 1px solid rgba(86, 212, 255, 0.2);
   background: linear-gradient(90deg, rgba(86, 212, 255, 0.08), rgba(77, 224, 168, 0.08));
+  padding: 16px;
 }
 
 .channel-packet {
@@ -420,6 +573,23 @@ small {
   background: rgba(255, 255, 255, 0.08);
 }
 
+.service-progress {
+  width: min(360px, 100%);
+  height: 10px;
+  margin-top: 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.service-progress-bar {
+  height: 100%;
+  width: 0%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--accent), var(--accent-3));
+  transition: width 180ms ease;
+}
+
 .channel-metrics {
   display: grid;
   gap: 12px;
@@ -432,11 +602,122 @@ small {
 }
 
 .explanation-strip {
-  margin-top: 18px;
+  margin-top: 14px;
   padding: 18px;
   border-radius: 20px;
   border: 1px solid var(--border);
   background: rgba(255, 255, 255, 0.04);
+}
+
+.transmission-log {
+  margin-top: 14px;
+}
+
+.log-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.theory-grid {
+  margin-bottom: 0;
+}
+
+.theory-card {
+  display: grid;
+  gap: 14px;
+}
+
+.theory-card h3 {
+  margin-bottom: 4px;
+}
+
+.math-block {
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--accent-2);
+  line-height: 1.6;
+  overflow-x: auto;
+}
+
+.theory-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.meta-chip {
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255, 184, 77, 0.1);
+  color: var(--accent);
+  font-size: 0.82rem;
+}
+
+.formal-page .section-block,
+.simulator-page .section-block {
+  min-height: auto;
+}
+
+.simulator-page-block {
+  min-height: calc(100vh - 24px);
+}
+
+.formal-hero {
+  min-height: auto;
+}
+
+.algorithm-section {
+  min-height: auto;
+}
+
+.algorithm-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(420px, 0.95fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.schedule-card {
+  display: grid;
+  gap: 14px;
+  background: var(--panel-strong);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 18px;
+}
+
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.schedule-table th,
+.schedule-table td {
+  padding: 12px 10px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.schedule-table thead th {
+  background: rgba(86, 212, 255, 0.12);
+  color: var(--text);
+}
+
+.schedule-table tbody th {
+  background: rgba(255, 184, 77, 0.08);
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.schedule-table td {
+  color: var(--muted);
 }
 
 .reveal {
@@ -465,8 +746,17 @@ small {
   .simulator-layout,
   .channel,
   .concept-grid,
-  .insight-layout {
+  .insight-layout,
+  .triple-grid,
+  .lab-overview,
+  .theory-grid,
+  .queue-columns,
+  .algorithm-layout {
     grid-template-columns: 1fr;
+  }
+
+  .status-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .pipeline {
@@ -475,18 +765,29 @@ small {
 
   .hero {
     min-height: auto;
-    padding: 34px 24px;
+    padding: 28px 22px;
   }
 
   .section-block {
-    padding: 28px 20px;
+    min-height: auto;
+    padding: 24px 18px;
   }
 }
 
 @media (max-width: 640px) {
   .page-shell {
-    width: min(100% - 18px, 100%);
-    padding-top: 12px;
+    width: min(100% - 10px, 100%);
+    padding-top: 6px;
+  }
+
+  .top-nav {
+    padding: 14px 16px;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .status-strip {
+    grid-template-columns: 1fr;
   }
 
   .queue-row {
