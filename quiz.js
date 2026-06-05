@@ -59,7 +59,7 @@ const quizQuestions = [
       { text: "A fixed alphabetical packet ordering", correct: false, explanation: "Incorrect. Alphabetical ordering is unrelated to DRR." },
       { text: "A deficit counter and per-queue quantum that carry service credit across rounds", correct: true, explanation: "Correct. DRR uses saved credit so larger packets eventually become eligible without losing fairness." },
       { text: "A rule that drops every packet larger than one unit", correct: false, explanation: "Incorrect. DRR is meant to handle different sizes, not reject them." },
-      { text: "A deadline table for every arriving packet", correct: false, explanation: "Incorrect. Deadline tables belong to EDF-style reasoning, not DRR’s credit model." }
+      { text: "A deadline table for every arriving packet", correct: false, explanation: "Incorrect. Deadline tables belong to EDF-style reasoning, not DRR's credit model." }
     ]
   },
   {
@@ -85,7 +85,7 @@ const quizQuestions = [
     options: [
       { text: "The travel time of the newest packet in the system", correct: false, explanation: "Incorrect. Head-of-line delay focuses on the oldest packet at the front of a queue." },
       { text: "The number of algorithms available in the scheduler menu", correct: false, explanation: "Incorrect. This metric has nothing to do with menu size." },
-      { text: "How long the front packet in a queue has waited without service", correct: true, explanation: "Correct. It captures the waiting time of the queue’s leading packet." },
+      { text: "How long the front packet in a queue has waited without service", correct: true, explanation: "Correct. It captures the waiting time of the queue's leading packet." },
       { text: "The time required to generate the traffic scenario", correct: false, explanation: "Incorrect. Scenario generation time is not what this metric means." }
     ]
   }
@@ -93,16 +93,20 @@ const quizQuestions = [
 
 const quizState = {
   attempt: 1,
+  currentIndex: 0,
   selections: Array(quizQuestions.length).fill(null)
 };
 
-const quizList = document.getElementById("quizList");
+const quizNav = document.getElementById("quizNav");
+const quizStage = document.getElementById("quizStage");
 const answeredCount = document.getElementById("answeredCount");
 const scoreCount = document.getElementById("scoreCount");
 const attemptCount = document.getElementById("attemptCount");
 const quizResult = document.getElementById("quizResult");
 const submitQuizBtn = document.getElementById("submitQuizBtn");
 const retryQuizBtn = document.getElementById("retryQuizBtn");
+const prevQuestionBtn = document.getElementById("prevQuestionBtn");
+const nextQuestionBtn = document.getElementById("nextQuestionBtn");
 
 function currentScore() {
   return quizQuestions.reduce((total, question, index) => {
@@ -122,65 +126,101 @@ function updateSummary() {
   attemptCount.textContent = String(quizState.attempt);
 }
 
-function renderQuiz() {
-  quizList.innerHTML = "";
+function renderNav() {
+  quizNav.innerHTML = quizQuestions.map((_, index) => {
+    const selectedIndex = quizState.selections[index];
+    const selectedOption = selectedIndex === null ? null : quizQuestions[index].options[selectedIndex];
+    const stateClass = selectedIndex === null
+      ? ""
+      : selectedOption.correct ? "correct" : "incorrect";
 
-  quizQuestions.forEach((question, questionIndex) => {
-    const card = document.createElement("article");
-    card.className = "quiz-card reveal visible";
-
-    const selectedIndex = quizState.selections[questionIndex];
-    const selectedOption = selectedIndex === null ? null : question.options[selectedIndex];
-
-    const optionsMarkup = question.options.map((option, optionIndex) => {
-      const isSelected = selectedIndex === optionIndex;
-      const stateClass = isSelected
-        ? option.correct ? "correct" : "incorrect"
-        : "";
-
-      return `
-        <button
-          type="button"
-          class="quiz-option ${stateClass}"
-          data-question-index="${questionIndex}"
-          data-option-index="${optionIndex}"
-          aria-pressed="${isSelected ? "true" : "false"}"
-        >
-          <span class="quiz-option-letter">${String.fromCharCode(65 + optionIndex)}</span>
-          <span>${option.text}</span>
-        </button>
-      `;
-    }).join("");
-
-    const feedbackMarkup = selectedOption
-      ? `
-        <div class="quiz-feedback ${selectedOption.correct ? "correct" : "incorrect"}">
-          <strong>${selectedOption.correct ? "Correct" : "Incorrect"}.</strong>
-          <span>${selectedOption.explanation}</span>
-        </div>
-      `
-      : `
-        <div class="quiz-feedback neutral">
-          <strong>No answer selected yet.</strong>
-          <span>Pick one option to see the explanation for that choice.</span>
-        </div>
-      `;
-
-    card.innerHTML = `
-      <div class="quiz-question-number">Question ${questionIndex + 1}</div>
-      <h3>${question.prompt}</h3>
-      <div class="quiz-options">${optionsMarkup}</div>
-      ${feedbackMarkup}
+    return `
+      <button
+        type="button"
+        class="quiz-nav-item ${index === quizState.currentIndex ? "active" : ""} ${stateClass}"
+        data-question-nav="${index}"
+        aria-current="${index === quizState.currentIndex ? "true" : "false"}"
+      >
+        ${index + 1}
+      </button>
     `;
+  }).join("");
+}
 
-    quizList.appendChild(card);
-  });
+function renderStage() {
+  const question = quizQuestions[quizState.currentIndex];
+  const selectedIndex = quizState.selections[quizState.currentIndex];
+  const selectedOption = selectedIndex === null ? null : question.options[selectedIndex];
 
+  const optionsMarkup = question.options.map((option, optionIndex) => {
+    const isSelected = selectedIndex === optionIndex;
+    const stateClass = isSelected
+      ? option.correct ? "correct" : "incorrect"
+      : "";
+
+    return `
+      <button
+        type="button"
+        class="quiz-option ${stateClass}"
+        data-question-index="${quizState.currentIndex}"
+        data-option-index="${optionIndex}"
+        aria-pressed="${isSelected ? "true" : "false"}"
+      >
+        <span class="quiz-option-letter">${String.fromCharCode(65 + optionIndex)}</span>
+        <span>${option.text}</span>
+      </button>
+    `;
+  }).join("");
+
+  let feedbackTitle = "Answer Insight";
+  let feedbackClass = "neutral";
+  let feedbackBody = "Pick one option to reveal why that choice is correct or incorrect for this item.";
+
+  if (selectedOption) {
+    feedbackTitle = selectedOption.correct ? "Correct Choice" : "Why This Choice Is Incorrect";
+    feedbackClass = selectedOption.correct ? "correct" : "incorrect";
+    feedbackBody = selectedOption.explanation;
+  }
+
+  quizStage.innerHTML = `
+    <article class="quiz-card reveal visible">
+      <div class="quiz-stage-layout">
+        <div class="quiz-question-panel">
+          <div class="quiz-question-number">Question ${quizState.currentIndex + 1} of ${quizQuestions.length}</div>
+          <h3>${question.prompt}</h3>
+          <div class="quiz-options">${optionsMarkup}</div>
+        </div>
+        <aside class="quiz-feedback-panel">
+          <div class="quiz-feedback ${feedbackClass}">
+            <strong>${feedbackTitle}</strong>
+            <span>${feedbackBody}</span>
+          </div>
+          <div class="quiz-feedback quiz-feedback-summary">
+            <strong>Progress on this attempt</strong>
+            <span>You have answered ${answeredTotal()} of ${quizQuestions.length} questions and currently have ${currentScore()} correct.</span>
+          </div>
+        </aside>
+      </div>
+    </article>
+  `;
+
+  prevQuestionBtn.disabled = quizState.currentIndex === 0;
+  nextQuestionBtn.disabled = quizState.currentIndex === quizQuestions.length - 1;
+}
+
+function renderQuiz() {
+  renderNav();
+  renderStage();
   updateSummary();
 }
 
 function chooseOption(questionIndex, optionIndex) {
   quizState.selections[questionIndex] = optionIndex;
+  renderQuiz();
+}
+
+function goToQuestion(index) {
+  quizState.currentIndex = Math.max(0, Math.min(index, quizQuestions.length - 1));
   renderQuiz();
 }
 
@@ -190,7 +230,7 @@ function submitQuiz() {
 
   if (answered < quizQuestions.length) {
     quizResult.className = "quiz-result warning reveal visible";
-    quizResult.innerHTML = `You have answered <strong>${answered}</strong> of <strong>${quizQuestions.length}</strong> questions. Finish the remaining items, or review the feedback already shown for each selected answer.`;
+    quizResult.innerHTML = `You have answered <strong>${answered}</strong> of <strong>${quizQuestions.length}</strong> questions. Use the numbered navigation to finish the remaining items.`;
     return;
   }
 
@@ -200,11 +240,11 @@ function submitQuiz() {
   if (score === quizQuestions.length) {
     message += "You have a strong grasp of NOS fundamentals, queueing, and scheduling behavior.";
   } else if (score >= 8) {
-    message += "Your understanding is solid. Review the incorrect items to tighten the weaker concepts.";
+    message += "Your understanding is solid. Review the numbered items marked incorrect to tighten the weaker concepts.";
   } else if (score >= 6) {
     message += "You understand the basics, but some algorithm distinctions still need reinforcement.";
   } else {
-    message += "Use the explanations under each selected answer, then retry the quiz for another attempt.";
+    message += "Use the per-question explanation panel on the right, then retry the quiz for another attempt.";
   }
 
   quizResult.className = "quiz-result reveal visible";
@@ -213,14 +253,15 @@ function submitQuiz() {
 
 function retryQuiz() {
   quizState.attempt += 1;
+  quizState.currentIndex = 0;
   quizState.selections = Array(quizQuestions.length).fill(null);
   quizResult.className = "quiz-result reveal visible";
-  quizResult.innerHTML = `Attempt <strong>${quizState.attempt}</strong> started. Select one answer for each question to see the option-by-option explanations again.`;
+  quizResult.innerHTML = `Attempt <strong>${quizState.attempt}</strong> started. Move through the numbered items one at a time and use the right-hand panel to read the explanation for each selected answer.`;
   renderQuiz();
 }
 
 function setupQuizEvents() {
-  quizList.addEventListener("click", (event) => {
+  quizStage.addEventListener("click", (event) => {
     const button = event.target.closest(".quiz-option");
     if (!button) return;
 
@@ -229,6 +270,14 @@ function setupQuizEvents() {
     chooseOption(questionIndex, optionIndex);
   });
 
+  quizNav.addEventListener("click", (event) => {
+    const button = event.target.closest(".quiz-nav-item");
+    if (!button) return;
+    goToQuestion(Number(button.dataset.questionNav));
+  });
+
+  prevQuestionBtn.addEventListener("click", () => goToQuestion(quizState.currentIndex - 1));
+  nextQuestionBtn.addEventListener("click", () => goToQuestion(quizState.currentIndex + 1));
   submitQuizBtn.addEventListener("click", submitQuiz);
   retryQuizBtn.addEventListener("click", retryQuiz);
 }
