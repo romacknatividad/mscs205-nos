@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NOS Historical Timeline</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="timeline-page">
+  <div class="page-shell">
+    <nav class="top-nav slide-card">
+      <a class="nav-brand" href="index.html">NOS Studio</a>
+      <div class="nav-links">
+        <a class="nav-link" href="index.html">Slides</a>
+        <a class="nav-link" href="simulator.html">Simulation</a>
+        <a class="nav-link" href="formal.html">Formal Theory</a>
+        <a class="nav-link active" href="timeline.html">Timeline</a>
+        <a class="nav-link" href="quiz.html">Quiz</a>
+      </div>
+    </nav>
+
+    <main>
+      <section class="slide-card section-block timeline-hero">
+        <div class="section-heading">
+          <p class="eyebrow">Historical Development</p>
+          <h1 class="page-title">Timeline of Network Operating Systems</h1>
+          <p>
+            This timeline traces how network operating systems evolved from early shared-resource computing
+            ideas into enterprise server platforms, router operating systems, and modern open network software.
+          </p>
+        </div>
+
+        <div class="quiz-summary-grid">
+          <article class="overview-card reveal">
+            <h3>From Shared Resources</h3>
+            <p>Early operating systems and networking research established the idea that many users could safely share remote computing resources.</p>
+          </article>
+          <article class="overview-card reveal">
+            <h3>To Enterprise Control</h3>
+            <p>Commercial NOS platforms added file sharing, directory services, security policy, and centralized administration.</p>
+          </article>
+          <article class="overview-card reveal">
+            <h3>To Open Network Software</h3>
+            <p>Modern NOS development includes disaggregated, Linux-based, and open-source systems for cloud-scale networks.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="slide-card section-block">
+        <div class="section-heading">
+          <p class="eyebrow">Milestones</p>
+          <h2>Key Moments</h2>
+          <p>
+            The first milestone is partly an inference from operating-system and networking history:
+            once shared computing and packet networking matured, a specialized layer for managing networked resources became necessary.
+          </p>
+        </div>
+
+        <div class="timeline-stack">
+          <article class="timeline-card reveal">
+            <div class="timeline-marker">
+              <span class="timeline-year">1960s-1970s</span>
+            </div>
+            <div class="timeline-content">
+              <h3>Shared Computing and Networking Create the Preconditions</h3>
+              <p>
+                Time-sharing operating systems and early packet-networking research established the idea that many users
+                could access remote services and shared resources through one coordinated computing environment.
+                That combination laid the conceptual groundwork for later network operating systems.
+              </p>
+              <p class="timeline-note">Interpretive note: this step is a historical inference drawn from the evolution of operating systems and the Internet.</p>
+            </div>
+          </article>
+
+          <article class="timeline-card reveal">
+            <div class="timeline-marker">
+              <span class="timeline-year">1983</span>
+            </div>
+            <div class="timeline-content">
+              <h3>Novell NetWare Helps Define the PC-Era NOS</h3>
+              <p>
+                As local area networks spread through offices and campuses, Novell NetWare became one of the most visible
+                network operating systems for personal-computer environments. It turned file sharing, printer sharing,
+                and multiuser LAN administration into mainstream requirements.
+              </p>
+            </div>
+          </article>
+
+          <article class="timeline-card reveal">
+            <div class="timeline-marker">
+              <span class="timeline-year">Mid-1980s</span>
+            </div>
+            <div class="timeline-content">
+              <h3>Router Operating Systems Emerge as a Parallel Branch</h3>
+              <p>
+                Cisco IOS and similar systems showed that "network operating system" could also mean software dedicated to
+                switching, routing, and protocol control. This expanded the NOS idea beyond file-and-print servers toward
+                device-centric network infrastructure.
+              </p>
+            </div>
+          </article>
+
+          <article class="timeline-card reveal">
+            <div class="timeline-marker">
+              <span class="timeline-year">1992</span>
+            </div>
+            <div class="timeline-content">
+              <h3>Windows NT Signals Microsoft’s Enterprise Networking Push</h3>
+              <p>
+                Microsoft’s Windows NT work marked an important transition toward enterprise-capable server operating systems
+                that combined general-purpose computing with stronger networking, security, and administrative features.
+              </p>
+            </div>
+          </article>
+
+          <article class="timeline-card reveal">
+            <div class="timeline-marker">
+              <span class="timeline-year">2000</span>
+            </div>
+            <div class="timeline-content">
+              <h3>Windows 2000 and Active Directory Institutionalize Directory-Centric NOS Design</h3>
+              <p>
+                Active Directory pushed centralized identity, domain management, policy enforcement, and directory lookup
+                into the core of enterprise network administration. This made directory services a defining capability of many modern NOS deployments.
+              </p>
+            </div>
+          </article>
+
+          <article class="timeline-card reveal">
+            <div class="timeline-marker">
+              <span class="timeline-year">2000s</span>
+            </div>
+            <div class="timeline-content">
+              <h3>Network Operating Systems Become More Modular and Software-Led</h3>
+              <p>
+                Vendors increasingly re-architected network platforms around modular software, Linux foundations,
+                and service-oriented control planes. The NOS was no longer just a bundled appliance image; it became a software stack.
+              </p>
+            </div>
+          </article>
+
+          <article class="timeline-card reveal">
+            <div class="timeline-marker">
+              <span class="timeline-year">2016</span>
+            </div>
+            <div class="timeline-content">
+              <h3>SONiC Brings Open-Source NOS Design to Cloud-Scale Switching</h3>
+              <p>
+                Microsoft’s work on SONiC demonstrated a more open and disaggregated model for network operating systems.
+                In this model, switching hardware and network software are less tightly bound, making large-scale automation and vendor flexibility more practical.
+              </p>
+            </div>
+          </article>
+
+          <article class="timeline-card reveal">
+            <div class="timeline-marker">
+              <span class="timeline-year">2022 onward</span>
+            </div>
+            <div class="timeline-content">
+              <h3>Vendor-Neutral Governance Strengthens the Open NOS Era</h3>
+              <p>
+                With SONiC moving under Linux Foundation networking governance, the historical trend became clearer:
+                network operating systems are increasingly treated as open software ecosystems rather than only proprietary vendor platforms.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="slide-card section-block">
+        <div class="section-heading">
+          <p class="eyebrow">References</p>
+          <h2>APA Sources</h2>
+          <p>These references support the timeline milestones and the broader interpretation of NOS development.</p>
+        </div>
+
+        <div class="slide-references">
+          <p>Britannica. (2026, January 16). <em>Operating system</em>. https://www.britannica.com/technology/operating-system</p>
+          <p>Britannica. (n.d.). <em>Internet</em>. https://www.britannica.com/topic/Internet</p>
+          <p>Cisco. (2023, June 5). <em>25 years of Cisco IOS XE: Past, present, and future</em>. https://blogs.cisco.com/networking/25-years-of-cisco-ios-xe-past-present-and-future</p>
+          <p>Computer History Museum. (n.d.). <em>The networked workstation</em>. https://www.computerhistory.org/revolution/networking/19/382</p>
+          <p>Linux Foundation. (2022, September 1). <em>Linux Foundation announces intent to form Open Programmable Infrastructure Project and welcomes SONiC</em>. https://www.linuxfoundation.org/press/linux-foundation-announces-intent-to-form-open-programmable-infrastructure-project-and-welcomes-sonic</p>
+          <p>Microsoft. (2000, December 15). <em>Microsoft releases Windows 2000 to manufacturing</em>. https://news.microsoft.com/source/2000/12/15/microsoft-releases-windows-2000-to-manufacturing/</p>
+          <p>Microsoft Azure. (2016, March 9). <em>OCP 2016: Building on community-driven innovation</em>. https://azure.microsoft.com/en-us/blog/ocp-2016-building-on-community-driven-innovation/</p>
+          <p>Microsoft Learn. (n.d.). <em>1992: Microsoft demonstrates Windows NT at the fall COMDEX computer trade show</em>. https://learn.microsoft.com/en-us/shows/history/1992</p>
+          <p>USENIX. (n.d.). <em>NetWare 4.0 overview</em>. https://www.usenix.org/legacy/publications/library/proceedings/nova/node7.html</p>
+        </div>
+
+        <div class="slide-controls reveal">
+          <a href="formal.html" class="button ghost">Previous Section: Formal Theory</a>
+          <a href="quiz.html" class="button primary">Next Section: Quiz</a>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="slides.js"></script>
+</body>
+</html>

@@ -1278,6 +1278,84 @@ small {
   background: rgba(48, 35, 12, 0.72);
 }
 
+.timeline-page .section-block,
+.timeline-page .timeline-hero {
+  min-height: auto;
+}
+
+.timeline-stack {
+  position: relative;
+  display: grid;
+  gap: 18px;
+  padding-left: 22px;
+}
+
+.timeline-stack::before {
+  content: "";
+  position: absolute;
+  left: 46px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, rgba(92, 198, 232, 0.4), rgba(98, 214, 154, 0.24));
+}
+
+.timeline-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+  padding: 20px 22px;
+  border-radius: 22px;
+  border: 1px solid var(--border);
+  background: var(--panel-strong);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.timeline-marker {
+  position: relative;
+  padding-top: 4px;
+}
+
+.timeline-marker::after {
+  content: "";
+  position: absolute;
+  left: 17px;
+  top: 18px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  box-shadow: 0 0 0 6px rgba(92, 198, 232, 0.12);
+}
+
+.timeline-year {
+  display: inline-block;
+  min-width: 92px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(92, 198, 232, 0.12);
+  color: var(--accent-2);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.94rem;
+  text-align: center;
+}
+
+.timeline-content {
+  display: grid;
+  gap: 10px;
+}
+
+.timeline-content h3 {
+  margin-bottom: 0;
+}
+
+.timeline-note {
+  color: var(--accent);
+  font-size: 1rem;
+}
+
 .quiz-list {
   display: grid;
   gap: 18px;
@@ -1968,6 +2046,7 @@ small {
   .quiz-summary-grid,
   .quiz-toolbar,
   .quiz-scoreboard,
+  .timeline-card,
   .theory-grid,
   .details-grid,
   .queue-columns,
@@ -1996,6 +2075,18 @@ small {
 
   .shared-network {
     min-height: 420px;
+  }
+
+  .timeline-stack {
+    padding-left: 0;
+  }
+
+  .timeline-stack::before {
+    display: none;
+  }
+
+  .timeline-marker::after {
+    display: none;
   }
 
   .hero {
