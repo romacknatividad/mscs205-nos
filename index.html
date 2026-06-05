@@ -78,20 +78,31 @@
         <div class="concept-grid">
           <article class="concept-panel reveal">
             <h3>Resource Sharing</h3>
-            <p>Files, printers, storage arrays, and applications are exposed to many nodes through controlled access.</p>
+            <p>Files, printers, storage arrays, and applications are exposed to many nodes through controlled access so that a shared network can function as one coordinated environment instead of isolated devices.</p>
           </article>
           <article class="concept-panel reveal">
             <h3>Identity and Policy</h3>
-            <p>Authentication and authorization determine who can use which resources and under what conditions.</p>
+            <p>Authentication and authorization determine who can use which resources and under what conditions, making user administration and access control central NOS responsibilities.</p>
           </article>
           <article class="concept-panel reveal">
             <h3>Communication Services</h3>
-            <p>The NOS provides the protocol and transport support needed for reliable distributed operation.</p>
+            <p>The NOS provides the protocol and transport support needed for reliable distributed operation, allowing clients, servers, printers, and databases to exchange data across the network.</p>
           </article>
           <article class="concept-panel reveal">
             <h3>Central Administration</h3>
-            <p>Monitoring, configuration, and failure recovery are coordinated from an administrative control layer.</p>
+            <p>Monitoring, configuration, maintenance, and recovery are coordinated from an administrative control layer so multiple users and devices can be managed consistently.</p>
           </article>
+        </div>
+        <div class="slide-summary reveal">
+          <h3>Why This Matters</h3>
+          <p>
+            In practice, a NOS acts as a multiuser coordination layer. It does not just move packets; it decides how identities, devices, storage, and services are organized so networked computing remains usable and secure at scale.
+          </p>
+        </div>
+        <div class="slide-references reveal">
+          <h3>References</h3>
+          <p>Britannica. (2026, January 16). <em>Operating system</em>. https://www.britannica.com/technology/operating-system</p>
+          <p>TechTarget. (2023, March 8). <em>What is a network operating system (NOS)?</em> https://www.techtarget.com/searchnetworking/definition/network-operating-system</p>
         </div>
       </section>
 
@@ -108,28 +119,39 @@
           <div class="pipeline-step reveal">
             <span class="step-number">01</span>
             <h3>Discover</h3>
-            <p>Devices identify available servers, directories, and shared services.</p>
+            <p>Devices identify available servers, directories, name services, and shared resources before work can begin.</p>
           </div>
           <div class="pipeline-step reveal">
             <span class="step-number">02</span>
             <h3>Authenticate</h3>
-            <p>Credentials are validated before the system allows meaningful access.</p>
+            <p>Credentials are validated before the system allows meaningful access, reducing the chance of unauthorized service use.</p>
           </div>
           <div class="pipeline-step reveal">
             <span class="step-number">03</span>
             <h3>Authorize</h3>
-            <p>Policies bind users and devices to permissions, quotas, and access boundaries.</p>
+            <p>Policies bind users and devices to permissions, quotas, and access boundaries so one user does not consume or expose resources improperly.</p>
           </div>
           <div class="pipeline-step reveal">
             <span class="step-number">04</span>
             <h3>Schedule</h3>
-            <p>Competing requests are ordered so shared channels and servers are not overwhelmed.</p>
+            <p>Competing requests are ordered so shared channels, storage, and server processes are not overwhelmed by simultaneous demand.</p>
           </div>
           <div class="pipeline-step reveal">
             <span class="step-number">05</span>
             <h3>Deliver</h3>
-            <p>Resources are transferred while the NOS tracks state, performance, and reliability.</p>
+            <p>Resources are transferred while the NOS tracks state, availability, and performance across the client-server interaction.</p>
           </div>
+        </div>
+        <div class="slide-summary reveal">
+          <h3>Operational View</h3>
+          <p>
+            This flow highlights that a NOS is both a control system and a service system. Every request must be validated, mapped to policy, and then scheduled against finite resources such as bandwidth, CPU time, and storage access.
+          </p>
+        </div>
+        <div class="slide-references reveal">
+          <h3>References</h3>
+          <p>TechTarget. (2023, March 8). <em>What is a network operating system (NOS)?</em> https://www.techtarget.com/searchnetworking/definition/network-operating-system</p>
+          <p>TechTarget. (n.d.). <em>What is a computer network?</em> https://www.techtarget.com/searchnetworking/definition/network</p>
         </div>
       </section>
 
@@ -145,16 +167,27 @@
         <div class="insight-layout triple-grid">
           <div class="insight-card reveal">
             <h3>Backlog Formation</h3>
-            <p>Packets accumulate when the arrival rate temporarily exceeds the service rate of a link or server.</p>
+            <p>Packets accumulate when the arrival rate temporarily exceeds the service rate of a link, interface, or server process.</p>
           </div>
           <div class="insight-card reveal">
             <h3>Latency Impact</h3>
-            <p>Even a small number of large packets can increase waiting time for critical short packets behind them.</p>
+            <p>Even a small number of large packets can increase waiting time for critical short packets behind them, especially under simple FIFO behavior.</p>
           </div>
           <div class="insight-card reveal">
             <h3>Congestion Signals</h3>
-            <p>Queue length and head-of-line delay are early indicators that the network is approaching stress.</p>
+            <p>Queue length and head-of-line delay are early indicators that the network is approaching stress and may need congestion management or QoS policy.</p>
           </div>
+        </div>
+        <div class="slide-summary reveal">
+          <h3>Queueing Insight</h3>
+          <p>
+            Queueing exists because network capacity is finite and demand is bursty. A NOS must therefore absorb temporary overload while preserving as much responsiveness as possible for important traffic classes.
+          </p>
+        </div>
+        <div class="slide-references reveal">
+          <h3>References</h3>
+          <p>Cisco. (n.d.). <em>QoS congestion management (queueing)</em>. https://www.cisco.com/c/en/us/tech/quality-of-service-qos/qos-congestion-management-queueing/index.html</p>
+          <p>Cisco. (n.d.). <em>QoS frequently asked questions</em>. https://www.cisco.com/c/en/us/support/docs/quality-of-service-qos/qos-policing/22833-qos-faq.html</p>
         </div>
       </section>
 
@@ -170,20 +203,31 @@
         <div class="concept-grid">
           <article class="concept-panel reveal">
             <h3>Fairness</h3>
-            <p>Policies such as Round Robin or Weighted Fair Queueing prevent one class from dominating the link indefinitely.</p>
+            <p>Policies such as Round Robin or Weighted Fair Queueing prevent one class from dominating the link indefinitely by redistributing service opportunities.</p>
           </article>
           <article class="concept-panel reveal">
             <h3>Urgency</h3>
-            <p>Strict Priority and Earliest Deadline First reduce delay for traffic that has strong timing requirements.</p>
+            <p>Strict Priority and Earliest Deadline First reduce delay for traffic that has strong timing requirements, such as voice or deadline-sensitive control traffic.</p>
           </article>
           <article class="concept-panel reveal">
             <h3>Packet Size Effects</h3>
-            <p>Byte-aware policies such as WFQ and DRR account for packet length more carefully than plain queue rotation.</p>
+            <p>Byte-aware policies such as WFQ and DRR account for packet length more carefully than plain queue rotation, which improves fairness under mixed packet sizes.</p>
           </article>
           <article class="concept-panel reveal">
             <h3>Tradeoff Space</h3>
-            <p>No scheduler optimizes every metric at once. NOS design requires selecting the right compromise for the workload.</p>
+            <p>No scheduler optimizes every metric at once. NOS design requires choosing the right compromise among latency, fairness, throughput, isolation, and implementation cost.</p>
           </article>
+        </div>
+        <div class="slide-summary reveal">
+          <h3>Scheduling Insight</h3>
+          <p>
+            Scheduling transforms raw waiting lines into service policy. Once multiple flows compete for the same output link, the scheduler becomes one of the most important determinants of user experience and application quality.
+          </p>
+        </div>
+        <div class="slide-references reveal">
+          <h3>References</h3>
+          <p>Cisco. (n.d.). <em>QoS congestion management (queueing)</em>. https://www.cisco.com/c/en/us/tech/quality-of-service-qos/qos-congestion-management-queueing/index.html</p>
+          <p>Cisco. (2021). <em>Quality of Service Configuration Guide, Cisco IOS XE 17.x: QoS scheduling</em>. https://www.cisco.com/c/en/us/td/docs/routers/ios/config/17-x/qos/b-quality-of-service/m_qos-scheduling.html</p>
         </div>
       </section>
 
@@ -198,16 +242,27 @@
         <div class="lab-overview">
           <article class="overview-card reveal">
             <h3>Slides</h3>
-            <p>Build intuition for the role of a NOS and the purpose of queueing and scheduling.</p>
+            <p>Build intuition for the role of a NOS and the reason shared network resources require queueing and control policies.</p>
           </article>
           <article class="overview-card reveal">
             <h3>Simulation</h3>
-            <p>Run staged arrivals through realistic schedulers and observe delay, utilization, and fairness.</p>
+            <p>Run staged arrivals through realistic schedulers and observe delay, utilization, burst handling, head-of-line delay, and fairness.</p>
           </article>
           <article class="overview-card reveal">
             <h3>Formal Theory</h3>
-            <p>Connect the animations to mathematical definitions, notation, and example execution tables.</p>
+            <p>Connect the animations to mathematical definitions, notation, and example execution tables so the visual behavior maps back to formal models.</p>
           </article>
+        </div>
+        <div class="slide-summary reveal">
+          <h3>How to Use This Material</h3>
+          <p>
+            Start with the conceptual deck, then validate your intuition on the simulation page, and finally move to the formal page when you want to discuss these policies precisely using notation and schedule traces.
+          </p>
+        </div>
+        <div class="slide-references reveal">
+          <h3>References</h3>
+          <p>TechTarget. (2023, March 8). <em>What is a network operating system (NOS)?</em> https://www.techtarget.com/searchnetworking/definition/network-operating-system</p>
+          <p>Cisco. (n.d.). <em>QoS congestion management (queueing)</em>. https://www.cisco.com/c/en/us/tech/quality-of-service-qos/qos-congestion-management-queueing/index.html</p>
         </div>
         <div class="hero-actions">
           <a href="simulator.html" class="button primary">Open Simulation Page</a>
