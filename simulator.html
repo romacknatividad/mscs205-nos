@@ -8,6 +8,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[', '\\]']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 </head>
 <body class="simulator-page">
   <div class="page-shell">
@@ -31,7 +43,7 @@
           </p>
         </div>
 
-        <div class="lab-overview">
+        <div class="lab-overview simulator-overview">
           <article class="overview-card reveal">
             <h3>Staged Arrivals</h3>
             <p>Traffic enters over time, which makes queue growth depend on both workload and scheduling behavior.</p>
@@ -75,7 +87,7 @@
               <h3 id="algorithmTitle">Algorithm</h3>
               <p id="algorithmDescription"></p>
               <p id="algorithmStrength" class="algorithm-note"></p>
-              <p id="algorithmFormula" class="algorithm-formula"></p>
+              <div id="algorithmFormula" class="algorithm-formula"></div>
             </div>
 
             <div class="legend">

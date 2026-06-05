@@ -1,37 +1,37 @@
 const algorithmDefinitions = {
   fifo: {
     name: "FIFO / FCFS",
-    shortFormula: "arg min_p a_p",
+    shortFormula: "\\[p^*(t) = \\arg\\min_{p \\in Q(t)} a_p\\]",
     description: "First In, First Out serves packets in order of arrival time. It is easy to implement but does not protect latency-sensitive traffic.",
     strength: "Best when implementation simplicity is more important than differentiated service."
   },
   priority: {
     name: "Strict Priority Queueing",
-    shortFormula: "arg max_p pi_p",
+    shortFormula: "\\[p^*(t) = \\arg\\max_{p \\in Q(t)} (\\pi_p, -a_p)\\]",
     description: "Strict Priority always serves the highest-priority eligible class first. This sharply reduces delay for critical flows while risking starvation for low-priority traffic.",
     strength: "Best when mission-critical or real-time traffic must dominate service decisions."
   },
   rr: {
     name: "Round Robin",
-    shortFormula: "i_(k+1) = (i_k + 1) mod N",
+    shortFormula: "\\[i_{k+1} = (i_k + 1) \\bmod N\\]",
     description: "Round Robin visits non-empty queues cyclically. It is more equitable than strict priority, but equal turns do not mean equal bandwidth when packet sizes differ.",
     strength: "Best when bounded unfairness is more important than strict optimization for one class."
   },
   wfq: {
     name: "Weighted Fair Queueing",
-    shortFormula: "F_i^k = max(F_i^(k-1), V(a_i^k)) + L_i^k / w_i",
+    shortFormula: "\\[F_i^k = \\max(F_i^{k-1}, V(a_i^k)) + \\frac{L_i^k}{w_i}\\]",
     description: "WFQ approximates generalized processor sharing by assigning virtual finish times. Higher-weight classes receive more long-run service without excluding lower-weight classes.",
     strength: "Best when differentiated quality of service and fairness must both be maintained."
   },
   drr: {
     name: "Deficit Round Robin",
-    shortFormula: "D_i <- D_i + Q_i",
+    shortFormula: "\\[D_i \\leftarrow D_i + Q_i\\]",
     description: "DRR extends Round Robin using deficit counters and per-class quantum values. A queue can send packets while its deficit covers packet size, which handles variable-size packets efficiently.",
     strength: "Best when you want scalable fairness with variable packet sizes and low scheduler overhead."
   },
   edf: {
     name: "Earliest Deadline First",
-    shortFormula: "arg min_p d_p",
+    shortFormula: "\\[p^*(t) = \\arg\\min_{p \\in Q(t)} d_p\\]",
     description: "EDF selects the eligible packet with the nearest deadline. It is effective when traffic has explicit timing constraints rather than only class priorities.",
     strength: "Best when deadlines are meaningful and lateness is the key performance metric."
   }
@@ -408,7 +408,10 @@ function updateAlgorithmCopy() {
   algorithmTitle.textContent = item.name;
   algorithmDescription.textContent = item.description;
   algorithmStrength.textContent = item.strength;
-  algorithmFormula.textContent = item.shortFormula;
+  algorithmFormula.innerHTML = item.shortFormula;
+  if (window.MathJax?.typesetPromise) {
+    window.MathJax.typesetPromise([algorithmFormula]).catch(() => {});
+  }
 }
 
 function updateInsight(text) {
