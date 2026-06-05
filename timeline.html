@@ -52,28 +52,36 @@
           <div class="visual-title">Major Players</div>
           <div class="player-grid">
             <article class="player-card player-xerox">
-              <div class="player-mark">X</div>
+              <div class="player-mark logo-mark">
+                <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Xerox%20logo.svg" alt="Xerox logo">
+              </div>
               <div>
                 <h3>Xerox PARC</h3>
                 <p>Early workstation networking and shared office computing.</p>
               </div>
             </article>
             <article class="player-card player-novell">
-              <div class="player-mark">N</div>
+              <div class="player-mark logo-mark">
+                <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Novell.svg" alt="Novell logo">
+              </div>
               <div>
                 <h3>Novell</h3>
                 <p>NetWare made the LAN-centric NOS mainstream in the PC era.</p>
               </div>
             </article>
             <article class="player-card player-cisco">
-              <div class="player-mark">C</div>
+              <div class="player-mark logo-mark">
+                <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Cisco%20logo.svg" alt="Cisco logo">
+              </div>
               <div>
                 <h3>Cisco</h3>
                 <p>IOS and later IOS XE shaped the infrastructure side of NOS design.</p>
               </div>
             </article>
             <article class="player-card player-microsoft">
-              <div class="player-mark">M</div>
+              <div class="player-mark logo-mark">
+                <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Microsoft.svg" alt="Microsoft logo">
+              </div>
               <div>
                 <h3>Microsoft</h3>
                 <p>Windows NT and Active Directory pushed enterprise network administration forward.</p>
@@ -135,7 +143,9 @@
               <span class="timeline-year">1983</span>
             </div>
             <div class="timeline-visual visual-novell">
-              <div class="timeline-logo">NetWare</div>
+              <div class="timeline-logo logo-panel">
+                <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Novell.svg" alt="Novell logo">
+              </div>
               <div class="timeline-company">Novell</div>
             </div>
             <div class="timeline-content">
@@ -153,7 +163,9 @@
               <span class="timeline-year">Mid-1980s</span>
             </div>
             <div class="timeline-visual visual-cisco">
-              <div class="timeline-logo">IOS</div>
+              <div class="timeline-logo logo-panel">
+                <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Cisco%20logo.svg" alt="Cisco logo">
+              </div>
               <div class="timeline-company">Cisco</div>
             </div>
             <div class="timeline-content">
@@ -171,7 +183,9 @@
               <span class="timeline-year">1992</span>
             </div>
             <div class="timeline-visual visual-microsoft">
-              <div class="timeline-logo">NT</div>
+              <div class="timeline-logo logo-panel">
+                <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Microsoft.svg" alt="Microsoft logo">
+              </div>
               <div class="timeline-company">Microsoft</div>
             </div>
             <div class="timeline-content">
@@ -188,7 +202,7 @@
               <span class="timeline-year">2000</span>
             </div>
             <div class="timeline-visual visual-directory">
-              <div class="timeline-logo">AD</div>
+              <div class="timeline-logo windows-panel">AD</div>
               <div class="timeline-company">Windows 2000</div>
             </div>
             <div class="timeline-content">
@@ -255,6 +269,65 @@
 
       <section class="slide-card section-block">
         <div class="section-heading">
+          <p class="eyebrow">Theory Track</p>
+          <h2>Theoretical Contributions Behind NOS Design</h2>
+          <p>
+            Network operating systems depend on more than vendor platforms. Their scheduling, buffering, fairness,
+            and delay behavior are built on theoretical work in queueing, packet switching, and fair service disciplines.
+          </p>
+        </div>
+
+        <div class="theory-timeline">
+          <article class="theory-milestone reveal">
+            <div class="theory-badge">1961</div>
+            <div class="theory-body">
+              <h3>Leonard Kleinrock Formalizes Communication-Network Delay Analysis</h3>
+              <p>
+                Kleinrock's early work connected queueing ideas to communication networks and packet delay.
+                This matters to NOS history because network operating systems eventually needed mathematical tools
+                to reason about congestion, throughput, and waiting time.
+              </p>
+            </div>
+          </article>
+
+          <article class="theory-milestone reveal">
+            <div class="theory-badge">1961</div>
+            <div class="theory-body">
+              <h3>John Little Proves the Queueing Relation L = λW</h3>
+              <p>
+                Little's law became one of the most important interpretations of queue buildup:
+                average items in a system, average arrival rate, and average time in the system are tightly linked.
+                NOS performance analysis still uses this intuition.
+              </p>
+            </div>
+          </article>
+
+          <article class="theory-milestone reveal">
+            <div class="theory-badge">1989</div>
+            <div class="theory-body">
+              <h3>Demers, Keshav, and Shenker Advance Fair Queueing</h3>
+              <p>
+                Their fair-queueing work gave network software a stronger model for balancing service among competing flows.
+                This is directly relevant to NOS schedulers that must avoid starvation while still protecting critical traffic.
+              </p>
+            </div>
+          </article>
+
+          <article class="theory-milestone reveal">
+            <div class="theory-badge">1993</div>
+            <div class="theory-body">
+              <h3>Parekh and Gallager Provide the GPS / WFQ Foundation</h3>
+              <p>
+                Generalized Processor Sharing and its packetized approximations gave a rigorous basis for weighted fairness,
+                delay guarantees, and QoS-style differentiation. These ideas underpin many modern NOS scheduling discussions.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="slide-card section-block">
+        <div class="section-heading">
           <p class="eyebrow">References</p>
           <h2>APA Sources</h2>
           <p>These references support the timeline milestones and the broader interpretation of NOS development.</p>
@@ -265,10 +338,14 @@
           <p>Britannica. (n.d.). <em>Internet</em>. https://www.britannica.com/topic/Internet</p>
           <p>Cisco. (2023, June 5). <em>25 years of Cisco IOS XE: Past, present, and future</em>. https://blogs.cisco.com/networking/25-years-of-cisco-ios-xe-past-present-and-future</p>
           <p>Computer History Museum. (n.d.). <em>The networked workstation</em>. https://www.computerhistory.org/revolution/networking/19/382</p>
+          <p>Demers, A., Keshav, S., &amp; Shenker, S. (1989). <em>Analysis and simulation of a fair queueing algorithm</em>. ACM SIGCOMM Computer Communication Review, 19, 1-12. https://doi.org/10.1145/75247.75248</p>
+          <p>Kleinrock, L. (1961). <em>Information flow in large communication nets</em>. Massachusetts Institute of Technology. https://www.lk.cs.ucla.edu/data/files/Kleinrock/Information%20Flow%20in%20Large%20Communication%20Nets.pdf</p>
           <p>Linux Foundation. (2022, September 1). <em>Linux Foundation announces intent to form Open Programmable Infrastructure Project and welcomes SONiC</em>. https://www.linuxfoundation.org/press/linux-foundation-announces-intent-to-form-open-programmable-infrastructure-project-and-welcomes-sonic</p>
+          <p>Little, J. D. C. (1961). <em>A proof for the queueing formula: L = λW</em>. Operations Research, 9(3), 383-387. https://doi.org/10.1287/opre.9.3.383</p>
           <p>Microsoft. (2000, December 15). <em>Microsoft releases Windows 2000 to manufacturing</em>. https://news.microsoft.com/source/2000/12/15/microsoft-releases-windows-2000-to-manufacturing/</p>
           <p>Microsoft Azure. (2016, March 9). <em>OCP 2016: Building on community-driven innovation</em>. https://azure.microsoft.com/en-us/blog/ocp-2016-building-on-community-driven-innovation/</p>
           <p>Microsoft Learn. (n.d.). <em>1992: Microsoft demonstrates Windows NT at the fall COMDEX computer trade show</em>. https://learn.microsoft.com/en-us/shows/history/1992</p>
+          <p>Parekh, A. K., &amp; Gallager, R. G. (1993). <em>A generalized processor sharing approach to flow control in integrated services networks: The single-node case</em>. IEEE/ACM Transactions on Networking, 1(3), 344-357. https://doi.org/10.1109/90.234856</p>
           <p>USENIX. (n.d.). <em>NetWare 4.0 overview</em>. https://www.usenix.org/legacy/publications/library/proceedings/nova/node7.html</p>
         </div>
 
