@@ -791,6 +791,240 @@ small {
   line-height: 1.5;
 }
 
+.slide-visual {
+  position: relative;
+  margin-top: 18px;
+  padding: 18px;
+  border-radius: 22px;
+  border: 1px solid var(--border);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(237, 243, 235, 0.96));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.62);
+  overflow: hidden;
+}
+
+.visual-title {
+  margin-bottom: 14px;
+  color: var(--accent);
+  font-size: 0.86rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.shared-network {
+  position: relative;
+  min-height: 280px;
+}
+
+.shared-core,
+.shared-leaf,
+.path-node,
+.flow-stop,
+.service-gate,
+.scheduler-decision {
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  border: 1px solid rgba(56, 74, 53, 0.18);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 10px 26px rgba(72, 90, 65, 0.1);
+}
+
+.shared-core {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: 120px;
+  height: 120px;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(135deg, rgba(217, 139, 43, 0.2), rgba(45, 152, 184, 0.14));
+  font-weight: 700;
+}
+
+.shared-leaf {
+  position: absolute;
+  width: 92px;
+  height: 92px;
+  font-size: 0.9rem;
+}
+
+.leaf-a { top: 10px; left: 38%; }
+.leaf-b { top: 82px; right: 8%; }
+.leaf-c { bottom: 12px; right: 18%; }
+.leaf-d { bottom: 22px; left: 14%; }
+.leaf-e { top: 82px; left: 4%; }
+
+.shared-link {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: 2px;
+  height: 110px;
+  background: linear-gradient(180deg, rgba(45, 152, 184, 0.7), rgba(217, 139, 43, 0.24));
+  transform-origin: top center;
+}
+
+.link-a { transform: translate(-50%, -50%) rotate(-2deg); }
+.link-b { transform: translate(-50%, -50%) rotate(58deg); }
+.link-c { transform: translate(-50%, -50%) rotate(126deg); }
+.link-d { transform: translate(-50%, -50%) rotate(214deg); }
+.link-e { transform: translate(-50%, -50%) rotate(294deg); }
+
+.slide-visual-flow .flow-ribbon {
+  display: grid;
+  grid-template-columns: repeat(9, auto);
+  gap: 10px;
+  align-items: center;
+  min-height: 120px;
+}
+
+.flow-stop {
+  min-width: 106px;
+  min-height: 58px;
+  padding: 0 16px;
+  font-weight: 600;
+}
+
+.stop-discover { background: rgba(45, 152, 184, 0.14); }
+.stop-auth { background: rgba(47, 157, 106, 0.12); }
+.stop-policy { background: rgba(217, 139, 43, 0.14); }
+.stop-schedule { background: rgba(204, 95, 82, 0.12); }
+.stop-deliver { background: rgba(120, 141, 234, 0.12); }
+
+.flow-arrow {
+  height: 4px;
+  width: 100%;
+  min-width: 30px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(45, 152, 184, 0.5), rgba(217, 139, 43, 0.5));
+}
+
+.queue-illustration {
+  display: grid;
+  grid-template-columns: 140px 1fr 90px;
+  gap: 18px;
+  align-items: center;
+  min-height: 180px;
+}
+
+.packet-stream {
+  position: relative;
+  height: 120px;
+}
+
+.mini-packet,
+.queued-packet {
+  display: inline-grid;
+  place-items: center;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.mini-packet {
+  position: absolute;
+  width: 34px;
+  height: 22px;
+  background: var(--accent-2);
+  animation: packetDrift 2.2s ease-in-out infinite;
+}
+
+.p1 { top: 10px; left: 14px; animation-delay: 0s; }
+.p2 { top: 36px; left: 34px; animation-delay: 0.25s; }
+.p3 { top: 62px; left: 8px; animation-delay: 0.5s; }
+.p4 { top: 88px; left: 28px; animation-delay: 0.75s; }
+
+.buffer-lane {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 18px;
+  min-height: 92px;
+  border-radius: 18px;
+  border: 1px dashed rgba(56, 74, 53, 0.18);
+  background: rgba(245, 248, 242, 0.96);
+}
+
+.queued-packet {
+  min-width: 56px;
+  min-height: 40px;
+  background: linear-gradient(135deg, var(--accent), #e4b25f);
+}
+
+.service-gate {
+  min-height: 90px;
+  padding: 0 16px;
+  background: linear-gradient(135deg, rgba(45, 152, 184, 0.18), rgba(47, 157, 106, 0.18));
+  font-weight: 700;
+}
+
+.scheduler-board {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) 180px;
+  gap: 12px;
+  align-items: stretch;
+  min-height: 180px;
+}
+
+.scheduler-queue {
+  padding: 16px 14px;
+  border-radius: 18px;
+  border: 1px solid rgba(56, 74, 53, 0.14);
+  background: rgba(255, 255, 255, 0.86);
+}
+
+.scheduler-queue span {
+  display: block;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.scheduler-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.scheduler-chips i {
+  width: 34px;
+  height: 24px;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+.priority-queue i { background: linear-gradient(135deg, #cc5f52, #e18174); }
+.weighted-queue i { background: linear-gradient(135deg, #45a6c4, #7bc8de); }
+.best-effort-queue i { background: linear-gradient(135deg, #55b97e, #8fddb0); }
+
+.scheduler-decision {
+  min-height: 100%;
+  padding: 20px;
+  background: linear-gradient(135deg, rgba(217, 139, 43, 0.16), rgba(45, 152, 184, 0.14));
+  font-weight: 700;
+}
+
+.path-diagram {
+  display: grid;
+  grid-template-columns: 1fr 80px 1fr 80px 1fr;
+  gap: 10px;
+  align-items: center;
+  min-height: 120px;
+}
+
+.path-node {
+  min-height: 72px;
+  font-weight: 700;
+}
+
+.path-connector {
+  height: 5px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(45, 152, 184, 0.5), rgba(217, 139, 43, 0.5));
+}
+
+@keyframes packetDrift {
+  0%, 100% { transform: translateX(0); opacity: 0.85; }
+  50% { transform: translateX(16px); opacity: 1; }
+}
+
 .formal-page .section-block,
 .simulator-page .section-block {
   min-height: auto;
@@ -1116,6 +1350,17 @@ small {
     grid-template-columns: 1fr;
   }
 
+  .slide-visual-flow .flow-ribbon,
+  .queue-illustration,
+  .scheduler-board,
+  .path-diagram {
+    grid-template-columns: 1fr;
+  }
+
+  .shared-network {
+    min-height: 420px;
+  }
+
   .hero {
     min-height: auto;
     padding: 28px 22px;
@@ -1167,4 +1412,20 @@ small {
   .hero-status-board {
     grid-template-columns: 1fr 1fr;
   }
+
+  .shared-network {
+    min-height: 500px;
+  }
+
+  .shared-leaf {
+    width: 82px;
+    height: 82px;
+    font-size: 0.82rem;
+  }
+
+  .leaf-a { top: 8px; left: 34%; }
+  .leaf-b { top: 92px; right: 2%; }
+  .leaf-c { bottom: 48px; right: 16%; }
+  .leaf-d { bottom: 18px; left: 8%; }
+  .leaf-e { top: 92px; left: 0; }
 }

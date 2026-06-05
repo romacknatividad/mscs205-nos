@@ -93,6 +93,22 @@
             <p>Monitoring, configuration, maintenance, and recovery are coordinated from an administrative control layer so multiple users and devices can be managed consistently.</p>
           </article>
         </div>
+        <div class="slide-visual slide-visual-network reveal" aria-hidden="true">
+          <div class="visual-title">Shared NOS Environment</div>
+          <div class="shared-network">
+            <div class="shared-core">NOS</div>
+            <div class="shared-leaf leaf-a">Files</div>
+            <div class="shared-leaf leaf-b">Users</div>
+            <div class="shared-leaf leaf-c">Print</div>
+            <div class="shared-leaf leaf-d">Apps</div>
+            <div class="shared-leaf leaf-e">Storage</div>
+            <span class="shared-link link-a"></span>
+            <span class="shared-link link-b"></span>
+            <span class="shared-link link-c"></span>
+            <span class="shared-link link-d"></span>
+            <span class="shared-link link-e"></span>
+          </div>
+        </div>
         <div class="slide-summary reveal">
           <h3>Why This Matters</h3>
           <p>
@@ -142,6 +158,20 @@
             <p>Resources are transferred while the NOS tracks state, availability, and performance across the client-server interaction.</p>
           </div>
         </div>
+        <div class="slide-visual slide-visual-flow reveal" aria-hidden="true">
+          <div class="visual-title">Request Lifecycle</div>
+          <div class="flow-ribbon">
+            <div class="flow-stop stop-discover">Discover</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-stop stop-auth">Auth</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-stop stop-policy">Policy</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-stop stop-schedule">Schedule</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-stop stop-deliver">Deliver</div>
+          </div>
+        </div>
         <div class="slide-summary reveal">
           <h3>Operational View</h3>
           <p>
@@ -176,6 +206,25 @@
           <div class="insight-card reveal">
             <h3>Congestion Signals</h3>
             <p>Queue length and head-of-line delay are early indicators that the network is approaching stress and may need congestion management or QoS policy.</p>
+          </div>
+        </div>
+        <div class="slide-visual slide-visual-queue reveal" aria-hidden="true">
+          <div class="visual-title">Queue Buildup</div>
+          <div class="queue-illustration">
+            <div class="packet-stream">
+              <span class="mini-packet p1"></span>
+              <span class="mini-packet p2"></span>
+              <span class="mini-packet p3"></span>
+              <span class="mini-packet p4"></span>
+            </div>
+            <div class="buffer-lane">
+              <span class="queued-packet q1">P1</span>
+              <span class="queued-packet q2">P2</span>
+              <span class="queued-packet q3">P3</span>
+              <span class="queued-packet q4">P4</span>
+              <span class="queued-packet q5">P5</span>
+            </div>
+            <div class="service-gate">Link</div>
           </div>
         </div>
         <div class="slide-summary reveal">
@@ -218,6 +267,30 @@
             <p>No scheduler optimizes every metric at once. NOS design requires choosing the right compromise among latency, fairness, throughput, isolation, and implementation cost.</p>
           </article>
         </div>
+        <div class="slide-visual slide-visual-scheduling reveal" aria-hidden="true">
+          <div class="visual-title">Scheduling Choices</div>
+          <div class="scheduler-board">
+            <div class="scheduler-queue priority-queue">
+              <span>Voice</span>
+              <div class="scheduler-chips">
+                <i></i><i></i><i></i>
+              </div>
+            </div>
+            <div class="scheduler-queue weighted-queue">
+              <span>Video</span>
+              <div class="scheduler-chips">
+                <i></i><i></i>
+              </div>
+            </div>
+            <div class="scheduler-queue best-effort-queue">
+              <span>Data</span>
+              <div class="scheduler-chips">
+                <i></i><i></i><i></i><i></i>
+              </div>
+            </div>
+            <div class="scheduler-decision">Next Packet</div>
+          </div>
+        </div>
         <div class="slide-summary reveal">
           <h3>Scheduling Insight</h3>
           <p>
@@ -252,6 +325,16 @@
             <h3>Formal Theory</h3>
             <p>Connect the animations to mathematical definitions, notation, and example execution tables so the visual behavior maps back to formal models.</p>
           </article>
+        </div>
+        <div class="slide-visual slide-visual-path reveal" aria-hidden="true">
+          <div class="visual-title">Learning Path</div>
+          <div class="path-diagram">
+            <div class="path-node">Slides</div>
+            <div class="path-connector"></div>
+            <div class="path-node">Simulation</div>
+            <div class="path-connector"></div>
+            <div class="path-node">Formal</div>
+          </div>
         </div>
         <div class="slide-summary reveal">
           <h3>How to Use This Material</h3>
