@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NOS Quiz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="quiz-page">
+  <div class="page-shell">
+    <nav class="top-nav slide-card">
+      <a class="nav-brand" href="index.html">NOS Studio</a>
+      <div class="nav-links">
+        <a class="nav-link" href="index.html">Slides</a>
+        <a class="nav-link" href="simulator.html">Simulation</a>
+        <a class="nav-link" href="formal.html">Formal Theory</a>
+        <a class="nav-link active" href="quiz.html">Quiz</a>
+      </div>
+    </nav>
+
+    <main>
+      <section class="slide-card section-block quiz-hero">
+        <div class="section-heading">
+          <p class="eyebrow">Assessment</p>
+          <h1 class="page-title">Network Operating Systems Quiz</h1>
+          <p>
+            Answer ten questions covering NOS fundamentals, queueing behavior, and scheduling algorithms.
+            You can retry as many times as you want, and every option explains why it is correct or incorrect.
+          </p>
+        </div>
+
+        <div class="quiz-summary-grid">
+          <article class="overview-card reveal">
+            <h3>10 Questions</h3>
+            <p>The quiz mixes concepts from the slides, simulation, and formal theory page.</p>
+          </article>
+          <article class="overview-card reveal">
+            <h3>Immediate Explanations</h3>
+            <p>Selecting an answer reveals why that choice is right or wrong so the assessment also teaches.</p>
+          </article>
+          <article class="overview-card reveal">
+            <h3>Multiple Attempts</h3>
+            <p>Use the retry button at any time to clear the quiz and attempt it again.</p>
+          </article>
+        </div>
+
+        <div class="quiz-toolbar reveal">
+          <div class="quiz-scoreboard">
+            <div class="metric-card">
+              <span class="metric-label">Answered</span>
+              <strong id="answeredCount">0 / 10</strong>
+            </div>
+            <div class="metric-card">
+              <span class="metric-label">Current Score</span>
+              <strong id="scoreCount">0 / 10</strong>
+            </div>
+            <div class="metric-card">
+              <span class="metric-label">Attempt</span>
+              <strong id="attemptCount">1</strong>
+            </div>
+          </div>
+          <div class="button-row">
+            <button id="submitQuizBtn" class="button primary" type="button">Check Quiz</button>
+            <button id="retryQuizBtn" class="button ghost" type="button">Retry Quiz</button>
+          </div>
+        </div>
+
+        <div id="quizResult" class="quiz-result reveal">
+          Select one answer for each question, then use <strong>Check Quiz</strong> to score the attempt.
+        </div>
+      </section>
+
+      <section class="slide-card section-block">
+        <div class="section-heading">
+          <p class="eyebrow">Questions</p>
+          <h2>Concept Check</h2>
+          <p>Each item has one best answer. Click an option to see the explanation for that specific choice.</p>
+        </div>
+        <div id="quizList" class="quiz-list"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="slides.js"></script>
+  <script src="quiz.js"></script>
+</body>
+</html>

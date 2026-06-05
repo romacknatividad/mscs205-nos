@@ -120,6 +120,11 @@ const holDelay = document.getElementById("holDelay");
 const dispatchLog = document.getElementById("dispatchLog");
 const dispatchCount = document.getElementById("dispatchCount");
 
+function infoTipMarkup(label, description, position = "") {
+  const positionClass = position ? ` ${position}` : "";
+  return `<span class="info-tip info-tip-inline${positionClass}"><button class="info-trigger" type="button" aria-label="${label}">i</button><span class="info-bubble">${description}</span></span>`;
+}
+
 function initAlgorithms() {
   Object.entries(algorithmDefinitions).forEach(([value, item]) => {
     const option = document.createElement("option");
@@ -426,7 +431,17 @@ function renderQueues() {
 
     const label = document.createElement("div");
     const deficitText = getAlgorithm() === "drr" ? ` | Deficit ${state.deficits[profile.key]}` : "";
-    label.innerHTML = `<strong>${profile.label}</strong><span class="queue-label">Priority ${profile.priority} | Weight ${profile.weight} | Quantum ${profile.quantum}${deficitText}</span>`;
+    label.innerHTML = `
+      <div class="queue-heading">
+        <strong>${profile.label}</strong>
+        ${infoTipMarkup(
+          `Explain ${profile.label} queue`,
+          `${profile.label} traffic uses priority ${profile.priority}, weight ${profile.weight}, and quantum ${profile.quantum}. In DRR, deficit is the saved service credit for this queue.`,
+          "info-tip-right"
+        )}
+      </div>
+      <span class="queue-label">Priority ${profile.priority} | Weight ${profile.weight} | Quantum ${profile.quantum}${deficitText}</span>
+    `;
 
     const track = document.createElement("div");
     track.className = "queue-track";
@@ -434,8 +449,16 @@ function renderQueues() {
     state.queues[profile.key].forEach((packet) => {
       const chip = document.createElement("div");
       chip.className = `packet waiting ${packet.colorClass}`;
-      chip.textContent = `${packet.id} | ${packet.size}`;
-      chip.title = `arrival=${packet.arrivalTick}, size=${packet.size}, deadline=${packet.deadline}`;
+      chip.innerHTML = `
+        <span class="packet-label">
+          <span>${packet.id} | ${packet.size}</span>
+          ${infoTipMarkup(
+            `Explain packet ${packet.id}`,
+            `${packet.label} packet ${packet.id} arrived at tick ${packet.arrivalTick}, has size ${packet.size}, and deadline ${packet.deadline}. In the simulator, size controls how many service ticks it needs.`,
+            "info-tip-right"
+          )}
+        </span>
+      `;
       track.appendChild(chip);
     });
 
@@ -469,7 +492,11 @@ function renderArrivalTimeline() {
     const item = document.createElement("div");
     item.className = "arrival-item";
     item.innerHTML = `
-      <strong>${packet.label} ${packet.id}</strong>
+      <strong>${packet.label} ${packet.id} ${infoTipMarkup(
+        `Explain future packet ${packet.id}`,
+        `${packet.label} packet ${packet.id} has not arrived yet. It is scheduled to enter the queue at tick ${packet.arrivalTick}.`,
+        "info-tip-right"
+      )}</strong>
       <span class="queue-label">tick ${packet.arrivalTick} | size ${packet.size} | deadline ${packet.deadline}</span>
     `;
     arrivalTimeline.appendChild(item);
@@ -493,7 +520,11 @@ function renderDispatchLog() {
     item.className = "dispatch-item";
     item.innerHTML = `
       <div class="log-meta">
-        <strong>${entry.packet.label} ${entry.packet.id}</strong>
+        <strong>${entry.packet.label} ${entry.packet.id} ${infoTipMarkup(
+          `Explain log entry for ${entry.packet.id}`,
+          `This log entry describes what happened to ${entry.packet.label} packet ${entry.packet.id} at tick ${entry.tick}.`,
+          "info-tip-right"
+        )}</strong>
         <span>tick ${entry.tick}</span>
       </div>
       <span class="queue-label">${entry.text}</span>
@@ -513,7 +544,16 @@ function renderServiceState() {
 
   const packet = state.currentService;
   const completion = ((packet.totalService - packet.remainingService) / packet.totalService) * 100;
-  activePacket.textContent = `${packet.label} ${packet.id}`;
+  activePacket.innerHTML = `
+    <span class="packet-label">
+      <span>${packet.label} ${packet.id}</span>
+      ${infoTipMarkup(
+        `Explain active packet ${packet.id}`,
+        `${packet.label} packet ${packet.id} is currently being transmitted. It began service at tick ${packet.serviceStartTick}, needs ${packet.totalService} ticks total, and still has ${packet.remainingService} ticks remaining.`,
+        "info-tip-right"
+      )}
+    </span>
+  `;
   activePacket.className = `channel-packet ${packet.colorClass}`;
   serviceProgressBar.style.width = `${completion}%`;
   serviceLabel.textContent = `size ${packet.totalService} | remaining ${packet.remainingService} | deadline ${packet.deadline}`;
@@ -559,6 +599,9 @@ function render() {
   renderDispatchLog();
   renderServiceState();
   renderMetrics();
+  if (typeof setupInfoTips === "function") {
+    setupInfoTips();
+  }
 }
 
 function runSimulation() {

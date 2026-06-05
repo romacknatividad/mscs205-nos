@@ -17,7 +17,7 @@
         <a class="nav-link active" href="index.html">Slides</a>
         <a class="nav-link" href="simulator.html">Simulation</a>
         <a class="nav-link" href="formal.html">Formal Theory</a>
-        <a class="nav-link" href="lectures.html">Video Lectures</a>
+        <a class="nav-link" href="quiz.html">Quiz</a>
       </div>
     </nav>
 
@@ -32,7 +32,7 @@
         <div class="hero-actions">
           <a href="#fundamentals" class="button primary">Start Slides</a>
           <a href="simulator.html" class="button secondary">Go to Simulation</a>
-          <a href="lectures.html" class="button ghost">Video Lectures</a>
+          <a href="quiz.html" class="button ghost">Take Quiz</a>
         </div>
         <div class="slide-controls hero-slide-controls">
           <a href="#fundamentals" class="button primary">Next Slide</a>
@@ -42,28 +42,28 @@
         <div class="network-orbit orbit-a"></div>
         <div class="network-orbit orbit-b"></div>
         <div class="network-core">
-          <span class="node server">NOS</span>
-          <span class="node client one">Clients</span>
-          <span class="node client two">Users</span>
-          <span class="node client three">Devices</span>
-          <span class="node client four">Storage</span>
+          <span class="node server">NOS <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain NOS server">i</button><span class="info-bubble">The NOS node represents the shared control point that authenticates requests, applies policy, and coordinates access to network resources.</span></span></span>
+          <span class="node client one">Clients <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain clients">i</button><span class="info-bubble">Clients are endpoints that ask the NOS for services such as file access, printing, authentication, or application use.</span></span></span>
+          <span class="node client two">Users <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain users">i</button><span class="info-bubble">Users represent human demand entering the network. Their actions create bursts, retries, and competing service requests.</span></span></span>
+          <span class="node client three">Devices <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain devices">i</button><span class="info-bubble">Devices are networked endpoints such as terminals, workstations, cameras, or phones that generate traffic for shared infrastructure.</span></span></span>
+          <span class="node client four">Storage <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain storage">i</button><span class="info-bubble">Storage stands for shared filesystems and data services that must be coordinated so many clients can use them safely.</span></span></span>
           <div id="requestLayer" class="request-layer"></div>
         </div>
         <div class="hero-status-board">
           <div class="status-mini">
-            <span class="status-label">Live Requests</span>
+            <span class="status-label">Live Requests <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain live requests">i</button><span class="info-bubble">Requests that have been sent by a node and are still travelling to the NOS or waiting for a result.</span></span></span>
             <strong id="liveRequests">0</strong>
           </div>
           <div class="status-mini">
-            <span class="status-label">Completed</span>
+            <span class="status-label">Completed <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain completed requests">i</button><span class="info-bubble">Requests that successfully reached the NOS and received a successful service response.</span></span></span>
             <strong id="completedRequests">0</strong>
           </div>
           <div class="status-mini">
-            <span class="status-label">Failed</span>
+            <span class="status-label">Failed <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain failed requests">i</button><span class="info-bubble">Requests that did not complete successfully. This visualizes timeouts, congestion, denial, or service failure.</span></span></span>
             <strong id="failedRequests">0</strong>
           </div>
           <div class="status-mini">
-            <span class="status-label">Bursts</span>
+            <span class="status-label">Bursts <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain burst traffic">i</button><span class="info-bubble">Burst traffic means many requests arrive close together in time, which is exactly what creates queues and scheduling pressure.</span></span></span>
             <strong id="burstRequests">0</strong>
           </div>
         </div>
@@ -371,16 +371,17 @@
         <div class="hero-actions">
           <a href="simulator.html" class="button primary">Open Simulation Page</a>
           <a href="formal.html" class="button secondary">Open Formal Theory</a>
-          <a href="lectures.html" class="button ghost">Open Video Lectures</a>
+          <a href="quiz.html" class="button ghost">Open Quiz</a>
         </div>
         <div class="slide-controls reveal">
           <a href="#slide-scheduling" class="button ghost">Previous</a>
-          <a href="lectures.html" class="button primary">Next Section: Lectures</a>
+          <a href="quiz.html" class="button primary">Next Section: Quiz</a>
         </div>
       </section>
     </main>
   </div>
 
+  <script src="info.js"></script>
   <script src="slides.js"></script>
 </body>
 </html>
