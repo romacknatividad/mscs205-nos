@@ -48,7 +48,7 @@
     </nav>
 
     <main>
-      <section class="slide-card section-block formal-hero">
+      <section id="formal-hero" class="slide-card section-block formal-hero">
         <div class="section-heading">
           <p class="eyebrow">Formal Theory</p>
           <h1 class="page-title">Mathematical Definitions of Scheduling Algorithms</h1>
@@ -71,9 +71,13 @@
             <p>Each section includes a per-tick table that makes the dispatch order visible rather than only symbolic.</p>
           </article>
         </div>
+        <div class="slide-controls reveal">
+          <a href="simulator.html" class="button ghost">Previous Section: Simulation</a>
+          <a href="#alg-fifo" class="button primary">Next Algorithm</a>
+        </div>
       </section>
 
-      <section class="slide-card section-block algorithm-section">
+      <section id="alg-fifo" class="slide-card section-block algorithm-section">
         <div class="section-heading">
           <p class="eyebrow">Algorithm 1</p>
           <h2>FIFO / FCFS</h2>
@@ -90,6 +94,14 @@
               W_p = s_p - a_p,\qquad T_p = c_p - a_p
             \]</div>
             <p>FIFO is simple, but it suffers from the convoy effect when a long packet blocks shorter packets behind it.</p>
+            <details class="notation-help">
+              <summary>Read this notation informally</summary>
+              <div class="notation-help-body">
+                <p><strong>Main rule:</strong> pick the packet that arrived first among everything currently waiting.</p>
+                <p><strong>Wait time \(W_p\):</strong> how long packet \(p\) sat in line before service began.</p>
+                <p><strong>Turnaround time \(T_p\):</strong> total time from arrival until the packet finishes.</p>
+              </div>
+            </details>
           </div>
           <div class="schedule-card">
             <strong>Example Schedule</strong>
@@ -104,9 +116,13 @@
             </table>
           </div>
         </div>
+        <div class="slide-controls reveal">
+          <a href="#formal-hero" class="button ghost">Previous</a>
+          <a href="#alg-priority" class="button primary">Next</a>
+        </div>
       </section>
 
-      <section class="slide-card section-block algorithm-section">
+      <section id="alg-priority" class="slide-card section-block algorithm-section">
         <div class="section-heading">
           <p class="eyebrow">Algorithm 2</p>
           <h2>Strict Priority Queueing</h2>
@@ -123,6 +139,14 @@
               \lambda_{\text{high}} \ge \mu \;\Rightarrow\; \text{possible starvation of low-priority classes}
             \]</div>
             <p>The model is effective for urgent traffic, but starvation becomes possible when high-priority load is sustained.</p>
+            <details class="notation-help">
+              <summary>Read this notation informally</summary>
+              <div class="notation-help-body">
+                <p><strong>Main rule:</strong> first look for the highest-priority traffic class, then within that class pick the earliest arrival.</p>
+                <p><strong>\(\pi_p\):</strong> the importance label attached to packet \(p\).</p>
+                <p><strong>\(\lambda_{\text{high}} \ge \mu\):</strong> if urgent traffic arrives at least as fast as the system can serve it, lower classes may keep waiting indefinitely.</p>
+              </div>
+            </details>
           </div>
           <div class="schedule-card">
             <strong>Example Schedule</strong>
@@ -137,9 +161,13 @@
             </table>
           </div>
         </div>
+        <div class="slide-controls reveal">
+          <a href="#alg-fifo" class="button ghost">Previous</a>
+          <a href="#alg-rr" class="button primary">Next</a>
+        </div>
       </section>
 
-      <section class="slide-card section-block algorithm-section">
+      <section id="alg-rr" class="slide-card section-block algorithm-section">
         <div class="section-heading">
           <p class="eyebrow">Algorithm 3</p>
           <h2>Round Robin</h2>
@@ -156,6 +184,14 @@
               B_i(t) > 0 \Rightarrow \text{serve head}(q_i)
             \]</div>
             <p>Queue-level fairness is strong, but byte-level fairness is weak when packets have unequal sizes.</p>
+            <details class="notation-help">
+              <summary>Read this notation informally</summary>
+              <div class="notation-help-body">
+                <p><strong>Main rule:</strong> move to the next queue in a circle, then give that queue one chance to send.</p>
+                <p><strong>\((i_k + 1) \bmod N\):</strong> after the last queue, wrap around to the first queue again.</p>
+                <p><strong>\(B_i(t) &gt; 0\):</strong> if queue \(i\) actually has a packet waiting, send the front packet; otherwise skip it.</p>
+              </div>
+            </details>
           </div>
           <div class="schedule-card">
             <strong>Example Schedule</strong>
@@ -170,9 +206,13 @@
             </table>
           </div>
         </div>
+        <div class="slide-controls reveal">
+          <a href="#alg-priority" class="button ghost">Previous</a>
+          <a href="#alg-wfq" class="button primary">Next</a>
+        </div>
       </section>
 
-      <section class="slide-card section-block algorithm-section">
+      <section id="alg-wfq" class="slide-card section-block algorithm-section">
         <div class="section-heading">
           <p class="eyebrow">Algorithm 4</p>
           <h2>Weighted Fair Queueing</h2>
@@ -189,6 +229,14 @@
               p^*(t) = \arg\min_i F_i^{\text{head}}(t)
             \]</div>
             <p>In long-run service, class \(i\) receives approximately \(w_i / \sum_j w_j\) of the capacity.</p>
+            <details class="notation-help">
+              <summary>Read this notation informally</summary>
+              <div class="notation-help-body">
+                <p><strong>Main rule:</strong> give every head packet a score that estimates when it would finish in an ideal fair system, then send the packet with the smallest score.</p>
+                <p><strong>\(\frac{L_i^k}{w_i}\):</strong> larger packets add more cost, while larger weights reduce that cost and make a class reappear sooner.</p>
+                <p><strong>\(w_i / \sum_j w_j\):</strong> over time, a class gets roughly its weight-share of the link.</p>
+              </div>
+            </details>
           </div>
           <div class="schedule-card">
             <strong>Example Schedule</strong>
@@ -203,9 +251,13 @@
             </table>
           </div>
         </div>
+        <div class="slide-controls reveal">
+          <a href="#alg-rr" class="button ghost">Previous</a>
+          <a href="#alg-drr" class="button primary">Next</a>
+        </div>
       </section>
 
-      <section class="slide-card section-block algorithm-section">
+      <section id="alg-drr" class="slide-card section-block algorithm-section">
         <div class="section-heading">
           <p class="eyebrow">Algorithm 5</p>
           <h2>Deficit Round Robin</h2>
@@ -222,6 +274,14 @@
               L_i^{\text{head}} \le D_i \Rightarrow D_i \leftarrow D_i - L_i^{\text{head}}
             \]</div>
             <p>Unused credit is not discarded, so large packets eventually become eligible without losing fairness.</p>
+            <details class="notation-help">
+              <summary>Read this notation informally</summary>
+              <div class="notation-help-body">
+                <p><strong>Main rule:</strong> each round, add credit to a queue; if the queue has enough credit to pay for its front packet, it can send.</p>
+                <p><strong>\(Q_i\):</strong> the fixed amount of service credit queue \(i\) receives each visit.</p>
+                <p><strong>\(L_i^{\text{head}} \le D_i\):</strong> the front packet can go only when its size is no larger than the saved credit.</p>
+              </div>
+            </details>
           </div>
           <div class="schedule-card">
             <strong>Example Schedule</strong>
@@ -237,9 +297,13 @@
             </table>
           </div>
         </div>
+        <div class="slide-controls reveal">
+          <a href="#alg-wfq" class="button ghost">Previous</a>
+          <a href="#alg-edf" class="button primary">Next</a>
+        </div>
       </section>
 
-      <section class="slide-card section-block algorithm-section">
+      <section id="alg-edf" class="slide-card section-block algorithm-section">
         <div class="section-heading">
           <p class="eyebrow">Algorithm 6</p>
           <h2>Earliest Deadline First</h2>
@@ -256,6 +320,14 @@
               L_p = c_p - d_p
             \]</div>
             <p>EDF is optimal for many uniprocessor feasibility models, but only when the workload is not admitted beyond capacity.</p>
+            <details class="notation-help">
+              <summary>Read this notation informally</summary>
+              <div class="notation-help-body">
+                <p><strong>Main rule:</strong> choose the waiting packet whose deadline arrives soonest.</p>
+                <p><strong>\(d_p\):</strong> the absolute deadline assigned to packet \(p\).</p>
+                <p><strong>\(L_p = c_p - d_p\):</strong> positive lateness means the packet finished after its deadline, while negative lateness means it finished early.</p>
+              </div>
+            </details>
           </div>
           <div class="schedule-card">
             <strong>Example Schedule</strong>
@@ -269,6 +341,10 @@
               </tbody>
             </table>
           </div>
+        </div>
+        <div class="slide-controls reveal">
+          <a href="#alg-drr" class="button ghost">Previous</a>
+          <a href="lectures.html" class="button primary">Next Section: Lectures</a>
         </div>
       </section>
     </main>

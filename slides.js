@@ -181,18 +181,34 @@ function setupHeroNetworkAnimation() {
 }
 
 function setupSlideKeyboardNavigation() {
-  if (!document.body.classList.contains("slides-page")) return;
+  let slideAnchors = [];
 
-  const slideAnchors = [
-    "slide-hero",
-    "fundamentals",
-    "slide-flow",
-    "slide-queueing",
-    "slide-scheduling",
-    "slide-study-path"
-  ]
-    .map((id) => document.getElementById(id))
-    .filter(Boolean);
+  if (document.body.classList.contains("slides-page")) {
+    slideAnchors = [
+      "slide-hero",
+      "fundamentals",
+      "slide-flow",
+      "slide-queueing",
+      "slide-scheduling",
+      "slide-study-path"
+    ]
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
+  }
+
+  if (document.body.classList.contains("formal-page")) {
+    slideAnchors = [
+      "formal-hero",
+      "alg-fifo",
+      "alg-priority",
+      "alg-rr",
+      "alg-wfq",
+      "alg-drr",
+      "alg-edf"
+    ]
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
+  }
 
   if (!slideAnchors.length) return;
 
