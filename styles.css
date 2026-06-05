@@ -15,6 +15,40 @@
   --shadow: 0 20px 48px rgba(72, 90, 65, 0.16);
 }
 
+:root[data-theme="dark"] {
+  --bg: #09111b;
+  --bg-soft: #122131;
+  --panel: rgba(14, 24, 39, 0.88);
+  --panel-strong: rgba(18, 31, 49, 0.98);
+  --border: rgba(127, 169, 214, 0.24);
+  --text: #edf5ff;
+  --muted: #9cb1c8;
+  --accent: #ffb347;
+  --accent-2: #5cc6e8;
+  --accent-3: #62d69a;
+  --critical: #f37a71;
+  --video: #5cc6e8;
+  --data: #70d7a2;
+  --shadow: 0 20px 48px rgba(0, 0, 0, 0.34);
+}
+
+:root[data-theme="sepia"] {
+  --bg: #f6efe3;
+  --bg-soft: #efe3d1;
+  --panel: rgba(255, 250, 242, 0.9);
+  --panel-strong: rgba(253, 247, 238, 0.98);
+  --border: rgba(112, 84, 52, 0.24);
+  --text: #35261a;
+  --muted: #745d47;
+  --accent: #c96d28;
+  --accent-2: #4d88a8;
+  --accent-3: #5f9b6c;
+  --critical: #bb5d4f;
+  --video: #4d88a8;
+  --data: #63a477;
+  --shadow: 0 20px 48px rgba(96, 72, 44, 0.16);
+}
+
 * {
   box-sizing: border-box;
 }
@@ -80,6 +114,28 @@ main {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+}
+
+.theme-picker {
+  display: inline-grid;
+  gap: 6px;
+  justify-items: start;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.theme-picker span {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.theme-select {
+  min-width: 120px;
+  padding: 9px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.84);
+  color: var(--text);
 }
 
 .nav-link {
@@ -1175,12 +1231,12 @@ small {
 }
 
 .simulator-page .page-shell {
-  width: min(1480px, calc(100% - 18px));
-  padding-bottom: 10px;
+  width: min(1780px, calc(100% - 8px));
+  padding-bottom: 8px;
 }
 
 .simulator-page .section-block {
-  padding: 18px 20px 20px;
+  padding: 14px 14px 16px;
 }
 
 .simulator-page .section-heading {
@@ -1245,13 +1301,13 @@ small {
 }
 
 .simulator-page .simulator-layout {
-  grid-template-columns: 310px 1fr;
-  gap: 12px;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 10px;
 }
 
 .simulator-page .control-panel,
 .simulator-page .simulation-stage {
-  padding: 14px;
+  padding: 12px;
 }
 
 .simulator-page .control-group {
@@ -1286,8 +1342,8 @@ small {
 
 .simulator-page .status-strip {
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 8px;
-  margin-bottom: 8px;
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
 .simulator-page .arrival-board,
@@ -1314,15 +1370,15 @@ small {
 }
 
 .simulator-page .queue-row {
-  grid-template-columns: 105px 1fr;
-  gap: 10px;
+  grid-template-columns: 120px 1fr;
+  gap: 12px;
 }
 
 .simulator-page .queue-track {
   min-height: 56px;
-  padding: 8px;
+  padding: 10px 12px;
   border-radius: 16px;
-  gap: 8px;
+  gap: 10px;
 }
 
 .simulator-page .packet {
@@ -1339,7 +1395,7 @@ small {
 
 .simulator-page .channel-lane {
   min-height: 92px;
-  padding: 10px;
+  padding: 12px;
   border-radius: 18px;
 }
 
@@ -1386,17 +1442,17 @@ small {
 }
 
 .simulator-page .queue-list {
-  max-height: 260px;
+  max-height: 320px;
   overflow: auto;
   padding-right: 2px;
 }
 
 .simulator-page .explanation-strip {
-  padding: 14px;
+  padding: 16px 18px;
 }
 
 .simulator-page .simplified-channel {
-  grid-template-columns: 1fr 190px;
+  grid-template-columns: minmax(0, 1fr) 220px;
 }
 
 .simulator-page .simplified-metrics {
@@ -1424,7 +1480,7 @@ small {
 
 .details-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 220px;
+  grid-template-columns: 1.05fr 1.05fr 240px;
   gap: 10px;
   padding: 0 12px 12px;
 }

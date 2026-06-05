@@ -4,6 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NOS Formal Theory</title>
+  <script>
+    (function () {
+      const theme = localStorage.getItem("nos-theme") || "light";
+      document.documentElement.dataset.theme = theme;
+    }());
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -31,6 +37,14 @@
         <a class="nav-link active" href="formal.html">Formal Theory</a>
         <a class="nav-link" href="lectures.html">Video Lectures</a>
       </div>
+      <label class="theme-picker">
+        <span>Theme</span>
+        <select class="theme-select" aria-label="Choose theme">
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+          <option value="sepia">Sepia</option>
+        </select>
+      </label>
     </nav>
 
     <main>
@@ -260,6 +274,7 @@
     </main>
   </div>
 
+  <script src="theme.js"></script>
   <script src="slides.js"></script>
 </body>
 </html>
