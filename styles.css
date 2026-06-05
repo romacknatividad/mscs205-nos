@@ -791,6 +791,19 @@ small {
   line-height: 1.5;
 }
 
+.slide-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.hero-slide-controls {
+  justify-content: flex-start;
+  margin-top: 14px;
+}
+
 .slide-visual {
   position: relative;
   margin-top: 18px;
@@ -1018,6 +1031,133 @@ small {
   height: 5px;
   border-radius: 999px;
   background: linear-gradient(90deg, rgba(45, 152, 184, 0.5), rgba(217, 139, 43, 0.5));
+}
+
+.lecture-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.featured-lectures {
+  margin-top: 18px;
+}
+
+.featured-lecture {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.9fr) minmax(0, 1.1fr);
+  gap: 18px;
+  padding: 18px;
+  border-radius: 24px;
+  border: 1px solid var(--border);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(238, 244, 236, 0.96));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65), 0 16px 34px rgba(72, 90, 65, 0.08);
+}
+
+.featured-copy {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+}
+
+.featured-video {
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(56, 74, 53, 0.14);
+  background: #dde7dc;
+  min-height: 300px;
+}
+
+.featured-video iframe {
+  width: 100%;
+  min-height: 300px;
+  border: 0;
+}
+
+.lecture-card {
+  display: grid;
+  gap: 12px;
+  padding: 18px;
+  border-radius: 22px;
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(245, 249, 243, 0.96));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.62), 0 12px 28px rgba(72, 90, 65, 0.08);
+}
+
+.lecture-thumb {
+  position: relative;
+  min-height: 132px;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(56, 74, 53, 0.12);
+  background: linear-gradient(135deg, rgba(45, 152, 184, 0.16), rgba(217, 139, 43, 0.18));
+}
+
+.lecture-thumb::before,
+.lecture-thumb::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.34);
+}
+
+.lecture-thumb::before {
+  width: 140px;
+  height: 140px;
+  top: -40px;
+  right: -24px;
+}
+
+.lecture-thumb::after {
+  width: 90px;
+  height: 90px;
+  bottom: -16px;
+  left: -12px;
+}
+
+.thumb-label {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  z-index: 1;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.84);
+  color: var(--text);
+  font-weight: 700;
+}
+
+.thumb-os { background: linear-gradient(135deg, rgba(45, 152, 184, 0.16), rgba(95, 115, 95, 0.18)); }
+.thumb-network { background: linear-gradient(135deg, rgba(69, 166, 196, 0.18), rgba(217, 139, 43, 0.18)); }
+.thumb-distributed { background: linear-gradient(135deg, rgba(85, 185, 126, 0.18), rgba(45, 152, 184, 0.18)); }
+.thumb-queue { background: linear-gradient(135deg, rgba(217, 139, 43, 0.18), rgba(204, 95, 82, 0.18)); }
+.thumb-qos { background: linear-gradient(135deg, rgba(45, 152, 184, 0.18), rgba(85, 185, 126, 0.18)); }
+.thumb-performance { background: linear-gradient(135deg, rgba(204, 95, 82, 0.16), rgba(217, 139, 43, 0.18)); }
+.thumb-math { background: linear-gradient(135deg, rgba(120, 141, 234, 0.16), rgba(45, 152, 184, 0.18)); }
+.thumb-markov { background: linear-gradient(135deg, rgba(95, 115, 95, 0.16), rgba(120, 141, 234, 0.18)); }
+.thumb-playlist { background: linear-gradient(135deg, rgba(217, 139, 43, 0.18), rgba(120, 141, 234, 0.16)); }
+.thumb-networks { background: linear-gradient(135deg, rgba(85, 185, 126, 0.18), rgba(217, 139, 43, 0.16)); }
+
+.lecture-badge {
+  display: inline-block;
+  width: fit-content;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(45, 152, 184, 0.12);
+  color: var(--accent-2);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.lecture-meta {
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+.lectures-page .section-block,
+.lectures-page .lectures-hero {
+  min-height: auto;
 }
 
 @keyframes packetDrift {
@@ -1332,6 +1472,8 @@ small {
   .insight-layout,
   .triple-grid,
   .lab-overview,
+  .featured-lecture,
+  .lecture-grid,
   .theory-grid,
   .queue-columns,
   .algorithm-layout {
@@ -1411,6 +1553,11 @@ small {
 
   .hero-status-board {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .slide-controls {
+    flex-direction: column;
+    align-items: stretch;
   }
 
   .shared-network {

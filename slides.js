@@ -180,5 +180,52 @@ function setupHeroNetworkAnimation() {
   }
 }
 
+function setupSlideKeyboardNavigation() {
+  if (!document.body.classList.contains("slides-page")) return;
+
+  const slideAnchors = [
+    "slide-hero",
+    "fundamentals",
+    "slide-flow",
+    "slide-queueing",
+    "slide-scheduling",
+    "slide-study-path"
+  ]
+    .map((id) => document.getElementById(id))
+    .filter(Boolean);
+
+  if (!slideAnchors.length) return;
+
+  function nearestSlideIndex() {
+    const viewportMid = window.innerHeight * 0.35;
+    let bestIndex = 0;
+    let bestDistance = Number.POSITIVE_INFINITY;
+
+    slideAnchors.forEach((node, index) => {
+      const rect = node.getBoundingClientRect();
+      const distance = Math.abs(rect.top - viewportMid);
+      if (distance < bestDistance) {
+        bestDistance = distance;
+        bestIndex = index;
+      }
+    });
+
+    return bestIndex;
+  }
+
+  window.addEventListener("keydown", (event) => {
+    if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
+
+    const currentIndex = nearestSlideIndex();
+    const nextIndex = event.key === "ArrowRight"
+      ? Math.min(currentIndex + 1, slideAnchors.length - 1)
+      : Math.max(currentIndex - 1, 0);
+
+    if (nextIndex === currentIndex) return;
+    slideAnchors[nextIndex].scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+}
+
 setupReveals();
 setupHeroNetworkAnimation();
+setupSlideKeyboardNavigation();

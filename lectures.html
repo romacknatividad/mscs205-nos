@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NOS Video Lectures</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="lectures-page">
+  <div class="page-shell">
+    <nav class="top-nav slide-card">
+      <a class="nav-brand" href="index.html">NOS Studio</a>
+      <div class="nav-links">
+        <a class="nav-link" href="index.html">Slides</a>
+        <a class="nav-link" href="simulator.html">Simulation</a>
+        <a class="nav-link" href="formal.html">Formal Theory</a>
+        <a class="nav-link active" href="lectures.html">Video Lectures</a>
+      </div>
+    </nav>
+
+    <main>
+      <section class="slide-card section-block lectures-hero">
+        <div class="section-heading">
+          <p class="eyebrow">Video Library</p>
+          <h1 class="page-title">Lecture Collections for NOS, Queueing, and Scheduling</h1>
+          <p>
+            This page gathers external video lectures and public course collections that match the ideas used
+            across the slides, simulator, and formal theory pages.
+          </p>
+        </div>
+
+        <div class="lab-overview">
+          <article class="overview-card reveal">
+            <h3>Slides Support</h3>
+            <p>Use these videos to reinforce Network Operating Systems, computer networking, and distributed service ideas.</p>
+          </article>
+          <article class="overview-card reveal">
+            <h3>Simulation Support</h3>
+            <p>These lectures focus on queueing, QoS, traffic management, and practical router scheduling concepts.</p>
+          </article>
+          <article class="overview-card reveal">
+            <h3>Formal Support</h3>
+            <p>These selections go deeper into stochastic processes, Little's law, queueing models, and mathematical analysis.</p>
+          </article>
+        </div>
+
+        <div class="featured-lectures">
+          <article class="featured-lecture reveal">
+            <div class="featured-copy">
+              <div class="lecture-badge">Featured Playlist</div>
+              <h3>Queueing Theory Playlist</h3>
+              <p>A long-form video sequence for queueing theory and mathematical foundations. This is the best starting point if you want one continuous study stream.</p>
+              <a class="button primary" href="https://www.youtube.com/playlist?list=PL59NBu6N8dUqYClaKpoozyzK3Kpcm5eou" target="_blank" rel="noreferrer">Open on YouTube</a>
+            </div>
+            <div class="featured-video">
+              <iframe
+                src="https://www.youtube.com/embed/videoseries?list=PL59NBu6N8dUqYClaKpoozyzK3Kpcm5eou"
+                title="Queueing Theory Playlist"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="slide-card section-block">
+        <div class="section-heading">
+          <p class="eyebrow">Track 1</p>
+          <h2>Slides Topics</h2>
+          <p>Video resources for operating systems, networking, distributed systems, and service-oriented network behavior.</p>
+        </div>
+
+        <div class="lecture-grid">
+          <article class="lecture-card reveal">
+            <div class="lecture-thumb thumb-os">
+              <span class="thumb-label">OS Services</span>
+            </div>
+            <div class="lecture-badge">Operating Systems</div>
+            <h3>ECS 150: Operating Systems and Systems Programming</h3>
+            <p>Public UC Davis lecture collection covering core operating system ideas such as system services, filesystems, memory, and process management.</p>
+            <p class="lecture-meta">Best fit for: Slide 1 and the NOS service foundation.</p>
+            <a class="button primary" href="https://video.ucdavis.edu/channel/ECS%2B150%2B-%2BOperating%2BSystems%2Band%2BSystems%2BProgramming/324050132" target="_blank" rel="noreferrer">Open Lecture Collection</a>
+          </article>
+
+          <article class="lecture-card reveal">
+            <div class="lecture-thumb thumb-network">
+              <span class="thumb-label">Networking</span>
+            </div>
+            <div class="lecture-badge">Networking</div>
+            <h3>Computer Networking: Video Lectures</h3>
+            <p>University of Delaware networking video collection with public lectures on Internet structure, application layers, transport, routing, and link behavior.</p>
+            <p class="lecture-meta">Best fit for: Slide 2 and the client-server communication path.</p>
+            <a class="button primary" href="https://www.eecis.udel.edu/~bohacek/videoLectures/ComputerNetworking/ComputerNetworking_v2.html" target="_blank" rel="noreferrer">Open Video Series</a>
+          </article>
+
+          <article class="lecture-card reveal">
+            <div class="lecture-thumb thumb-distributed">
+              <span class="thumb-label">Distributed</span>
+            </div>
+            <div class="lecture-badge">Distributed Systems</div>
+            <h3>Stanford CS244b: Distributed Systems</h3>
+            <p>Stanford course page with lecture-video access for distributed systems, remote services, coordination, failures, and service design tradeoffs.</p>
+            <p class="lecture-meta">Best fit for: Slide 1 and Slide 2 when connecting NOS ideas to distributed services.</p>
+            <a class="button primary" href="https://www.scs.stanford.edu/17au-cs244b/" target="_blank" rel="noreferrer">Open Course Page</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="slide-card section-block">
+        <div class="section-heading">
+          <p class="eyebrow">Track 2</p>
+          <h2>Simulation Topics</h2>
+          <p>Lecture resources focused on congestion, queue buildup, router behavior, fair sharing, and scheduler choices.</p>
+        </div>
+
+        <div class="lecture-grid">
+          <article class="lecture-card reveal">
+            <div class="lecture-thumb thumb-queue">
+              <span class="thumb-label">Queueing</span>
+            </div>
+            <div class="lecture-badge">Queueing Basics</div>
+            <h3>Raj Jain: Introduction to Queueing Theory for Computer Scientists</h3>
+            <p>A public mini-course focused on the queueing ideas that show up directly in the simulator: waiting lines, service centers, Little's law, and queueing networks.</p>
+            <p class="lecture-meta">Best fit for: staged arrivals, waiting time, and throughput reasoning.</p>
+            <a class="button primary" href="https://www.cse.wustl.edu/~jain/queue/index.html" target="_blank" rel="noreferrer">Open Mini-Course</a>
+          </article>
+
+          <article class="lecture-card reveal">
+            <div class="lecture-thumb thumb-qos">
+              <span class="thumb-label">WFQ / QoS</span>
+            </div>
+            <div class="lecture-badge">QoS Scheduling</div>
+            <h3>NPTEL: Fluid Fair Queueing and Weighted Fair Queueing</h3>
+            <p>A focused lecture on fair sharing and weighted scheduling behavior that maps closely to the simulator's WFQ-style comparisons.</p>
+            <p class="lecture-meta">Best fit for: weighted service, fairness, and QoS-oriented scheduling.</p>
+            <a class="button primary" href="https://www.digimat.in/nptel/courses/video/117101050/L10.html" target="_blank" rel="noreferrer">Open Lecture</a>
+          </article>
+
+          <article class="lecture-card reveal">
+            <div class="lecture-thumb thumb-performance">
+              <span class="thumb-label">Performance</span>
+            </div>
+            <div class="lecture-badge">Networking Performance</div>
+            <h3>Raj Jain Audio/Video Recordings</h3>
+            <p>A broader archive that includes networking, performance analysis, queueing, and protocol-related video lectures useful for interpreting simulator behavior.</p>
+            <p class="lecture-meta">Best fit for: burst traffic, congestion, and network performance analysis.</p>
+            <a class="button primary" href="https://www.cse.wustl.edu/~jain/videos.htm" target="_blank" rel="noreferrer">Open Archive</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="slide-card section-block">
+        <div class="section-heading">
+          <p class="eyebrow">Track 3</p>
+          <h2>Formal Mathematical Foundations</h2>
+          <p>Video lectures and structured course material for stochastic processes, queueing analysis, and formal delay models.</p>
+        </div>
+
+        <div class="lecture-grid">
+          <article class="lecture-card reveal">
+            <div class="lecture-thumb thumb-math">
+              <span class="thumb-label">Little's Law</span>
+            </div>
+            <div class="lecture-badge">MIT OCW</div>
+            <h3>Lecture 13: Little, M/G/1, Ensemble Averages</h3>
+            <p>MIT's Discrete Stochastic Processes lecture on Little's theorem and queueing fundamentals that directly support the formal page's notation and metrics.</p>
+            <p class="lecture-meta">Best fit for: average wait, queue length, and queueing-law interpretation.</p>
+            <a class="button primary" href="https://ocw.mit.edu/courses/6-262-discrete-stochastic-processes-spring-2011/resources/lecture-13-little-m-g-1-ensemble-averages/" target="_blank" rel="noreferrer">Open Lecture</a>
+          </article>
+
+          <article class="lecture-card reveal">
+            <div class="lecture-thumb thumb-markov">
+              <span class="thumb-label">Markov</span>
+            </div>
+            <div class="lecture-badge">MIT Learn</div>
+            <h3>Lecture 20: Markov Processes and Random Walks</h3>
+            <p>A supporting MIT lecture for the probabilistic side of formal queueing analysis, especially when modeling arrivals, states, and steady-state reasoning.</p>
+            <p class="lecture-meta">Best fit for: stochastic background behind queue models.</p>
+            <a class="button primary" href="https://learn.mit.edu/video/11638?playlist=11618" target="_blank" rel="noreferrer">Open Lecture</a>
+          </article>
+
+          <article class="lecture-card reveal">
+            <div class="lecture-thumb thumb-playlist">
+              <span class="thumb-label">Playlist</span>
+            </div>
+            <div class="lecture-badge">Playlist</div>
+            <h3>FAU Queueing Theory YouTube Playlist</h3>
+            <p>A full queueing-theory lecture playlist referenced by the FAU course syllabus, suitable for learners who want a sustained mathematical sequence rather than isolated clips.</p>
+            <p class="lecture-meta">Best fit for: long-form mathematical study.</p>
+            <a class="button primary" href="https://www.youtube.com/playlist?list=PL59NBu6N8dUqYClaKpoozyzK3Kpcm5eou" target="_blank" rel="noreferrer">Open Playlist</a>
+          </article>
+
+          <article class="lecture-card reveal">
+            <div class="lecture-thumb thumb-networks">
+              <span class="thumb-label">Networks</span>
+            </div>
+            <div class="lecture-badge">Queueing Networks</div>
+            <h3>Raj Jain: Queueing Networks</h3>
+            <p>A dedicated lecture page on queueing networks with slides and linked audio/video, useful when moving beyond single queues into system-level reasoning.</p>
+            <p class="lecture-meta">Best fit for: extending the simulator to multi-stage or networked service models.</p>
+            <a class="button primary" href="https://www.cse.wustl.edu/~jain/cse567-13/k_32qn.htm" target="_blank" rel="noreferrer">Open Lecture Page</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="slide-card section-block">
+        <div class="section-heading">
+          <p class="eyebrow">Notes</p>
+          <h2>How to Use This Page</h2>
+          <p>
+            Start with the slide-topic videos if you want intuition first. Move to the simulation-topic videos when you want to understand why the simulator behaves as it does. Use the mathematical track when you are ready to connect notation, laws, and queueing models to the formal page.
+          </p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="slides.js"></script>
+</body>
+</html>
