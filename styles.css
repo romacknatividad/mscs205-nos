@@ -1485,18 +1485,6 @@ small {
   padding-top: 4px;
 }
 
-.timeline-marker::after {
-  content: "";
-  position: absolute;
-  left: 17px;
-  top: 18px;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  box-shadow: 0 0 0 6px rgba(92, 198, 232, 0.12);
-}
-
 .timeline-year {
   display: inline-block;
   min-width: 92px;
