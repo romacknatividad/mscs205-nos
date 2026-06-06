@@ -1,41 +1,4 @@
-const algorithmDefinitions = {
-  fifo: {
-    name: "FIFO / FCFS",
-    shortFormula: "\\[p^*(t) = \\arg\\min_{p \\in Q(t)} a_p\\]",
-    description: "First In, First Out serves packets in order of arrival time. It is easy to implement but does not protect latency-sensitive traffic.",
-    strength: "Best when implementation simplicity is more important than differentiated service."
-  },
-  priority: {
-    name: "Strict Priority Queueing",
-    shortFormula: "\\[p^*(t) = \\arg\\max_{p \\in Q(t)} (\\pi_p, -a_p)\\]",
-    description: "Strict Priority always serves the highest-priority eligible class first. This sharply reduces delay for critical flows while risking starvation for low-priority traffic.",
-    strength: "Best when mission-critical or real-time traffic must dominate service decisions."
-  },
-  rr: {
-    name: "Round Robin",
-    shortFormula: "\\[i_{k+1} = (i_k + 1) \\bmod N\\]",
-    description: "Round Robin visits non-empty queues cyclically. It is more equitable than strict priority, but equal turns do not mean equal bandwidth when packet sizes differ.",
-    strength: "Best when bounded unfairness is more important than strict optimization for one class."
-  },
-  wfq: {
-    name: "Weighted Fair Queueing",
-    shortFormula: "\\[F_i^k = \\max(F_i^{k-1}, V(a_i^k)) + \\frac{L_i^k}{w_i}\\]",
-    description: "WFQ approximates generalized processor sharing by assigning virtual finish times. Higher-weight classes receive more long-run service without excluding lower-weight classes.",
-    strength: "Best when differentiated quality of service and fairness must both be maintained."
-  },
-  drr: {
-    name: "Deficit Round Robin",
-    shortFormula: "\\[D_i \\leftarrow D_i + Q_i\\]",
-    description: "DRR extends Round Robin using deficit counters and per-class quantum values. A queue can send packets while its deficit covers packet size, which handles variable-size packets efficiently.",
-    strength: "Best when you want scalable fairness with variable packet sizes and low scheduler overhead."
-  },
-  edf: {
-    name: "Earliest Deadline First",
-    shortFormula: "\\[p^*(t) = \\arg\\min_{p \\in Q(t)} d_p\\]",
-    description: "EDF selects the eligible packet with the nearest deadline. It is effective when traffic has explicit timing constraints rather than only class priorities.",
-    strength: "Best when deadlines are meaningful and lateness is the key performance metric."
-  }
-};
+const algorithmDefinitions = window.algorithmCatalog || {};
 
 const trafficProfiles = [
   { key: "voice", label: "Voice", colorClass: "voice", priority: 3, sizeRange: [1, 2], weight: 4, quantum: 3, deadlineSlack: 4 },
@@ -119,6 +82,7 @@ const serviceLabel = document.getElementById("serviceLabel");
 const holDelay = document.getElementById("holDelay");
 const dispatchLog = document.getElementById("dispatchLog");
 const dispatchCount = document.getElementById("dispatchCount");
+const fixedAlgorithm = document.body.dataset.algorithm || "";
 
 function infoTipMarkup(label, description, position = "") {
   const positionClass = position ? ` ${position}` : "";
@@ -126,6 +90,7 @@ function infoTipMarkup(label, description, position = "") {
 }
 
 function initAlgorithms() {
+  if (!algorithmSelect) return;
   Object.entries(algorithmDefinitions).forEach(([value, item]) => {
     const option = document.createElement("option");
     option.value = value;
@@ -183,7 +148,7 @@ function profileByKey(key) {
 }
 
 function getAlgorithm() {
-  return algorithmSelect.value;
+  return fixedAlgorithm || algorithmSelect?.value || "wfq";
 }
 
 function createPacket(profile, index, arrivalTick) {
@@ -410,6 +375,7 @@ function buildCompletionInsight(packet, waitTime, turnaround) {
 
 function updateAlgorithmCopy() {
   const item = algorithmDefinitions[getAlgorithm()];
+  if (!item || !algorithmTitle || !algorithmDescription || !algorithmStrength || !algorithmFormula) return;
   algorithmTitle.textContent = item.name;
   algorithmDescription.textContent = item.description;
   algorithmStrength.textContent = item.strength;
@@ -430,11 +396,18 @@ function renderQueues() {
     row.className = "queue-row";
 
     const label = document.createElement("div");
-    const deficitText = getAlgorithm() === "drr" ? ` | Deficit ${state.deficits[profile.key]}` : "";
+    const deficitBadge = getAlgorithm() === "drr"
+      ? `<span class="queue-badge">D${state.deficits[profile.key]}</span>`
+      : "";
     label.innerHTML = `
       <div class="queue-heading queue-heading-compact">
         <strong>${profile.label}</strong>
-        <span class="queue-label queue-meta-inline">Priority ${profile.priority} | Weight ${profile.weight} | Quantum ${profile.quantum}${deficitText}</span>
+        <span class="queue-meta-badges">
+          <span class="queue-badge">P${profile.priority}</span>
+          <span class="queue-badge">W${profile.weight}</span>
+          <span class="queue-badge">Q${profile.quantum}</span>
+          ${deficitBadge}
+        </span>
         ${infoTipMarkup(
           `Explain ${profile.label} queue`,
           `${profile.label} traffic uses priority ${profile.priority}, weight ${profile.weight}, and quantum ${profile.quantum}. In DRR, deficit is the saved service credit for this queue.`,
@@ -616,16 +589,16 @@ function runSimulation() {
 }
 
 function setupEvents() {
-  algorithmSelect.addEventListener("change", () => {
+  algorithmSelect?.addEventListener("change", () => {
     updateAlgorithmCopy();
     render();
   });
 
-  scenarioSelect.addEventListener("change", () => {
+  scenarioSelect?.addEventListener("change", () => {
     updateInsight(`${scenarioDefinitions[scenarioSelect.value].name} is selected. Generate traffic to load this scenario into the simulator.`);
   });
 
-  speedRange.addEventListener("input", () => {
+  speedRange?.addEventListener("input", () => {
     speedLabel.textContent = `${speedRange.value} ms / tick`;
     if (state.isRunning) {
       stopRun();
@@ -633,10 +606,10 @@ function setupEvents() {
     }
   });
 
-  generateBtn.addEventListener("click", generateTraffic);
-  stepBtn.addEventListener("click", stepSimulation);
-  runBtn.addEventListener("click", runSimulation);
-  resetBtn.addEventListener("click", resetSimulation);
+  generateBtn?.addEventListener("click", generateTraffic);
+  stepBtn?.addEventListener("click", stepSimulation);
+  runBtn?.addEventListener("click", runSimulation);
+  resetBtn?.addEventListener("click", resetSimulation);
 }
 
 function setupReveals() {
@@ -651,8 +624,10 @@ function setupReveals() {
   document.querySelectorAll(".reveal").forEach((node) => observer.observe(node));
 }
 
-initAlgorithms();
-initScenarios();
-setupEvents();
-setupReveals();
-resetSimulation();
+if (document.body.classList.contains("simulator-page") || document.body.classList.contains("algorithm-detail-page")) {
+  initAlgorithms();
+  initScenarios();
+  setupEvents();
+  setupReveals();
+  resetSimulation();
+}

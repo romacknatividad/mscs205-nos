@@ -827,9 +827,26 @@ small {
   white-space: nowrap;
 }
 
-.queue-meta-inline {
-  display: inline;
-  font-size: 0.94rem;
+.queue-meta-badges {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: nowrap;
+}
+
+.queue-badge {
+  display: inline-grid;
+  place-items: center;
+  min-width: 34px;
+  padding: 4px 7px;
+  border-radius: 999px;
+  background: rgba(92, 198, 232, 0.12);
+  border: 1px solid rgba(92, 198, 232, 0.18);
+  color: var(--accent-2);
+  font-size: 0.76rem;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  font-family: "IBM Plex Mono", monospace;
 }
 
 .queue-track {
@@ -2054,7 +2071,7 @@ small {
 }
 
 .simulator-page .queue-row {
-  grid-template-columns: 360px minmax(0, 1fr);
+  grid-template-columns: 430px minmax(0, 1fr);
   gap: 12px;
   align-items: center;
 }
@@ -2074,9 +2091,14 @@ small {
   flex-shrink: 0;
 }
 
-.simulator-page .queue-meta-inline {
-  overflow: hidden;
-  text-overflow: ellipsis;
+.simulator-page .queue-meta-badges {
+  flex-shrink: 0;
+}
+
+.simulator-page .queue-badge {
+  min-width: 30px;
+  padding: 4px 6px;
+  font-size: 0.72rem;
 }
 
 .simulator-page .packet {
