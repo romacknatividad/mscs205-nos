@@ -63,11 +63,16 @@ main {
 }
 
 .top-nav {
+  position: sticky;
+  top: 4px;
+  z-index: 40;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 18px;
   padding: 20px 28px;
+  margin-bottom: 8px;
+  backdrop-filter: blur(18px);
 }
 
 .nav-brand,
