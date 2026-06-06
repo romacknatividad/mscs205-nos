@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Earliest Deadline First | DMMMSU SLUC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[', '\\]']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body class="simulator-page algorithm-detail-page" data-algorithm="edf">
+  <div class="page-shell">
+    <nav class="top-nav slide-card">
+      <a class="nav-brand" href="index.html">DMMMSU SLUC</a>
+      <div class="nav-links">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="slides.html">Slides</a>
+        <a class="nav-link active" href="algorithms.html">Algorithms</a>
+        <a class="nav-link" href="timeline.html">Timeline</a>
+        <a class="nav-link" href="quiz.html">Quiz</a>
+      </div>
+    </nav>
+
+    <main>
+      <section class="slide-card section-block simulator-page-block algorithm-detail-hero">
+        <div class="section-heading">
+          <p id="algorithmNumber" class="eyebrow">Algorithm 1</p>
+          <h1 id="algorithmPageTitle" class="page-title">FIFO / FCFS</h1>
+          <p id="algorithmSummary"></p>
+        </div>
+
+        <div class="simulator-guide reveal">
+          <div class="guide-step"><strong>1.</strong> Generate traffic for this scheduler only so the behavior stays focused.</div>
+          <div class="guide-step"><strong>2.</strong> Step or run the lab and watch which queue receives service next.</div>
+          <div class="guide-step"><strong>3.</strong> Use the theory section below to connect the behavior to notation and schedule traces.</div>
+        </div>
+
+        <div class="simulator-layout">
+          <aside class="control-panel">
+            <div class="control-group algorithm-locked">
+              <span>Algorithm</span>
+              <div class="algorithm-lock-chip">Fixed for this page</div>
+            </div>
+
+            <label class="control-group">
+              <span>Traffic Scenario <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain traffic scenario"><i class="fa-solid fa-circle-info" aria-hidden="true"></i></button><span class="info-bubble">A scenario defines when packets arrive and what kinds of traffic are competing, so you can compare the chosen algorithm under different loads.</span></span></span>
+              <select id="scenarioSelect"></select>
+            </label>
+
+            <label class="control-group">
+              <span>Simulation Speed <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain simulation speed"><i class="fa-solid fa-circle-info" aria-hidden="true"></i></button><span class="info-bubble">This only changes how quickly the animation advances. It does not change the scheduling logic itself.</span></span></span>
+              <input id="speedRange" type="range" min="300" max="1400" step="100" value="800">
+              <small id="speedLabel">800 ms / tick</small>
+            </label>
+
+            <div class="button-row">
+              <button id="generateBtn" class="button primary" type="button">Generate Traffic</button>
+              <button id="stepBtn" class="button secondary" type="button">Step</button>
+              <button id="runBtn" class="button accent" type="button">Run</button>
+              <button id="resetBtn" class="button ghost" type="button">Reset</button>
+            </div>
+
+            <div class="algorithm-copy">
+              <h3 id="algorithmTitle">Algorithm</h3>
+              <p id="algorithmDescription"></p>
+              <p id="algorithmStrength" class="algorithm-note"></p>
+              <div id="algorithmFormula" class="algorithm-formula"></div>
+            </div>
+
+            <div class="legend">
+              <div><span class="legend-chip voice"></span> Voice / Critical</div>
+              <div><span class="legend-chip video"></span> Video / Streaming</div>
+              <div><span class="legend-chip data"></span> Data / General</div>
+            </div>
+          </aside>
+
+          <div class="simulation-stage">
+            <div class="status-strip simplified-status">
+              <div class="status-card">
+                <span class="metric-label">Current Tick <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain current tick"><i class="fa-solid fa-circle-info" aria-hidden="true"></i></button><span class="info-bubble">A tick is one discrete time step in the simulator. Arrivals, service progress, and scheduling decisions are updated tick by tick.</span></span></span>
+                <strong id="tickCount">0</strong>
+              </div>
+              <div class="status-card">
+                <span class="metric-label">Packets Waiting <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain packets waiting"><i class="fa-solid fa-circle-info" aria-hidden="true"></i></button><span class="info-bubble">These are packets already in the system but not yet being transmitted. They form the current backlog.</span></span></span>
+                <strong id="queuedCount">0</strong>
+              </div>
+              <div class="status-card">
+                <span class="metric-label">Packets Sent <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain packets sent"><i class="fa-solid fa-circle-info" aria-hidden="true"></i></button><span class="info-bubble">Packets sent are the ones that completed service and left the link successfully.</span></span></span>
+                <strong id="sentCount">0</strong>
+              </div>
+            </div>
+
+            <section class="active-board core-board">
+              <div class="queue-header">
+                <div>Queues Waiting for Service <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain queues waiting for service"><i class="fa-solid fa-circle-info" aria-hidden="true"></i></button><span class="info-bubble">Each queue holds packets of one traffic class that are waiting for the scheduler to choose them.</span></span></div>
+                <div id="futureCount">0 future arrivals</div>
+              </div>
+              <div class="queue-list" id="queueList"></div>
+
+              <div class="channel simplified-channel">
+                <div class="channel-lane">
+                  <div class="channel-packet idle" id="activePacket">Idle</div>
+                  <div class="service-progress">
+                    <div id="serviceProgressBar" class="service-progress-bar"></div>
+                  </div>
+                  <small id="serviceLabel">No packet in service</small>
+                </div>
+                <div class="channel-metrics simplified-metrics">
+                  <div class="metric-card">
+                    <span class="metric-label">Average Wait</span>
+                    <strong id="avgWait">0.0 ticks</strong>
+                  </div>
+                  <div class="metric-card">
+                    <span class="metric-label">Fairness</span>
+                    <strong id="fairnessLabel">Balanced</strong>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <div class="explanation-strip">
+              <h3>Why This Decision Happened</h3>
+              <p id="simulationInsight">
+                Generate traffic to inspect how this algorithm reacts to staged arrivals and variable packet sizes.
+              </p>
+            </div>
+
+            <details class="simulation-details">
+              <summary>Show advanced details</summary>
+              <div class="details-grid">
+                <section class="arrival-board">
+                  <div class="queue-header">
+                    <div>Future Arrivals</div>
+                    <div id="arrivedCount">0 arrived</div>
+                  </div>
+                  <div class="arrival-timeline" id="arrivalTimeline"></div>
+                </section>
+
+                <section class="transmission-log">
+                  <div class="queue-header">
+                    <div>Recent Event Log</div>
+                    <div id="dispatchCount">0 events</div>
+                  </div>
+                  <div id="dispatchLog" class="dispatch-log"></div>
+                </section>
+
+                <section class="details-metrics">
+                  <div class="metric-card">
+                    <span class="metric-label">Link Utilization</span>
+                    <strong id="utilizationLabel">0%</strong>
+                  </div>
+                  <div class="metric-card">
+                    <span class="metric-label">Head-of-Line Delay</span>
+                    <strong id="holDelay">0 ticks</strong>
+                  </div>
+                </section>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide-card section-block algorithm-section algorithm-theory-section">
+        <div class="section-heading">
+          <p class="eyebrow">Formal View</p>
+          <h2>Definition, Interpretation, and Schedule</h2>
+          <p>
+            This second panel explains the same algorithm using notation, a plain-language reading, and an example timeline.
+          </p>
+        </div>
+        <div class="algorithm-layout">
+          <div id="formalTheoryCard" class="theory-card"></div>
+          <div id="scheduleTheoryCard" class="schedule-card"></div>
+        </div>
+        <div class="slide-controls reveal">
+          <a id="prevAlgorithmLink" href="algorithms.html" class="button ghost">Back to Algorithms</a>
+          <a id="nextAlgorithmLink" href="priority.html" class="button primary">Next</a>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="algorithm-data.js"></script>
+  <script src="info.js"></script>
+  <script src="script.js"></script>
+  <script src="algorithm-page.js"></script>
+</body>
+</html>

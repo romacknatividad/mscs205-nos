@@ -101,6 +101,7 @@ function initAlgorithms() {
 }
 
 function initScenarios() {
+  if (!scenarioSelect) return;
   Object.entries(scenarioDefinitions).forEach(([value, item]) => {
     const option = document.createElement("option");
     option.value = value;

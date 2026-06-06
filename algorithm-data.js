@@ -25,6 +25,24 @@ window.algorithmCatalog = {
         <p><strong>Turnaround time \\(T_p\\):</strong> total time from arrival until the packet finishes.</p>
       </div>
     </details>`,
+    tradeoffHtml: `<div class="tradeoff-grid">
+      <article class="tradeoff-card advantage-card">
+        <strong>Advantages</strong>
+        <ul class="tradeoff-list">
+          <li>Very simple to implement and explain.</li>
+          <li>Arrival order is transparent and easy to audit.</li>
+          <li>Works well when traffic classes are treated equally.</li>
+        </ul>
+      </article>
+      <article class="tradeoff-card disadvantage-card">
+        <strong>Disadvantages</strong>
+        <ul class="tradeoff-list">
+          <li>Critical short packets can wait behind long packets.</li>
+          <li>Provides no class differentiation or deadline awareness.</li>
+          <li>Convoy effects can increase delay under bursty traffic.</li>
+        </ul>
+      </article>
+    </div>`,
     scheduleHtml: `<strong>Example Schedule</strong>
       <table class="schedule-table">
         <thead>
@@ -62,6 +80,24 @@ window.algorithmCatalog = {
         <p><strong>\\(\\lambda_{\\text{high}} \\ge \\mu\\):</strong> if urgent traffic arrives at least as fast as the system can serve it, lower classes may keep waiting indefinitely.</p>
       </div>
     </details>`,
+    tradeoffHtml: `<div class="tradeoff-grid">
+      <article class="tradeoff-card advantage-card">
+        <strong>Advantages</strong>
+        <ul class="tradeoff-list">
+          <li>Protects mission-critical traffic with very low delay.</li>
+          <li>Easy to configure when classes have obvious urgency levels.</li>
+          <li>Useful for voice, control, or alarm traffic.</li>
+        </ul>
+      </article>
+      <article class="tradeoff-card disadvantage-card">
+        <strong>Disadvantages</strong>
+        <ul class="tradeoff-list">
+          <li>Low-priority queues can starve during sustained overload.</li>
+          <li>Fairness is weak because urgency dominates all other goals.</li>
+          <li>Poor fit when many classes need meaningful service guarantees.</li>
+        </ul>
+      </article>
+    </div>`,
     scheduleHtml: `<strong>Example Schedule</strong>
       <table class="schedule-table">
         <thead>
@@ -99,6 +135,24 @@ window.algorithmCatalog = {
         <p><strong>\\(B_i(t) > 0\\):</strong> if queue \\(i\\) actually has a packet waiting, send the front packet; otherwise skip it.</p>
       </div>
     </details>`,
+    tradeoffHtml: `<div class="tradeoff-grid">
+      <article class="tradeoff-card advantage-card">
+        <strong>Advantages</strong>
+        <ul class="tradeoff-list">
+          <li>Prevents one active queue from dominating every turn.</li>
+          <li>Behavior is easy for students to follow visually.</li>
+          <li>Improves fairness compared with strict priority.</li>
+        </ul>
+      </article>
+      <article class="tradeoff-card disadvantage-card">
+        <strong>Disadvantages</strong>
+        <ul class="tradeoff-list">
+          <li>Equal turns do not imply equal bandwidth with unequal packet sizes.</li>
+          <li>Does not account for deadlines or traffic importance.</li>
+          <li>Can still delay urgent traffic behind less important packets.</li>
+        </ul>
+      </article>
+    </div>`,
     scheduleHtml: `<strong>Example Schedule</strong>
       <table class="schedule-table">
         <thead>
@@ -136,6 +190,24 @@ window.algorithmCatalog = {
         <p><strong>\\(w_i / \\sum_j w_j\\):</strong> over time, a class gets roughly its weight-share of the link.</p>
       </div>
     </details>`,
+    tradeoffHtml: `<div class="tradeoff-grid">
+      <article class="tradeoff-card advantage-card">
+        <strong>Advantages</strong>
+        <ul class="tradeoff-list">
+          <li>Balances fairness and differentiated service using weights.</li>
+          <li>Handles variable packet sizes better than plain Round Robin.</li>
+          <li>Lower-weight traffic still receives service over time.</li>
+        </ul>
+      </article>
+      <article class="tradeoff-card disadvantage-card">
+        <strong>Disadvantages</strong>
+        <ul class="tradeoff-list">
+          <li>More complex to explain and implement than FIFO or RR.</li>
+          <li>Requires careful weight design to match policy goals.</li>
+          <li>Virtual-time calculations add scheduler overhead.</li>
+        </ul>
+      </article>
+    </div>`,
     scheduleHtml: `<strong>Example Schedule</strong>
       <table class="schedule-table">
         <thead>
@@ -173,6 +245,24 @@ window.algorithmCatalog = {
         <p><strong>\\(L_i^{\\text{head}} \\le D_i\\):</strong> the front packet can go only when its size is no larger than the saved credit.</p>
       </div>
     </details>`,
+    tradeoffHtml: `<div class="tradeoff-grid">
+      <article class="tradeoff-card advantage-card">
+        <strong>Advantages</strong>
+        <ul class="tradeoff-list">
+          <li>Scales well with variable-size packets and many queues.</li>
+          <li>Saved deficit credit prevents permanent exclusion of large packets.</li>
+          <li>Lower overhead than exact virtual-time fair queueing.</li>
+        </ul>
+      </article>
+      <article class="tradeoff-card disadvantage-card">
+        <strong>Disadvantages</strong>
+        <ul class="tradeoff-list">
+          <li>Fairness depends on sensible quantum values.</li>
+          <li>Less intuitive than FIFO or basic Round Robin.</li>
+          <li>Short-term service order can still look uneven to beginners.</li>
+        </ul>
+      </article>
+    </div>`,
     scheduleHtml: `<strong>Example Schedule</strong>
       <table class="schedule-table">
         <thead>
@@ -211,6 +301,24 @@ window.algorithmCatalog = {
         <p><strong>\\(L_p = c_p - d_p\\):</strong> positive lateness means the packet finished after its deadline, while negative lateness means it finished early.</p>
       </div>
     </details>`,
+    tradeoffHtml: `<div class="tradeoff-grid">
+      <article class="tradeoff-card advantage-card">
+        <strong>Advantages</strong>
+        <ul class="tradeoff-list">
+          <li>Directly targets deadline-sensitive traffic.</li>
+          <li>Adapts to time urgency rather than only fixed class labels.</li>
+          <li>Can minimize lateness when workloads are feasible.</li>
+        </ul>
+      </article>
+      <article class="tradeoff-card disadvantage-card">
+        <strong>Disadvantages</strong>
+        <ul class="tradeoff-list">
+          <li>Weak fit when packets do not carry meaningful deadlines.</li>
+          <li>Can behave poorly if the system is overloaded beyond capacity.</li>
+          <li>Deadline management adds policy and implementation complexity.</li>
+        </ul>
+      </article>
+    </div>`,
     scheduleHtml: `<strong>Example Schedule</strong>
       <table class="schedule-table">
         <thead>

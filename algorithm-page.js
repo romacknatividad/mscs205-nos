@@ -19,15 +19,19 @@ function setText(id, value) {
 function populateAlgorithmPage() {
   if (!algorithmItem) return;
 
-  document.title = `${algorithmItem.pageTitle} | NOS Studio`;
+  document.title = `${algorithmItem.pageTitle} | DMMMSU SLUC`;
   setText("algorithmNumber", algorithmItem.number);
   setText("algorithmPageTitle", algorithmItem.pageTitle);
   setText("algorithmSummary", algorithmItem.summary);
+  setText("algorithmTitle", algorithmItem.name);
+  setText("algorithmDescription", algorithmItem.description);
+  setText("algorithmStrength", algorithmItem.strength);
+  setHtml("algorithmFormula", algorithmItem.shortFormula);
   setText("algorithmPanelTitle", algorithmItem.name);
   setText("algorithmPanelDescription", algorithmItem.description);
   setText("algorithmPanelStrength", algorithmItem.strength);
   setHtml("algorithmPanelFormula", algorithmItem.shortFormula);
-  setHtml("formalTheoryCard", algorithmItem.formalHtml + algorithmItem.notationHtml);
+  setHtml("formalTheoryCard", algorithmItem.formalHtml + algorithmItem.notationHtml + (algorithmItem.tradeoffHtml || ""));
   setHtml("scheduleTheoryCard", algorithmItem.scheduleHtml);
 
   const currentIndex = algorithmOrder.indexOf(algorithm);

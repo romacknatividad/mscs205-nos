@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NOS Algorithms</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="algorithms-page">
+  <div class="page-shell">
+    <nav class="top-nav slide-card">
+      <a class="nav-brand" href="index.html">DMMMSU SLUC</a>
+      <div class="nav-links">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="slides.html">Slides</a>
+        <a class="nav-link active" href="algorithms.html">Algorithms</a>
+        <a class="nav-link" href="timeline.html">Timeline</a>
+        <a class="nav-link" href="quiz.html">Quiz</a>
+      </div>
+    </nav>
+
+    <main>
+      <section class="slide-card section-block algorithms-hero">
+        <div class="section-heading">
+          <p class="eyebrow">Algorithms</p>
+          <h1 class="page-title">Scheduling Algorithms in One Place</h1>
+          <p>
+            Each algorithm now has its own page that combines the live simulation, the mathematical definition,
+            the plain-language interpretation, and the example execution table in one focused lesson.
+          </p>
+        </div>
+
+        <div class="algorithm-grid">
+          <a class="algorithm-card-link reveal" href="fifo.html">
+            <article class="algorithm-card">
+              <span class="step-number">01</span>
+              <h3>FIFO / FCFS</h3>
+              <p>Arrival-order service with simple behavior and visible convoy effects.</p>
+            </article>
+          </a>
+          <a class="algorithm-card-link reveal" href="priority.html">
+            <article class="algorithm-card">
+              <span class="step-number">02</span>
+              <h3>Strict Priority</h3>
+              <p>Urgency-first scheduling with strong protection for critical traffic and starvation risk for low classes.</p>
+            </article>
+          </a>
+          <a class="algorithm-card-link reveal" href="rr.html">
+            <article class="algorithm-card">
+              <span class="step-number">03</span>
+              <h3>Round Robin</h3>
+              <p>Cyclic service that emphasizes queue-level fairness through repeated turns.</p>
+            </article>
+          </a>
+          <a class="algorithm-card-link reveal" href="wfq.html">
+            <article class="algorithm-card">
+              <span class="step-number">04</span>
+              <h3>Weighted Fair Queueing</h3>
+              <p>Weighted fairness using virtual finish tags and long-run service shares.</p>
+            </article>
+          </a>
+          <a class="algorithm-card-link reveal" href="drr.html">
+            <article class="algorithm-card">
+              <span class="step-number">05</span>
+              <h3>Deficit Round Robin</h3>
+              <p>Credit-based fairness designed to work efficiently with variable-size packets.</p>
+            </article>
+          </a>
+          <a class="algorithm-card-link reveal" href="edf.html">
+            <article class="algorithm-card">
+              <span class="step-number">06</span>
+              <h3>Earliest Deadline First</h3>
+              <p>Deadline-aware scheduling for traffic where lateness is the key concern.</p>
+            </article>
+          </a>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="slides.js"></script>
+</body>
+</html>
