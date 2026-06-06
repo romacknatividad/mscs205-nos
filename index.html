@@ -3,18 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NOS Slides</title>
+  <title>NOS Studio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body class="slides-page">
+<body class="home-page">
   <div class="page-shell">
     <nav class="top-nav slide-card">
       <a class="nav-brand" href="index.html">NOS Studio</a>
       <div class="nav-links">
-        <a class="nav-link active" href="index.html">Slides</a>
+        <a class="nav-link active" href="index.html">Home</a>
+        <a class="nav-link" href="slides.html">Slides</a>
         <a class="nav-link" href="simulator.html">Simulation</a>
         <a class="nav-link" href="formal.html">Formal Theory</a>
         <a class="nav-link" href="timeline.html">Timeline</a>
@@ -22,339 +23,95 @@
       </div>
     </nav>
 
-    <header id="slide-hero" class="hero slide-card">
+    <header class="hero slide-card home-hero">
       <div class="hero-copy">
-        <p class="eyebrow">Slides</p>
+        <p class="eyebrow">Interactive Homepage</p>
         <h1>Network Operating Systems</h1>
         <p class="hero-text">
-          A focused slide deck on the role of a Network Operating System, its core services,
-          and why queueing and scheduling policies shape network performance.
+          Explore how a Network Operating System coordinates users, devices, storage, and service policies.
+          The homepage stays focused on the live animation, while the slide deck now runs on its own page for smoother reading.
         </p>
         <div class="hero-actions">
-          <a href="#fundamentals" class="button primary">Start Slides</a>
-          <a href="simulator.html" class="button secondary">Go to Simulation</a>
-          <a href="quiz.html" class="button ghost">Take Quiz</a>
+          <a href="slides.html" class="button primary">Open Slides</a>
+          <a href="simulator.html" class="button secondary">Open Simulation</a>
+          <a href="formal.html" class="button ghost">Open Formal Theory</a>
         </div>
-        <div class="slide-controls hero-slide-controls">
-          <a href="#fundamentals" class="button primary">Next Slide</a>
+        <div class="lab-overview home-overview">
+          <article class="overview-card reveal">
+            <h3>Live NOS Traffic</h3>
+            <p>Watch bursts, completed requests, and failures move through an active NOS control node.</p>
+          </article>
+          <article class="overview-card reveal">
+            <h3>Separated Slide Deck</h3>
+            <p>The teaching slides now load separately so the animation loop does not compete with the full lesson document.</p>
+          </article>
+          <article class="overview-card reveal">
+            <h3>Study Flow</h3>
+            <p>Move from home animation to slides, then simulation, formal theory, timeline, and quiz.</p>
+          </article>
         </div>
       </div>
       <div class="hero-visual" aria-hidden="true">
         <div class="network-orbit orbit-a"></div>
         <div class="network-orbit orbit-b"></div>
-        <div class="network-core">
-          <span class="node server">NOS <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain NOS server">i</button><span class="info-bubble">The NOS node represents the shared control point that authenticates requests, applies policy, and coordinates access to network resources.</span></span></span>
-          <span class="node client one">Clients <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain clients">i</button><span class="info-bubble">Clients are endpoints that ask the NOS for services such as file access, printing, authentication, or application use.</span></span></span>
-          <span class="node client two">Users <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain users">i</button><span class="info-bubble">Users represent human demand entering the network. Their actions create bursts, retries, and competing service requests.</span></span></span>
-          <span class="node client three">Devices <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain devices">i</button><span class="info-bubble">Devices are networked endpoints such as terminals, workstations, cameras, or phones that generate traffic for shared infrastructure.</span></span></span>
-          <span class="node client four">Storage <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain storage">i</button><span class="info-bubble">Storage stands for shared filesystems and data services that must be coordinated so many clients can use them safely.</span></span></span>
+        <div class="network-core tech-network-core">
+          <span class="node server">
+            <span class="node-shell">
+              <span class="node-icon icon-server">::</span>
+              <span class="node-copy">NOS</span>
+            </span>
+            <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain NOS server">i</button><span class="info-bubble">The NOS node represents the shared control point that authenticates requests, applies policy, and coordinates access to network resources.</span></span>
+          </span>
+          <span class="node client one">
+            <span class="node-shell">
+              <span class="node-icon icon-clients">CL</span>
+              <span class="node-copy">Clients</span>
+            </span>
+            <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain clients">i</button><span class="info-bubble">Clients are endpoints asking the NOS for shared services such as files, applications, print access, or directory lookups.</span></span>
+          </span>
+          <span class="node client two">
+            <span class="node-shell">
+              <span class="node-icon icon-users">ID</span>
+              <span class="node-copy">Users</span>
+            </span>
+            <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain users">i</button><span class="info-bubble">Users represent interactive demand that creates bursts, retries, and policy-sensitive requests in the network.</span></span>
+          </span>
+          <span class="node client three">
+            <span class="node-shell">
+              <span class="node-icon icon-devices">DV</span>
+              <span class="node-copy">Devices</span>
+            </span>
+            <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain devices">i</button><span class="info-bubble">Devices stand for workstations, phones, cameras, terminals, and other endpoints participating in the NOS environment.</span></span>
+          </span>
+          <span class="node client four">
+            <span class="node-shell">
+              <span class="node-icon icon-storage">DB</span>
+              <span class="node-copy">Storage</span>
+            </span>
+            <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain storage">i</button><span class="info-bubble">Storage represents shared filesystems and persistent services that need coordinated access and security rules.</span></span>
+          </span>
           <div id="requestLayer" class="request-layer"></div>
         </div>
         <div class="hero-status-board">
           <div class="status-mini">
-            <span class="status-label">Live Requests <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain live requests">i</button><span class="info-bubble">Requests that have been sent by a node and are still travelling to the NOS or waiting for a result.</span></span></span>
+            <span class="status-label">Live Requests <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain live requests">i</button><span class="info-bubble">Requests that are currently moving toward the NOS or waiting for a response.</span></span></span>
             <strong id="liveRequests">0</strong>
           </div>
           <div class="status-mini">
-            <span class="status-label">Completed <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain completed requests">i</button><span class="info-bubble">Requests that successfully reached the NOS and received a successful service response.</span></span></span>
+            <span class="status-label">Completed <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain completed requests">i</button><span class="info-bubble">Requests that successfully reached the NOS and received a successful result.</span></span></span>
             <strong id="completedRequests">0</strong>
           </div>
           <div class="status-mini">
-            <span class="status-label">Failed <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain failed requests">i</button><span class="info-bubble">Requests that did not complete successfully. This visualizes timeouts, congestion, denial, or service failure.</span></span></span>
+            <span class="status-label">Failed <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain failed requests">i</button><span class="info-bubble">Requests that failed due to congestion, denial, timeouts, or service failure.</span></span></span>
             <strong id="failedRequests">0</strong>
           </div>
           <div class="status-mini">
-            <span class="status-label">Bursts <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain burst traffic">i</button><span class="info-bubble">Burst traffic means many requests arrive close together in time, which is exactly what creates queues and scheduling pressure.</span></span></span>
+            <span class="status-label">Bursts <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain burst traffic">i</button><span class="info-bubble">Burst traffic means many requests arrive in a tight time window, which is what creates queues and scheduling pressure.</span></span></span>
             <strong id="burstRequests">0</strong>
           </div>
         </div>
       </div>
     </header>
-
-    <main>
-      <section id="fundamentals" class="slide-card section-block">
-        <div class="section-heading">
-          <p class="eyebrow">Slide 1</p>
-          <h2>What a Network Operating System Does</h2>
-          <p>
-            A Network Operating System extends operating system control across interconnected machines,
-            enabling shared resources, coordinated security, and centralized service delivery.
-          </p>
-        </div>
-        <div class="concept-grid">
-          <article class="concept-panel reveal">
-            <h3>Resource Sharing</h3>
-            <p>Files, printers, storage arrays, and applications are exposed to many nodes through controlled access so that a shared network can function as one coordinated environment instead of isolated devices.</p>
-          </article>
-          <article class="concept-panel reveal">
-            <h3>Identity and Policy</h3>
-            <p>Authentication and authorization determine who can use which resources and under what conditions, making user administration and access control central NOS responsibilities.</p>
-          </article>
-          <article class="concept-panel reveal">
-            <h3>Communication Services</h3>
-            <p>The NOS provides the protocol and transport support needed for reliable distributed operation, allowing clients, servers, printers, and databases to exchange data across the network.</p>
-          </article>
-          <article class="concept-panel reveal">
-            <h3>Central Administration</h3>
-            <p>Monitoring, configuration, maintenance, and recovery are coordinated from an administrative control layer so multiple users and devices can be managed consistently.</p>
-          </article>
-        </div>
-        <div class="slide-visual slide-visual-network reveal" aria-hidden="true">
-          <div class="visual-title">Shared NOS Environment</div>
-          <div class="shared-network">
-            <div class="shared-core">NOS</div>
-            <div class="shared-leaf leaf-a">Files</div>
-            <div class="shared-leaf leaf-b">Users</div>
-            <div class="shared-leaf leaf-c">Print</div>
-            <div class="shared-leaf leaf-d">Apps</div>
-            <div class="shared-leaf leaf-e">Storage</div>
-            <span class="shared-link link-a"></span>
-            <span class="shared-link link-b"></span>
-            <span class="shared-link link-c"></span>
-            <span class="shared-link link-d"></span>
-            <span class="shared-link link-e"></span>
-          </div>
-        </div>
-        <div class="slide-summary reveal">
-          <h3>Why This Matters</h3>
-          <p>
-            In practice, a NOS acts as a multiuser coordination layer. It does not just move packets; it decides how identities, devices, storage, and services are organized so networked computing remains usable and secure at scale.
-          </p>
-        </div>
-        <div class="slide-controls reveal">
-          <a href="#slide-hero" class="button ghost">Previous</a>
-          <a href="#slide-flow" class="button primary">Next</a>
-        </div>
-      </section>
-
-      <section id="slide-flow" class="slide-card section-block">
-        <div class="section-heading">
-          <p class="eyebrow">Slide 2</p>
-          <h2>Core Operational Flow</h2>
-          <p>
-            A typical NOS pipeline begins with service discovery and identity validation, then continues
-            through authorization, scheduling, and resource delivery.
-          </p>
-        </div>
-        <div class="pipeline">
-          <div class="pipeline-step reveal">
-            <span class="step-number">01</span>
-            <h3>Discover</h3>
-            <p>Devices identify available servers, directories, name services, and shared resources before work can begin.</p>
-          </div>
-          <div class="pipeline-step reveal">
-            <span class="step-number">02</span>
-            <h3>Authenticate</h3>
-            <p>Credentials are validated before the system allows meaningful access, reducing the chance of unauthorized service use.</p>
-          </div>
-          <div class="pipeline-step reveal">
-            <span class="step-number">03</span>
-            <h3>Authorize</h3>
-            <p>Policies bind users and devices to permissions, quotas, and access boundaries so one user does not consume or expose resources improperly.</p>
-          </div>
-          <div class="pipeline-step reveal">
-            <span class="step-number">04</span>
-            <h3>Schedule</h3>
-            <p>Competing requests are ordered so shared channels, storage, and server processes are not overwhelmed by simultaneous demand.</p>
-          </div>
-          <div class="pipeline-step reveal">
-            <span class="step-number">05</span>
-            <h3>Deliver</h3>
-            <p>Resources are transferred while the NOS tracks state, availability, and performance across the client-server interaction.</p>
-          </div>
-        </div>
-        <div class="slide-visual slide-visual-flow reveal" aria-hidden="true">
-          <div class="visual-title">Request Lifecycle</div>
-          <div class="flow-ribbon">
-            <div class="flow-stop stop-discover">Discover</div>
-            <div class="flow-arrow"></div>
-            <div class="flow-stop stop-auth">Auth</div>
-            <div class="flow-arrow"></div>
-            <div class="flow-stop stop-policy">Policy</div>
-            <div class="flow-arrow"></div>
-            <div class="flow-stop stop-schedule">Schedule</div>
-            <div class="flow-arrow"></div>
-            <div class="flow-stop stop-deliver">Deliver</div>
-          </div>
-        </div>
-        <div class="slide-summary reveal">
-          <h3>Operational View</h3>
-          <p>
-            This flow highlights that a NOS is both a control system and a service system. Every request must be validated, mapped to policy, and then scheduled against finite resources such as bandwidth, CPU time, and storage access.
-          </p>
-        </div>
-        <div class="slide-controls reveal">
-          <a href="#fundamentals" class="button ghost">Previous</a>
-          <a href="#slide-queueing" class="button primary">Next</a>
-        </div>
-      </section>
-
-      <section id="slide-queueing" class="slide-card section-block">
-        <div class="section-heading">
-          <p class="eyebrow">Slide 3</p>
-          <h2>Why Queueing Matters</h2>
-          <p>
-            Every network eventually encounters contention. When demand exceeds instantaneous service capacity,
-            packets must wait, and the queueing discipline starts affecting delay, throughput, and fairness.
-          </p>
-        </div>
-        <div class="insight-layout triple-grid">
-          <div class="insight-card reveal">
-            <h3>Backlog Formation</h3>
-            <p>Packets accumulate when the arrival rate temporarily exceeds the service rate of a link, interface, or server process.</p>
-          </div>
-          <div class="insight-card reveal">
-            <h3>Latency Impact</h3>
-            <p>Even a small number of large packets can increase waiting time for critical short packets behind them, especially under simple FIFO behavior.</p>
-          </div>
-          <div class="insight-card reveal">
-            <h3>Congestion Signals</h3>
-            <p>Queue length and head-of-line delay are early indicators that the network is approaching stress and may need congestion management or QoS policy.</p>
-          </div>
-        </div>
-        <div class="slide-visual slide-visual-queue reveal" aria-hidden="true">
-          <div class="visual-title">Queue Buildup</div>
-          <div class="queue-illustration">
-            <div class="packet-stream">
-              <span class="mini-packet p1"></span>
-              <span class="mini-packet p2"></span>
-              <span class="mini-packet p3"></span>
-              <span class="mini-packet p4"></span>
-            </div>
-            <div class="buffer-lane">
-              <span class="queued-packet q1">P1</span>
-              <span class="queued-packet q2">P2</span>
-              <span class="queued-packet q3">P3</span>
-              <span class="queued-packet q4">P4</span>
-              <span class="queued-packet q5">P5</span>
-            </div>
-            <div class="service-gate">Link</div>
-          </div>
-        </div>
-        <div class="slide-summary reveal">
-          <h3>Queueing Insight</h3>
-          <p>
-            Queueing exists because network capacity is finite and demand is bursty. A NOS must therefore absorb temporary overload while preserving as much responsiveness as possible for important traffic classes.
-          </p>
-        </div>
-        <div class="slide-controls reveal">
-          <a href="#slide-flow" class="button ghost">Previous</a>
-          <a href="#slide-scheduling" class="button primary">Next</a>
-        </div>
-      </section>
-
-      <section id="slide-scheduling" class="slide-card section-block">
-        <div class="section-heading">
-          <p class="eyebrow">Slide 4</p>
-          <h2>Why Scheduling Matters</h2>
-          <p>
-            Queueing says packets must wait. Scheduling decides which packet gets the next service opportunity,
-            and that policy directly controls fairness, starvation risk, and deadline behavior.
-          </p>
-        </div>
-        <div class="concept-grid">
-          <article class="concept-panel reveal">
-            <h3>Fairness</h3>
-            <p>Policies such as Round Robin or Weighted Fair Queueing prevent one class from dominating the link indefinitely by redistributing service opportunities.</p>
-          </article>
-          <article class="concept-panel reveal">
-            <h3>Urgency</h3>
-            <p>Strict Priority and Earliest Deadline First reduce delay for traffic that has strong timing requirements, such as voice or deadline-sensitive control traffic.</p>
-          </article>
-          <article class="concept-panel reveal">
-            <h3>Packet Size Effects</h3>
-            <p>Byte-aware policies such as WFQ and DRR account for packet length more carefully than plain queue rotation, which improves fairness under mixed packet sizes.</p>
-          </article>
-          <article class="concept-panel reveal">
-            <h3>Tradeoff Space</h3>
-            <p>No scheduler optimizes every metric at once. NOS design requires choosing the right compromise among latency, fairness, throughput, isolation, and implementation cost.</p>
-          </article>
-        </div>
-        <div class="slide-visual slide-visual-scheduling reveal" aria-hidden="true">
-          <div class="visual-title">Scheduling Choices</div>
-          <div class="scheduler-board">
-            <div class="scheduler-queue priority-queue">
-              <span>Voice</span>
-              <div class="scheduler-chips">
-                <i></i><i></i><i></i>
-              </div>
-            </div>
-            <div class="scheduler-queue weighted-queue">
-              <span>Video</span>
-              <div class="scheduler-chips">
-                <i></i><i></i>
-              </div>
-            </div>
-            <div class="scheduler-queue best-effort-queue">
-              <span>Data</span>
-              <div class="scheduler-chips">
-                <i></i><i></i><i></i><i></i>
-              </div>
-            </div>
-            <div class="scheduler-decision">Next Packet</div>
-          </div>
-        </div>
-        <div class="slide-summary reveal">
-          <h3>Scheduling Insight</h3>
-          <p>
-            Scheduling transforms raw waiting lines into service policy. Once multiple flows compete for the same output link, the scheduler becomes one of the most important determinants of user experience and application quality.
-          </p>
-        </div>
-        <div class="slide-controls reveal">
-          <a href="#slide-queueing" class="button ghost">Previous</a>
-          <a href="#slide-study-path" class="button primary">Next</a>
-        </div>
-      </section>
-
-      <section id="slide-study-path" class="slide-card section-block">
-        <div class="section-heading">
-          <p class="eyebrow">Slide 5</p>
-          <h2>Study Path</h2>
-          <p>
-            Use the three-page structure to move from intuition to experimentation to formal reasoning.
-          </p>
-        </div>
-        <div class="lab-overview">
-          <article class="overview-card reveal">
-            <h3>Slides</h3>
-            <p>Build intuition for the role of a NOS and the reason shared network resources require queueing and control policies.</p>
-          </article>
-          <article class="overview-card reveal">
-            <h3>Simulation</h3>
-            <p>Run staged arrivals through realistic schedulers and observe delay, utilization, burst handling, head-of-line delay, and fairness.</p>
-          </article>
-          <article class="overview-card reveal">
-            <h3>Formal Theory</h3>
-            <p>Connect the animations to mathematical definitions, notation, and example execution tables so the visual behavior maps back to formal models.</p>
-          </article>
-        </div>
-        <div class="slide-visual slide-visual-path reveal" aria-hidden="true">
-          <div class="visual-title">Learning Path</div>
-          <div class="path-diagram">
-            <div class="path-node">Slides</div>
-            <div class="path-connector"></div>
-            <div class="path-node">Simulation</div>
-            <div class="path-connector"></div>
-            <div class="path-node">Formal</div>
-          </div>
-        </div>
-        <div class="slide-summary reveal">
-          <h3>How to Use This Material</h3>
-          <p>
-            Start with the conceptual deck, then validate your intuition on the simulation page, and finally move to the formal page when you want to discuss these policies precisely using notation and schedule traces.
-          </p>
-        </div>
-        <div class="hero-actions">
-          <a href="simulator.html" class="button primary">Open Simulation Page</a>
-          <a href="formal.html" class="button secondary">Open Formal Theory</a>
-          <a href="quiz.html" class="button ghost">Open Quiz</a>
-        </div>
-        <div class="slide-controls reveal">
-          <a href="#slide-scheduling" class="button ghost">Previous</a>
-          <a href="quiz.html" class="button primary">Next Section: Quiz</a>
-        </div>
-      </section>
-    </main>
   </div>
 
   <script src="info.js"></script>

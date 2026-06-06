@@ -14,6 +14,8 @@ function setupReveals() {
 }
 
 function setupHeroNetworkAnimation() {
+  if (!document.body.classList.contains("home-page")) return;
+
   const layer = document.getElementById("requestLayer");
   if (!layer) return;
 
