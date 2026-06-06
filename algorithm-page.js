@@ -26,6 +26,9 @@ function populateAlgorithmPage() {
   setText("algorithmTitle", algorithmItem.name);
   setText("algorithmDescription", algorithmItem.description);
   setText("algorithmStrength", algorithmItem.strength);
+  setText("algorithmDefinition", algorithmItem.description);
+  setText("algorithmInformalDefinition", algorithmItem.informalDefinition || "");
+  setHtml("algorithmAnalogy", algorithmItem.analogyHtml || "");
   setHtml("algorithmFormula", algorithmItem.shortFormula);
   setText("algorithmPanelTitle", algorithmItem.name);
   setText("algorithmPanelDescription", algorithmItem.description);

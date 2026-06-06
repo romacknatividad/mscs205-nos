@@ -7,6 +7,8 @@ window.algorithmCatalog = {
     summary: "FIFO dispatches the packet with the earliest arrival time and ignores class, weight, and deadlines.",
     shortFormula: "\\[p^*(t) = \\arg\\min_{p \\in Q(t)} a_p\\]",
     description: "First In, First Out serves packets in order of arrival time. It is easy to implement but does not protect latency-sensitive traffic.",
+    informalDefinition: "FIFO is like a single line where whoever arrives first gets served first, even if someone behind has a shorter or more urgent request.",
+    analogyHtml: `<p>Imagine a school canteen with only one cashier. Students are served in the exact order they join the line. A student buying one bottle of water still has to wait behind someone ordering a full meal.</p>`,
     strength: "Best when implementation simplicity is more important than differentiated service.",
     formalHtml: `<strong>Formal Definition</strong>
       <div class="math-block">\\[
@@ -62,6 +64,8 @@ window.algorithmCatalog = {
     summary: "Strict Priority serves the highest-priority queue first and resolves ties by earlier arrival.",
     shortFormula: "\\[p^*(t) = \\arg\\max_{p \\in Q(t)} (\\pi_p, -a_p)\\]",
     description: "Strict Priority always serves the highest-priority eligible class first. This sharply reduces delay for critical flows while risking starvation for low-priority traffic.",
+    informalDefinition: "Strict Priority asks which traffic is most important right now and serves that class first, even if lower classes have been waiting longer.",
+    analogyHtml: `<p>Think of a hospital triage desk. Emergency patients are taken first, while routine cases wait until urgent cases are cleared. That protects critical cases, but routine cases may wait a very long time.</p>`,
     strength: "Best when mission-critical or real-time traffic must dominate service decisions.",
     formalHtml: `<strong>Formal Definition</strong>
       <div class="math-block">\\[
@@ -117,6 +121,8 @@ window.algorithmCatalog = {
     summary: "Round Robin rotates across non-empty queues, giving one service opportunity per visit.",
     shortFormula: "\\[i_{k+1} = (i_k + 1) \\bmod N\\]",
     description: "Round Robin visits non-empty queues cyclically. It is more equitable than strict priority, but equal turns do not mean equal bandwidth when packet sizes differ.",
+    informalDefinition: "Round Robin gives each non-empty queue a turn in rotation, so service moves around the active queues instead of staying with one queue for too long.",
+    analogyHtml: `<p>Imagine three student groups presenting in class. The teacher gives Group A one turn, then Group B, then Group C, and then cycles back to Group A. Everyone gets a chance, but one group can still use more total time if its turn is heavier.</p>`,
     strength: "Best when bounded unfairness is more important than strict optimization for one class.",
     formalHtml: `<strong>Formal Definition</strong>
       <div class="math-block">\\[
@@ -172,6 +178,8 @@ window.algorithmCatalog = {
     summary: "WFQ approximates Generalized Processor Sharing by computing a virtual finish tag for each packet.",
     shortFormula: "\\[F_i^k = \\max(F_i^{k-1}, V(a_i^k)) + \\frac{L_i^k}{w_i}\\]",
     description: "WFQ approximates generalized processor sharing by assigning virtual finish times. Higher-weight classes receive more long-run service without excluding lower-weight classes.",
+    informalDefinition: "WFQ tries to be fair over time by giving each class a weighted share of service instead of simply rotating equally or always choosing urgency first.",
+    analogyHtml: `<p>Think of a budget planner dividing study-room time among student organizations. Larger organizations or more important activities receive larger shares, but smaller groups still get scheduled instead of being ignored.</p>`,
     strength: "Best when differentiated quality of service and fairness must both be maintained.",
     formalHtml: `<strong>Formal Definition</strong>
       <div class="math-block">\\[
@@ -227,6 +235,8 @@ window.algorithmCatalog = {
     summary: "DRR extends Round Robin by carrying deficit credit across rounds, making it practical for unequal packet sizes.",
     shortFormula: "\\[D_i \\leftarrow D_i + Q_i\\]",
     description: "DRR extends Round Robin using deficit counters and per-class quantum values. A queue can send packets while its deficit covers packet size, which handles variable-size packets efficiently.",
+    informalDefinition: "DRR gives each queue service credit every round. If a packet is too large for the current credit, the queue saves the unused credit and can try again next round.",
+    analogyHtml: `<p>Imagine each student organization receives printing credits every week. A group that cannot afford a large poster this week keeps its unused credits, so eventually it can print the poster without being permanently blocked by small jobs from others.</p>`,
     strength: "Best when you want scalable fairness with variable packet sizes and low scheduler overhead.",
     formalHtml: `<strong>Formal Definition</strong>
       <div class="math-block">\\[
@@ -283,6 +293,8 @@ window.algorithmCatalog = {
     summary: "EDF selects the packet whose absolute deadline is nearest, regardless of static class labels.",
     shortFormula: "\\[p^*(t) = \\arg\\min_{p \\in Q(t)} d_p\\]",
     description: "EDF selects the eligible packet with the nearest deadline. It is effective when traffic has explicit timing constraints rather than only class priorities.",
+    informalDefinition: "EDF looks at which waiting packet will become late the soonest and serves that packet first, regardless of its static class label.",
+    analogyHtml: `<p>Think of a student working on several assignments with different due dates. The assignment due tomorrow is handled before one due next week, even if both are equally important in general.</p>`,
     strength: "Best when deadlines are meaningful and lateness is the key performance metric.",
     formalHtml: `<strong>Formal Definition</strong>
       <div class="math-block">\\[

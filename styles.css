@@ -1837,6 +1837,37 @@ small {
   min-height: calc(100vh - 12px);
 }
 
+.algorithm-concept-section {
+  display: grid;
+  align-content: start;
+  gap: 22px;
+  padding: 34px 40px 30px;
+}
+
+.algorithm-sequence-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.algorithm-sequence-card {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+}
+
+.algorithm-sequence-card .step-number {
+  margin-bottom: 4px;
+}
+
+.algorithm-analogy-card {
+  grid-column: span 3;
+}
+
+.algorithm-analogy-card p {
+  margin-bottom: 0;
+}
+
 .algorithms-hero {
   display: grid;
   align-content: start;
@@ -2521,7 +2552,8 @@ small {
   }
 
   .algorithm-grid,
-  .tradeoff-grid {
+  .tradeoff-grid,
+  .algorithm-sequence-grid {
     grid-template-columns: 1fr;
   }
 
@@ -2605,6 +2637,10 @@ small {
   .algorithm-card,
   .tradeoff-card {
     padding: 18px;
+  }
+
+  .algorithm-analogy-card {
+    grid-column: auto;
   }
 
   .hero-visual {

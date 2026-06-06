@@ -28,25 +28,67 @@
       <a class="nav-brand" href="index.html">DMMMSU SLUC</a>
       <div class="nav-links">
         <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="timeline.html">Timeline</a>
         <a class="nav-link" href="slides.html">Slides</a>
         <a class="nav-link active" href="algorithms.html">Algorithms</a>
-        <a class="nav-link" href="timeline.html">Timeline</a>
         <a class="nav-link" href="quiz.html">Quiz</a>
       </div>
     </nav>
 
     <main>
-      <section class="slide-card section-block simulator-page-block algorithm-detail-hero">
+      <section class="slide-card section-block algorithm-concept-section">
         <div class="section-heading">
           <p id="algorithmNumber" class="eyebrow">Algorithm 1</p>
           <h1 id="algorithmPageTitle" class="page-title">FIFO / FCFS</h1>
           <p id="algorithmSummary"></p>
         </div>
 
+        <div class="algorithm-sequence-grid">
+          <article class="overview-card reveal algorithm-sequence-card">
+            <span class="step-number">1</span>
+            <h3>Definition</h3>
+            <p id="algorithmDefinition"></p>
+          </article>
+          <article class="overview-card reveal algorithm-sequence-card">
+            <span class="step-number">2</span>
+            <h3>Informal Definition</h3>
+            <p id="algorithmInformalDefinition"></p>
+          </article>
+          <article class="overview-card reveal algorithm-sequence-card algorithm-analogy-card">
+            <span class="step-number">3</span>
+            <h3>Analogy</h3>
+            <div id="algorithmAnalogy"></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="slide-card section-block algorithm-section algorithm-theory-section">
+        <div class="section-heading">
+          <p class="eyebrow">Formal View</p>
+          <h2>Formal Definition</h2>
+          <p>
+            This section expresses the same algorithm with notation, a symbol guide, an analogy-supported interpretation, and a compact schedule trace.
+          </p>
+        </div>
+        <div class="algorithm-layout">
+          <div id="formalTheoryCard" class="theory-card"></div>
+          <div id="scheduleTheoryCard" class="schedule-card"></div>
+        </div>
+      </section>
+
+      <section class="slide-card section-block simulator-page-block algorithm-detail-hero">
+        <div class="section-heading">
+          <p class="eyebrow">Simulation</p>
+          <h2>Live Algorithm Simulation</h2>
+          <p>
+            After reading the concept and notation, use the simulation to watch how this scheduler behaves under staged arrivals and mixed traffic.
+          </p>
+        </div>
+
         <div class="simulator-guide reveal">
-          <div class="guide-step"><strong>1.</strong> Generate traffic for this scheduler only so the behavior stays focused.</div>
+          <div class="guide-step"><strong>1.</strong> Pick a traffic scenario for this algorithm.</div>
           <div class="guide-step"><strong>2.</strong> Step or run the lab and watch which queue receives service next.</div>
-          <div class="guide-step"><strong>3.</strong> Use the theory section below to connect the behavior to notation and schedule traces.</div>
+          <div class="guide-step"><strong>3.</strong> Compare the observed behavior with the definition and formal rule above.</div>
         </div>
 
         <div class="simulator-layout">
@@ -55,7 +97,6 @@
               <span>Algorithm</span>
               <div class="algorithm-lock-chip">Fixed for this page</div>
             </div>
-
             <label class="control-group">
               <span>Traffic Scenario <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain traffic scenario"><i class="fa-solid fa-circle-info" aria-hidden="true"></i></button><span class="info-bubble">A scenario defines when packets arrive and what kinds of traffic are competing, so you can compare the chosen algorithm under different loads.</span></span></span>
               <select id="scenarioSelect"></select>
@@ -172,20 +213,6 @@
             </details>
           </div>
         </div>
-      </section>
-
-      <section class="slide-card section-block algorithm-section algorithm-theory-section">
-        <div class="section-heading">
-          <p class="eyebrow">Formal View</p>
-          <h2>Definition, Interpretation, and Schedule</h2>
-          <p>
-            This second panel explains the same algorithm using notation, a plain-language reading, and an example timeline.
-          </p>
-        </div>
-        <div class="algorithm-layout">
-          <div id="formalTheoryCard" class="theory-card"></div>
-          <div id="scheduleTheoryCard" class="schedule-card"></div>
-        </div>
         <div class="slide-controls reveal">
           <a id="prevAlgorithmLink" href="algorithms.html" class="button ghost">Back to Algorithms</a>
           <a id="nextAlgorithmLink" href="priority.html" class="button primary">Next</a>
@@ -200,3 +227,5 @@
   <script src="algorithm-page.js"></script>
 </body>
 </html>
+
+
