@@ -122,7 +122,7 @@ const dispatchCount = document.getElementById("dispatchCount");
 
 function infoTipMarkup(label, description, position = "") {
   const positionClass = position ? ` ${position}` : "";
-  return `<span class="info-tip info-tip-inline${positionClass}"><button class="info-trigger" type="button" aria-label="${label}">i</button><span class="info-bubble">${description}</span></span>`;
+  return `<span class="info-tip info-tip-inline${positionClass}"><button class="info-trigger" type="button" aria-label="${label}"><i class="fa-solid fa-circle-info" aria-hidden="true"></i></button><span class="info-bubble">${description}</span></span>`;
 }
 
 function initAlgorithms() {
@@ -432,15 +432,15 @@ function renderQueues() {
     const label = document.createElement("div");
     const deficitText = getAlgorithm() === "drr" ? ` | Deficit ${state.deficits[profile.key]}` : "";
     label.innerHTML = `
-      <div class="queue-heading">
+      <div class="queue-heading queue-heading-compact">
         <strong>${profile.label}</strong>
+        <span class="queue-label queue-meta-inline">Priority ${profile.priority} | Weight ${profile.weight} | Quantum ${profile.quantum}${deficitText}</span>
         ${infoTipMarkup(
           `Explain ${profile.label} queue`,
           `${profile.label} traffic uses priority ${profile.priority}, weight ${profile.weight}, and quantum ${profile.quantum}. In DRR, deficit is the saved service credit for this queue.`,
           "info-tip-right"
         )}
       </div>
-      <span class="queue-label">Priority ${profile.priority} | Weight ${profile.weight} | Quantum ${profile.quantum}${deficitText}</span>
     `;
 
     const track = document.createElement("div");

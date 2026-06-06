@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
   <script>
     window.MathJax = {
@@ -55,17 +56,17 @@
         <div class="simulator-layout">
           <aside class="control-panel">
             <label class="control-group">
-              <span>Algorithm <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain algorithm">i</button><span class="info-bubble">The scheduling algorithm is the rule the NOS uses to decide which waiting packet gets the next service opportunity.</span></span></span>
+              <span>Algorithm <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain algorithm"><i class="fa-solid fa-circle-info" aria-hidden="true"></i></button><span class="info-bubble">The scheduling algorithm is the rule the NOS uses to decide which waiting packet gets the next service opportunity.</span></span></span>
               <select id="algorithmSelect"></select>
             </label>
 
             <label class="control-group">
-              <span>Traffic Scenario <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain traffic scenario">i</button><span class="info-bubble">A scenario defines when packets arrive and what kinds of traffic are competing, so you can compare algorithms under different loads.</span></span></span>
+              <span>Traffic Scenario <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain traffic scenario"><i class="fa-solid fa-circle-info" aria-hidden="true"></i></button><span class="info-bubble">A scenario defines when packets arrive and what kinds of traffic are competing, so you can compare algorithms under different loads.</span></span></span>
               <select id="scenarioSelect"></select>
             </label>
 
             <label class="control-group">
-              <span>Simulation Speed <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain simulation speed">i</button><span class="info-bubble">This only changes how quickly the animation advances. It does not change the scheduling logic itself.</span></span></span>
+              <span>Simulation Speed <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain simulation speed"><i class="fa-solid fa-circle-info" aria-hidden="true"></i></button><span class="info-bubble">This only changes how quickly the animation advances. It does not change the scheduling logic itself.</span></span></span>
               <input id="speedRange" type="range" min="300" max="1400" step="100" value="800">
               <small id="speedLabel">800 ms / tick</small>
             </label>
@@ -94,22 +95,22 @@
           <div class="simulation-stage">
             <div class="status-strip simplified-status">
               <div class="status-card">
-                <span class="metric-label">Current Tick <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain current tick">i</button><span class="info-bubble">A tick is one discrete time step in the simulator. Arrivals, service progress, and scheduling decisions are updated tick by tick.</span></span></span>
+                <span class="metric-label">Current Tick <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain current tick"><i class="fa-solid fa-circle-info" aria-hidden="true"></i></button><span class="info-bubble">A tick is one discrete time step in the simulator. Arrivals, service progress, and scheduling decisions are updated tick by tick.</span></span></span>
                 <strong id="tickCount">0</strong>
               </div>
               <div class="status-card">
-                <span class="metric-label">Packets Waiting <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain packets waiting">i</button><span class="info-bubble">These are packets already in the system but not yet being transmitted. They form the current backlog.</span></span></span>
+                <span class="metric-label">Packets Waiting <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain packets waiting"><i class="fa-solid fa-circle-info" aria-hidden="true"></i></button><span class="info-bubble">These are packets already in the system but not yet being transmitted. They form the current backlog.</span></span></span>
                 <strong id="queuedCount">0</strong>
               </div>
               <div class="status-card">
-                <span class="metric-label">Packets Sent <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain packets sent">i</button><span class="info-bubble">Packets sent are the ones that completed service and left the link successfully.</span></span></span>
+                <span class="metric-label">Packets Sent <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain packets sent"><i class="fa-solid fa-circle-info" aria-hidden="true"></i></button><span class="info-bubble">Packets sent are the ones that completed service and left the link successfully.</span></span></span>
                 <strong id="sentCount">0</strong>
               </div>
             </div>
 
             <section class="active-board core-board">
               <div class="queue-header">
-                <div>Queues Waiting for Service <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain queues waiting for service">i</button><span class="info-bubble">Each queue holds packets of one traffic class that are waiting for the scheduler to choose them.</span></span></div>
+                <div>Queues Waiting for Service <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain queues waiting for service"><i class="fa-solid fa-circle-info" aria-hidden="true"></i></button><span class="info-bubble">Each queue holds packets of one traffic class that are waiting for the scheduler to choose them.</span></span></div>
                 <div id="futureCount">0 future arrivals</div>
               </div>
               <div class="queue-list" id="queueList"></div>
@@ -124,11 +125,11 @@
                 </div>
                 <div class="channel-metrics simplified-metrics">
                   <div class="metric-card">
-                    <span class="metric-label">Average Wait <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain average wait">i</button><span class="info-bubble">Average wait is the mean time packets spent in queue before the simulator began serving them.</span></span></span>
+                    <span class="metric-label">Average Wait <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain average wait"><i class="fa-solid fa-circle-info" aria-hidden="true"></i></button><span class="info-bubble">Average wait is the mean time packets spent in queue before the simulator began serving them.</span></span></span>
                     <strong id="avgWait">0.0 ticks</strong>
                   </div>
                   <div class="metric-card">
-                    <span class="metric-label">Fairness <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain fairness">i</button><span class="info-bubble">Fairness estimates how evenly service is being shared across traffic classes instead of concentrating on only one class.</span></span></span>
+                    <span class="metric-label">Fairness <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain fairness"><i class="fa-solid fa-circle-info" aria-hidden="true"></i></button><span class="info-bubble">Fairness estimates how evenly service is being shared across traffic classes instead of concentrating on only one class.</span></span></span>
                     <strong id="fairnessLabel">Balanced</strong>
                   </div>
                 </div>
@@ -136,7 +137,7 @@
             </section>
 
             <div class="explanation-strip">
-              <h3>Why This Decision Happened <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain decision panel">i</button><span class="info-bubble">This panel translates the current scheduling choice into plain language so students can connect the algorithm to the observed behavior.</span></span></h3>
+              <h3>Why This Decision Happened <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain decision panel"><i class="fa-solid fa-circle-info" aria-hidden="true"></i></button><span class="info-bubble">This panel translates the current scheduling choice into plain language so students can connect the algorithm to the observed behavior.</span></span></h3>
               <p id="simulationInsight">
                 Generate traffic to compare how different algorithms treat staged arrivals and variable packet sizes.
               </p>
@@ -147,7 +148,7 @@
               <div class="details-grid">
                 <section class="arrival-board">
                   <div class="queue-header">
-                    <div>Future Arrivals <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain future arrivals">i</button><span class="info-bubble">These packets have been generated but have not yet entered the queue because their arrival time has not been reached.</span></span></div>
+                    <div>Future Arrivals <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain future arrivals"><i class="fa-solid fa-circle-info" aria-hidden="true"></i></button><span class="info-bubble">These packets have been generated but have not yet entered the queue because their arrival time has not been reached.</span></span></div>
                     <div id="arrivedCount">0 arrived</div>
                   </div>
                   <div class="arrival-timeline" id="arrivalTimeline"></div>
@@ -155,7 +156,7 @@
 
                 <section class="transmission-log">
                   <div class="queue-header">
-                    <div>Recent Event Log <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain event log">i</button><span class="info-bubble">The event log records important transitions such as arrivals and completed transmissions so you can reconstruct the scenario step by step.</span></span></div>
+                    <div>Recent Event Log <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain event log"><i class="fa-solid fa-circle-info" aria-hidden="true"></i></button><span class="info-bubble">The event log records important transitions such as arrivals and completed transmissions so you can reconstruct the scenario step by step.</span></span></div>
                     <div id="dispatchCount">0 events</div>
                   </div>
                   <div id="dispatchLog" class="dispatch-log"></div>
@@ -163,11 +164,11 @@
 
                 <section class="details-metrics">
                   <div class="metric-card">
-                    <span class="metric-label">Link Utilization <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain link utilization">i</button><span class="info-bubble">Link utilization is the fraction of elapsed ticks during which the link was actively transmitting a packet.</span></span></span>
+                    <span class="metric-label">Link Utilization <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain link utilization"><i class="fa-solid fa-circle-info" aria-hidden="true"></i></button><span class="info-bubble">Link utilization is the fraction of elapsed ticks during which the link was actively transmitting a packet.</span></span></span>
                     <strong id="utilizationLabel">0%</strong>
                   </div>
                   <div class="metric-card">
-                    <span class="metric-label">Head-of-Line Delay <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain head of line delay">i</button><span class="info-bubble">Head-of-line delay measures how long the oldest packet at the front of a queue has been waiting without service.</span></span></span>
+                    <span class="metric-label">Head-of-Line Delay <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain head of line delay"><i class="fa-solid fa-circle-info" aria-hidden="true"></i></button><span class="info-bubble">Head-of-line delay measures how long the oldest packet at the front of a queue has been waiting without service.</span></span></span>
                     <strong id="holDelay">0 ticks</strong>
                   </div>
                 </section>

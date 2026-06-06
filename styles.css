@@ -203,15 +203,15 @@ p {
 }
 
 .info-trigger {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.65rem;
+  height: 1.65rem;
   padding: 0;
   border-radius: 50%;
   border: 1px solid rgba(127, 169, 214, 0.34);
-  background: rgba(92, 198, 232, 0.14);
+  background: rgba(92, 198, 232, 0.1);
   color: var(--accent-2);
-  font-size: 0.82rem;
-  font-weight: 700;
+  font-size: 0.9rem;
+  font-weight: 400;
   line-height: 1;
   display: inline-grid;
   place-items: center;
@@ -822,6 +822,17 @@ small {
   gap: 8px;
 }
 
+.queue-heading-compact {
+  align-items: center;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+.queue-meta-inline {
+  display: inline;
+  font-size: 0.94rem;
+}
+
 .queue-track {
   min-height: 84px;
   display: flex;
@@ -858,8 +869,8 @@ small {
 }
 
 .packet-label .info-trigger {
-  width: 1.15rem;
-  height: 1.15rem;
+  width: 1.2rem;
+  height: 1.2rem;
   font-size: 0.72rem;
   background: rgba(8, 19, 31, 0.16);
   border-color: rgba(8, 19, 31, 0.28);
@@ -1106,9 +1117,9 @@ small {
 .service-gate .info-trigger,
 .scheduler-decision .info-trigger,
 .status-label .info-trigger {
-  width: 1.1rem;
-  height: 1.1rem;
-  font-size: 0.68rem;
+  width: 1.18rem;
+  height: 1.18rem;
+  font-size: 0.7rem;
 }
 
 .shared-core {
@@ -2049,8 +2060,9 @@ small {
 }
 
 .simulator-page .queue-row {
-  grid-template-columns: 120px 1fr;
+  grid-template-columns: 360px minmax(0, 1fr);
   gap: 12px;
+  align-items: center;
 }
 
 .simulator-page .queue-track {
@@ -2058,6 +2070,19 @@ small {
   padding: 10px 12px;
   border-radius: 16px;
   gap: 10px;
+}
+
+.simulator-page .queue-heading {
+  gap: 10px;
+}
+
+.simulator-page .queue-heading strong {
+  flex-shrink: 0;
+}
+
+.simulator-page .queue-meta-inline {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .simulator-page .packet {

@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body class="home-page">
@@ -60,53 +61,53 @@
               <span class="node-icon icon-server">::</span>
               <span class="node-copy">NOS</span>
             </span>
-            <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain NOS server">i</button><span class="info-bubble">The NOS node represents the shared control point that authenticates requests, applies policy, and coordinates access to network resources.</span></span>
+            <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain NOS server"><i class="fa-solid fa-circle-info" aria-hidden="true"></i></button><span class="info-bubble">The NOS node represents the shared control point that authenticates requests, applies policy, and coordinates access to network resources.</span></span>
           </span>
           <span class="node client one">
             <span class="node-shell">
               <span class="node-icon icon-clients">CL</span>
               <span class="node-copy">Clients</span>
             </span>
-            <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain clients">i</button><span class="info-bubble">Clients are endpoints asking the NOS for shared services such as files, applications, print access, or directory lookups.</span></span>
+            <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain clients"><i class="fa-solid fa-circle-info" aria-hidden="true"></i></button><span class="info-bubble">Clients are endpoints asking the NOS for shared services such as files, applications, print access, or directory lookups.</span></span>
           </span>
           <span class="node client two">
             <span class="node-shell">
               <span class="node-icon icon-users">ID</span>
               <span class="node-copy">Users</span>
             </span>
-            <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain users">i</button><span class="info-bubble">Users represent interactive demand that creates bursts, retries, and policy-sensitive requests in the network.</span></span>
+            <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain users"><i class="fa-solid fa-circle-info" aria-hidden="true"></i></button><span class="info-bubble">Users represent interactive demand that creates bursts, retries, and policy-sensitive requests in the network.</span></span>
           </span>
           <span class="node client three">
             <span class="node-shell">
               <span class="node-icon icon-devices">DV</span>
               <span class="node-copy">Devices</span>
             </span>
-            <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain devices">i</button><span class="info-bubble">Devices stand for workstations, phones, cameras, terminals, and other endpoints participating in the NOS environment.</span></span>
+            <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain devices"><i class="fa-solid fa-circle-info" aria-hidden="true"></i></button><span class="info-bubble">Devices stand for workstations, phones, cameras, terminals, and other endpoints participating in the NOS environment.</span></span>
           </span>
           <span class="node client four">
             <span class="node-shell">
               <span class="node-icon icon-storage">DB</span>
               <span class="node-copy">Storage</span>
             </span>
-            <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain storage">i</button><span class="info-bubble">Storage represents shared filesystems and persistent services that need coordinated access and security rules.</span></span>
+            <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain storage"><i class="fa-solid fa-circle-info" aria-hidden="true"></i></button><span class="info-bubble">Storage represents shared filesystems and persistent services that need coordinated access and security rules.</span></span>
           </span>
           <div id="requestLayer" class="request-layer"></div>
         </div>
         <div class="hero-status-board">
           <div class="status-mini">
-            <span class="status-label">Live Requests <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain live requests">i</button><span class="info-bubble">Requests that are currently moving toward the NOS or waiting for a response.</span></span></span>
+            <span class="status-label">Live Requests <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain live requests"><i class="fa-solid fa-circle-info" aria-hidden="true"></i></button><span class="info-bubble">Requests that are currently moving toward the NOS or waiting for a response.</span></span></span>
             <strong id="liveRequests">0</strong>
           </div>
           <div class="status-mini">
-            <span class="status-label">Completed <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain completed requests">i</button><span class="info-bubble">Requests that successfully reached the NOS and received a successful result.</span></span></span>
+            <span class="status-label">Completed <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain completed requests"><i class="fa-solid fa-circle-info" aria-hidden="true"></i></button><span class="info-bubble">Requests that successfully reached the NOS and received a successful result.</span></span></span>
             <strong id="completedRequests">0</strong>
           </div>
           <div class="status-mini">
-            <span class="status-label">Failed <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain failed requests">i</button><span class="info-bubble">Requests that failed due to congestion, denial, timeouts, or service failure.</span></span></span>
+            <span class="status-label">Failed <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain failed requests"><i class="fa-solid fa-circle-info" aria-hidden="true"></i></button><span class="info-bubble">Requests that failed due to congestion, denial, timeouts, or service failure.</span></span></span>
             <strong id="failedRequests">0</strong>
           </div>
           <div class="status-mini">
-            <span class="status-label">Bursts <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain burst traffic">i</button><span class="info-bubble">Burst traffic means many requests arrive in a tight time window, which is what creates queues and scheduling pressure.</span></span></span>
+            <span class="status-label">Bursts <span class="info-tip info-tip-inline"><button class="info-trigger" type="button" aria-label="Explain burst traffic"><i class="fa-solid fa-circle-info" aria-hidden="true"></i></button><span class="info-bubble">Burst traffic means many requests arrive in a tight time window, which is what creates queues and scheduling pressure.</span></span></span>
             <strong id="burstRequests">0</strong>
           </div>
         </div>
